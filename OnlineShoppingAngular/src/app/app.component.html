@@ -1,12 +1,3 @@
-    <style>
-        li
-        {
-            font-size: large;
-            padding: 8px;
-        }
-        
-    </style>
-
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
@@ -19,7 +10,16 @@
             <li><a href="#">Compare</a></li>
             <li><a href="#">Categories</a></li>
             <li><a href="#">Cart</a></li>
-            <li><a routerLink="profile">Login</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropbtn">Guest</a>
+              <div class="dropdown-content">
+                <a routerLink="login">Login</a>
+                <a href="#">Orders</a>
+                <a href="#">Wishlist</a>
+                 <a routerLink="profile">Profile</a>
+              </div>
+            </li>
           </ul>
         </div>
     </nav>      

@@ -19,18 +19,15 @@ import { OtpService } from './services/OtpService';
 import { UserService } from './services/UserService';
 
 const routes:Routes=[
-  {
-    path:'login',component:LoginComponent
-  },
-  {
-    path:'signUp',component:SignUpComponent
-  },
-  {
-    path:'forgotPassword',component:ForgotPasswordComponent
-  },
-  {
-    path:'admin',component:AdminDashBoardComponent
-  }
+  {path:'',component:HomepageComponent},
+  {path:'login',component:LoginComponent},
+  {path:'signUp',component:SignUpComponent},
+  {path:'forgotPassword',component:ForgotPasswordComponent},
+  {path:'admin',component:AdminDashBoardComponent},
+  {path:'profile',component:ProfileComponent,children:[{path:'personaldetails',component:PersonaldetailsComponent},{path:'',component:PersonaldetailsComponent},
+  {path:'changePassword',component:ForgotPasswordComponent}]},
+  {path:'products',component:ProductsComponent},
+  {path:'**',component:PagenotfoundComponent},
 ];
 
 @NgModule({

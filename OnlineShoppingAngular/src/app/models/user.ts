@@ -16,4 +16,5 @@ export class User
         this.mobile=mobile;
         this.address=address;
     }
+    
 }
