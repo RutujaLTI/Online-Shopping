@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from '../models/user';
+import { UserService } from '../services/UserService';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor() { }
+  user:User;
+  message:string;
+  constructor(private userService:UserService,private router:Router) { 
+    this.user=new User();
+  }
 
   ngOnInit(): void {
+  }
+
+  registerUser()
+  {
+    if(!this.userService.register(this.user))
+    {
+      this.message="Email already exsists";
+    }
+    else
+    {
+      this.router.navigate(['/login']);
+    }
+
   }
 
 }

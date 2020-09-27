@@ -17,13 +17,19 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { AdminDashBoardComponent } from './admin-dash-board/admin-dash-board.component';
 import { OtpService } from './services/OtpService';
 import { UserService } from './services/UserService';
-
+import { ProductService } from './services/ProductService';
+import { HttpClientModule } from '@angular/common/http';
+import { VerifyProductComponent } from './verify-product/verify-product.component';
+import { AddRetailerComponent } from './add-retailer/add-retailer.component';
+import { RetailerService } from './services/RetailerService';
 const routes:Routes=[
   {path:'',component:HomepageComponent},
   {path:'login',component:LoginComponent},
   {path:'signUp',component:SignUpComponent},
   {path:'forgotPassword',component:ForgotPasswordComponent},
   {path:'admin',component:AdminDashBoardComponent},
+  {path:'addRetailer',component:AddRetailerComponent},
+  {path:'verify/:id',component:VerifyProductComponent},
   {path:'profile',component:ProfileComponent,children:[{path:'personaldetails',component:PersonaldetailsComponent},{path:'',component:PersonaldetailsComponent},
   {path:'changePassword',component:ForgotPasswordComponent}]},
   {path:'products',component:ProductsComponent},
@@ -42,15 +48,18 @@ const routes:Routes=[
     LoginComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    AdminDashBoardComponent
+    AdminDashBoardComponent,
+    VerifyProductComponent,
+    AddRetailerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
-  providers: [OtpService,UserService],
+  providers: [OtpService,UserService,ProductService,RetailerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

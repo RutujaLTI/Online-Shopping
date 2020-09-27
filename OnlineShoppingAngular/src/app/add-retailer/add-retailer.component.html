@@ -1,0 +1,9 @@
+<div>
+Retailer Name:<input type="text" [(ngModel)]='user.name' /><br/>
+Retailer Email:<input type="text" [(ngModel)]='user.email'/><br/>
+Retailer Password:<input type="password" [(ngModel)]='user.password'/><br/>
+Retaiker Mobile:<input type="number" [(ngModel)]='user.mobile'/><br/>
+<button class="btn btn-success" (click)='register()'>Register</button> &nbsp;&nbsp;&nbsp;&nbsp;
+<button class="btn btn-danger" (click)='cancel()'>Cancel</button>
+</div>
+{{message}}

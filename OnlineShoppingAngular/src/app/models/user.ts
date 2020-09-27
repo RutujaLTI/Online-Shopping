@@ -5,16 +5,16 @@ export class User
     email:string;
     password:string;
     mobile:string;
-    address:string;
+    role:string;
 
-    constructor(id?,name?,email?,password?,mobile?,address?)
+    constructor(id?,name?,email?,password?,mobile?,role?)
     {   
         this.id=id;
         this.name=name;
         this.email=email;
         this.password=password;
         this.mobile=mobile;
-        this.address=address;
+        this.role=role;
     }
     
 }

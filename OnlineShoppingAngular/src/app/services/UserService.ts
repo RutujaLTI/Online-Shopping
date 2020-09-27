@@ -6,12 +6,17 @@ export class UserService {
 
   register(user:User):boolean
   {
-      console.log(user);
+      console.log(user.email);
       return true;
   }
   login(user:User):boolean
   {
     console.log (user);
+    return true;
+  }
+  changePassword(user:User):boolean
+  {
+    console.log(user);
     return true;
   }
 }

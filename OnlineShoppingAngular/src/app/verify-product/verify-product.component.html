@@ -1,0 +1,6 @@
+<p>verify-product works!</p>
+<div class="container">
+{{product|json}}<br/><br/>
+Add Remarks:<input type="text" [(ngModel)]='remarks' /><br/><br/>
+<button class="btn btn-success" (click)='verify()'>Verify</button> &nbsp;&nbsp;&nbsp;&nbsp;
+<button class="btn btn-danger" (click)='decline()'>Decline</button></div>
