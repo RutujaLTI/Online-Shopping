@@ -36,5 +36,8 @@ export class AdminDashBoardComponent implements OnInit {
     this.router.navigate(['addRetailer']);
   }
   
-
+  addCategory()
+  {
+    this.router.navigate(['addCategory']);
+  }
 }

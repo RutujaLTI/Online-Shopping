@@ -22,6 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { VerifyProductComponent } from './verify-product/verify-product.component';
 import { AddRetailerComponent } from './add-retailer/add-retailer.component';
 import { RetailerService } from './services/RetailerService';
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { CategoryService } from './services/CategoryService';
 const routes:Routes=[
   {path:'',component:HomepageComponent},
   {path:'login',component:LoginComponent},
@@ -29,6 +31,7 @@ const routes:Routes=[
   {path:'forgotPassword',component:ForgotPasswordComponent},
   {path:'admin',component:AdminDashBoardComponent},
   {path:'addRetailer',component:AddRetailerComponent},
+  {path:'addCategory',component:AddCategoryComponent},
   {path:'verify/:id',component:VerifyProductComponent},
   {path:'profile',component:ProfileComponent,children:[{path:'personaldetails',component:PersonaldetailsComponent},{path:'',component:PersonaldetailsComponent},
   {path:'changePassword',component:ForgotPasswordComponent}]},
@@ -51,6 +54,7 @@ const routes:Routes=[
     AdminDashBoardComponent,
     VerifyProductComponent,
     AddRetailerComponent,
+    AddCategoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,7 @@ const routes:Routes=[
     RouterModule.forRoot(routes),
     HttpClientModule
   ],
-  providers: [OtpService,UserService,ProductService,RetailerService],
+  providers: [OtpService,UserService,ProductService,RetailerService,CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
