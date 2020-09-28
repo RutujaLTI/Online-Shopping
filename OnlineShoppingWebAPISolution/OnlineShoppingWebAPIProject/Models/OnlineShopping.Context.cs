@@ -150,17 +150,17 @@ namespace OnlineShoppingWebAPIProject.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_add_to_wishlist", useridParameter, productidParameter);
         }
     
-        public virtual int proc_change_password(Nullable<int> id, string password)
+        public virtual int proc_change_password(string email, string password)
         {
-            var idParameter = id.HasValue ?
-                new ObjectParameter("id", id) :
-                new ObjectParameter("id", typeof(int));
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
     
             var passwordParameter = password != null ?
                 new ObjectParameter("password", password) :
                 new ObjectParameter("password", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_change_password", idParameter, passwordParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_change_password", emailParameter, passwordParameter);
         }
     
         public virtual int proc_deactivate_account(Nullable<int> id, string password)

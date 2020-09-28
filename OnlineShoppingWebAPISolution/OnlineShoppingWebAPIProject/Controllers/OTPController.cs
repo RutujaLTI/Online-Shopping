@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineShoppingWebAPIProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,8 +14,10 @@ namespace OnlineShoppingWebAPIProject.Controllers
     [EnableCors("*","*","*")]
     public class OTPController : ApiController
     {
+        private OnlineShoppingEntities db = new OnlineShoppingEntities();
         public async Task<int> GetOtp(string email)
         {
+            if (db.Users.FirstOrDefault(u => u.UserEmail == email) is null) return 0;
             Random generator = new Random();
             int r = generator.Next(100000, 1000000);
             SmtpClient smtp = new SmtpClient();

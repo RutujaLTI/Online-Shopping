@@ -18,8 +18,12 @@ export class OtpService {
   getOtp(): number {
     return 1;
   }
-  getOtpfromApi():Observable<number>
+  getOtpfromApi(email:string):Observable<number>
   {
-    return this.httpClient.get<number>("");
+    return this.httpClient.get<number>("http://localhost:64550/api/otp?email="+email);
+  }
+  resenttOtpfromApi(email:string,otp:number)
+  {
+    return this.httpClient.get("http://localhost:64550/api/otp?email="+email+"&otp="+otp);
   }
 }

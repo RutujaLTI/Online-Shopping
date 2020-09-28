@@ -271,7 +271,7 @@
       <Parameter Name="productid" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="proc_change_password">
-      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="email" Mode="In" Type="String" />
       <Parameter Name="password" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="proc_deactivate_account">

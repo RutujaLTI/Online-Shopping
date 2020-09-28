@@ -26,26 +26,35 @@ export class ForgotPasswordComponent implements OnInit {
 
   sendOtp()
   {
-    this.otp=this.otpService.getOtp();
-    if(this.otp!=0)
+    this.otpService.getOtpfromApi(this.user.email).subscribe((data)=>
     {
+      this.otp=data;
+      if(this.otp!=0)
+      {
       this.otpSent=true;
-    }
+      }
     else
-    {
+     {
       this.message="Email does not exsist";
-    }
+      }
+    });
+    
   }
   resendOtp()
   {
-    this.otpService.resendOtp(this.otp);
+    this.otpService.resenttOtpfromApi(this.user.email,this.otp).subscribe((data)=>
+    {
+      console.log(data);
+    })
     console.log("Otp sended again")
   }
   changePassword()
   {
-    if(this.otp!=this.userotp)
+    if(this.otp==this.userotp)
     {
-      this.userService.changePassword(this.user);
+      this.userService.changePasswordFromApi(this.user).subscribe((data)=>{
+        console.log(data);
+      });
     }
     else
     {

@@ -10,7 +10,7 @@ UserName varchar(100),
 UserEmail varchar(100) unique,
 UserPhone varchar(100) unique,
 UserPassword varchar(100),
-UserRole varchar(10) default 'User' check (UserRole in ('User','Retailer') ),
+UserRole varchar(10) default 'User' check (UserRole in ('User','Retailer','Admin') ),
 IsActive varchar(3) default 'Yes'
 )
 
@@ -47,6 +47,9 @@ RetailerId int foreign key references Users(UserId),
 ProductStatus varchar(100),
 ProductRemark varchar(8000)
 )
+ALTER TABLE Products
+ADD CONSTRAINT default_status
+DEFAULT 'modified' FOR ProductStatus;
 
 create table Orders
 (
@@ -100,9 +103,10 @@ create proc proc_edit_user(@id int,@name varchar(100),@email varchar(100),@phone
 as
 update Users set UserName=@name,UserEmail=@email,UserPhone=@phone where UserId=@id;
 
-create proc proc_change_password(@id int,@password varchar(255))
+create proc proc_change_password(@email varchar(100),@password varchar(255))
 as
-update Users set UserPassword=@password where UserId=@id;
+update Users set UserPassword=@password where UserEmail=@email;
+
 
 create proc proc_deactivate_account(@id int,@password varchar(255))
 as
@@ -114,6 +118,7 @@ update Users set IsActive='No' where UserId=@id and UserPassword=@password;
 create proc proc_add_retailer(@name varchar(100),@email varchar(100),@phone varchar(100))
 as
 insert into Users (UserName,UserEmail,UserPhone,UserPassword,UserRole) values(@name,@email,@phone,'newuser123','Retailer');
+insert into Retailers(RetailerId) select UserId from Users where UserEmail=@email
 
 
 ---------------------------------
@@ -192,4 +197,25 @@ insert into Orders (UserId,OrderTotal,OrderAddress,OrderDate) values (@userid,@t
 create proc place_order_add_orderdetails(@orderid int,@productid int,@quantity int,@price decimal)
 as
 insert into OrderDetails (OrderId,ProductId,Quantity,Price) values (@orderid,@productid,@quantity,@price)
+
+-----------------------------------------------
+
+--Dummy Values--
+exec proc_add_retailer @name='Ayush',@email='a@gamil.com',@phone='98434153225'
+
+exec proc_signup @name='Prakhar-987',@email='rockingprakhar.987@gmail.com',@phone='97434153252',@password='123456'
+
+select * from users
+
+exec proc_add_category @category='Books'
+
+ALTER TABLE Persons
+ADD CONSTRAINT df_City
+DEFAULT 'Sandnes' FOR City;
+
+exec proc_insert_products @name='The History of India',@description="How india changed over time",@price=2000,@stock=30,@img1='',
+@img2='',@img3='',@img4='',@brand='S.Chand',@categoryid=1,@retailerid=4
+
+exec proc_insert_products @name='Maths Fundamentals',@description="Maths foe kids",@price=185,@stock=60,@img1='',
+@img2='',@img3='',@img4='',@brand='S.Chand',@categoryid=1,@retailerid=4
 

@@ -237,7 +237,7 @@
     <Parameter Name="productid" Type="int" Mode="In" />
   </Function>
   <Function Name="proc_change_password" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="email" Type="varchar" Mode="In" />
     <Parameter Name="password" Type="varchar" Mode="In" />
   </Function>
   <Function Name="proc_deactivate_account" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
