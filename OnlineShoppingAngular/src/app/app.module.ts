@@ -24,6 +24,10 @@ import { AddRetailerComponent } from './add-retailer/add-retailer.component';
 import { RetailerService } from './services/RetailerService';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { CategoryService } from './services/CategoryService';
+import { AddproductComponent } from './addproduct/addproduct.component';
+import { CartComponent } from './cart/cart.component';
+import { RetailerdetailsComponent } from './retailerdetails/retailerdetails.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 const routes:Routes=[
   {path:'',component:HomepageComponent},
   {path:'login',component:LoginComponent},
@@ -55,6 +59,10 @@ const routes:Routes=[
     VerifyProductComponent,
     AddRetailerComponent,
     AddCategoryComponent,
+    AddproductComponent,
+    CartComponent,
+    RetailerdetailsComponent,
+    WishlistComponent,
   ],
   imports: [
     BrowserModule,

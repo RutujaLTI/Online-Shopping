@@ -1,0 +1,40 @@
+<br/>
+<div class="container">
+  <div *ngIf="wishlistData.data[0].Quantity === 0;" class="text-center my-5">
+    <h4>Your Wishlist Is Empty</h4>
+    <button class="btn btn-primary btn-lg mt-3" routerLink="/">GO TO SHOP</button>
+  </div>
+
+  <ng-container *ngIf="wishlistData.data[0].Quantity !== 0">
+<div>
+<b><h3>WishList</h3></b>
+</div>
+<div class="row">
+    <div class="col my-4"></div>
+    <table class="table">
+        <thead class="table-dark">
+        <tr class="text-center">
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Image</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let c of wishlistData.data; let i=index">
+              <td class="d-flex align-items-center justify-content-around" >
+                <img [src]="c.product.Pictures" alt="{{c.product.Product_Name}}" height="60" class="order-1">
+                <span class="text-danger" style="cursor: pointer;"><i class="fa fa-trash" (click)="removeWish(newWish)"></i></span>
+              </td>
+              <td><p>{{c.product.Product_Name}}</p></td>
+              <td>
+                <p>{{c.product.Unit_Price | currency:'INR'}}</p>
+              </td>
+              <td>
+                <p>{{c.product.Product_Description}}</p>
+              </td>
+            </tr>  
+        </tbody>
+        </table>
+</div>
+</ng-container>
