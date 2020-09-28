@@ -13,10 +13,13 @@ export class AdminDashBoardComponent implements OnInit {
 
   products:Product[];
   constructor(private productService:ProductService,private router:Router,private retailer:RetailerService) { 
-    this.products=this.productService.getallProducts().filter(p=>p.status=="modified");
+    //this.products=this.productService.getallProducts().filter(p=>p.productStatus=="modified");
   }
 
   ngOnInit(): void {
+    this.productService.getModifiedProducts().subscribe((data)=>{
+      this.products=data.filter(p=>p.productStatus=="modified" &&(p.productRemark==null||p.productRemark==''))
+    });
   }
 
   verify(product:Product)

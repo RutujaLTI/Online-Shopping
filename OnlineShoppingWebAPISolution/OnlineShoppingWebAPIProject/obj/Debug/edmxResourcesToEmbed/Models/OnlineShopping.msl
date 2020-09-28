@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OnlineShoppingModelStoreContainer" CdmEntityContainer="OnlineShoppingEntities">
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="OnlineShoppingModel.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="OnlineShoppingModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderDetails">
+      <EntityTypeMapping TypeName="OnlineShoppingModel.OrderDetail">
+        <MappingFragment StoreEntitySet="OrderDetails">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="OnlineShoppingModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="OrderTotal" ColumnName="OrderTotal" />
+          <ScalarProperty Name="OrderAddress" ColumnName="OrderAddress" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="OnlineShoppingModel.Product">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ProductStock" ColumnName="ProductStock" />
+          <ScalarProperty Name="ProductImg1" ColumnName="ProductImg1" />
+          <ScalarProperty Name="ProductImg2" ColumnName="ProductImg2" />
+          <ScalarProperty Name="ProductImg3" ColumnName="ProductImg3" />
+          <ScalarProperty Name="ProductImg4" ColumnName="ProductImg4" />
+          <ScalarProperty Name="ProductBrand" ColumnName="ProductBrand" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
+          <ScalarProperty Name="ProductStatus" ColumnName="ProductStatus" />
+          <ScalarProperty Name="ProductRemark" ColumnName="ProductRemark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Retailers">
+      <EntityTypeMapping TypeName="OnlineShoppingModel.Retailer">
+        <MappingFragment StoreEntitySet="Retailers">
+          <ScalarProperty Name="RetailerId" ColumnName="RetailerId" />
+          <ScalarProperty Name="RetailerRevenue" ColumnName="RetailerRevenue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="OnlineShoppingModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+          <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Wishlist" TypeName="OnlineShoppingModel.Wishlist" StoreEntitySet="Wishlist">
+      <EndProperty Name="Products">
+        <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+      </EndProperty>
+      <EndProperty Name="Users">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="add_to_cart" FunctionName="OnlineShoppingModel.Store.add_to_cart" />
+    <FunctionImportMapping FunctionImportName="modify_quantity_in_cart" FunctionName="OnlineShoppingModel.Store.modify_quantity_in_cart" />
+    <FunctionImportMapping FunctionImportName="place_order" FunctionName="OnlineShoppingModel.Store.place_order" />
+    <FunctionImportMapping FunctionImportName="place_order_add_orderdetails" FunctionName="OnlineShoppingModel.Store.place_order_add_orderdetails" />
+    <FunctionImportMapping FunctionImportName="proc_add_category" FunctionName="OnlineShoppingModel.Store.proc_add_category" />
+    <FunctionImportMapping FunctionImportName="proc_add_retailer" FunctionName="OnlineShoppingModel.Store.proc_add_retailer" />
+    <FunctionImportMapping FunctionImportName="proc_add_to_wishlist" FunctionName="OnlineShoppingModel.Store.proc_add_to_wishlist" />
+    <FunctionImportMapping FunctionImportName="proc_change_password" FunctionName="OnlineShoppingModel.Store.proc_change_password" />
+    <FunctionImportMapping FunctionImportName="proc_deactivate_account" FunctionName="OnlineShoppingModel.Store.proc_deactivate_account" />
+    <FunctionImportMapping FunctionImportName="proc_edit_user" FunctionName="OnlineShoppingModel.Store.proc_edit_user" />
+    <FunctionImportMapping FunctionImportName="proc_insert_products" FunctionName="OnlineShoppingModel.Store.proc_insert_products" />
+    <FunctionImportMapping FunctionImportName="proc_login_check" FunctionName="OnlineShoppingModel.Store.proc_login_check">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="OnlineShoppingModel.proc_login_check_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+          <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_remove_category" FunctionName="OnlineShoppingModel.Store.proc_remove_category" />
+    <FunctionImportMapping FunctionImportName="proc_remove_from_wishlist" FunctionName="OnlineShoppingModel.Store.proc_remove_from_wishlist" />
+    <FunctionImportMapping FunctionImportName="proc_signup" FunctionName="OnlineShoppingModel.Store.proc_signup" />
+    <FunctionImportMapping FunctionImportName="remove_from_cart" FunctionName="OnlineShoppingModel.Store.remove_from_cart" />
+  </EntityContainerMapping>
+</Mapping>

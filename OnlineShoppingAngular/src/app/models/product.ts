@@ -2,22 +2,22 @@ export class Product
 {
     productId:number;
     productName:string;
-    description:string;
-    unitPrice:number;
-    stock:number;
-    image1:string;
-    image2:string;
-    image3:string;
-    image4:string;
-    brand:string;
+    productDescription:string;
+    productPrice:number;
+    productStock:number;
+    productImg1:string;
+    productImg2:string;
+    productImg3:string;
+    productImg4:string;
+    productBrand:string;
     categoryId:number;
     retailerId:number;
-    status:string;
-    remarks:string;
+    productStatus:string;
+    productRemark:string;
     
     constructor(productName?,unitPrice?,image1?){
         this.productName=productName;
-        this.unitPrice=unitPrice;
-        this.image1=image1;
+        this.productPrice=unitPrice;
+        this.productImg1=image1;
     }
 }
