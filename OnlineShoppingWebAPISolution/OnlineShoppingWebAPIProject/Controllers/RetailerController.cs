@@ -35,12 +35,11 @@ namespace OnlineShoppingWebAPIProject.Controllers
             {
                 return NotFound();
             }
-
-            db.Retailers.Remove(retailer);
-            User user = await db.Users.FindAsync(id);
-            db.Users.Remove(user);
-            await db.SaveChangesAsync();
-
+            User u = retailer.User;
+            u.IsActive = "No";
+            db.Entry(u).State = System.Data.Entity.EntityState.Modified;
+            try { await db.SaveChangesAsync(); }
+            catch { return BadRequest(); }
             return Ok();
         }
     }

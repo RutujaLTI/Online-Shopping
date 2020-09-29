@@ -45,6 +45,7 @@ import { DeleteProductComponent } from './delete-product/delete-product.componen
 import { RevenueComponent } from './revenue/revenue.component';
 import { DeactivateaccountComponent } from './deactivateaccount/deactivateaccount.component';
 import { ProductstatusComponent } from './productstatus/productstatus.component';
+import { SessionService } from './services/sessionService';
 const routes:Routes=[
   {path:'',component:ShoppingCartComponent},
   {path:'ViewDetails/:id', component:ProductDescriptionComponent},
@@ -114,7 +115,7 @@ const routes:Routes=[
     RouterModule.forRoot(routes),
     HttpClientModule
   ],
-  providers: [OtpService,UserService,ProductService,RetailerService,CategoryService,CompareProductsService],
+  providers: [OtpService,UserService,ProductService,RetailerService,CategoryService,CompareProductsService,SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -3,8 +3,11 @@
         <app-header></app-header>
     </h5>
     <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="/login">Login</a>
+       
         <a class="p-2 text-dark" href="#">Products</a>
         <a class="p-2 text-dark" href="#">Compare</a>
         <a class="p-2 text-dark" href="#">Categories</a>
+        <a class="p-2 text-dark" href="/login"*ngIf='user==null'>Login</a>
+        <a class="p-2 text-dark" href="#" *ngIf='user!=null'>{{user.userName}}</a>
+        <a class="p-2 text-dark" href="#" *ngIf='user!=null' (click)='signOut()'>Sign Out</a>
     </nav>

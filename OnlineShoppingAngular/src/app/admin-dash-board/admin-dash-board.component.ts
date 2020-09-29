@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Product } from '../models/product';
 import { ProductService } from '../services/ProductService';
 import { RetailerService } from '../services/RetailerService';
+import { SessionService } from '../services/sessionService';
 
 @Component({
   selector: 'app-admin-dash-board',
@@ -12,13 +13,17 @@ import { RetailerService } from '../services/RetailerService';
 export class AdminDashBoardComponent implements OnInit {
 
   products:Product[];
-  constructor(private productService:ProductService,private router:Router,private retailer:RetailerService) { 
+  constructor(private productService:ProductService,private router:Router,private retailer:RetailerService,private sesion:SessionService) { 
     //this.products=this.productService.getallProducts().filter(p=>p.productStatus=="modified");
   }
 
   ngOnInit(): void {
     this.productService.getModifiedProducts().subscribe((data)=>{
       this.products=data.filter(p=>p.productStatus=="modified" &&(p.productRemark==null||p.productRemark==''))
+    });
+    this.sesion.getUSer().subscribe((data)=>
+    {
+      if(data==null||data.userRole!='Admin')this.router.navigate(['**']);
     });
   }
 

@@ -5,16 +5,15 @@
             Filters
         </strong> </div>
     <div class="card-body">
-        <form>
             <div class="form-group">
                 <label for="from">From</label>
-                <input type="number" id="from" class="form-control">
+                <input type="number" id="from" class="form-control"[(ngModel)]="minimumPrice">
             </div>
             <div class="form-group">
                 <label for="to">To</label>
-                <input type="number" id="to" class="form-control">
+                <input type="number" id="to" class="form-control"[(ngModel)]='maximumPrice'>
             </div>
 
-            <button class="btn btn-primary btn-block btn-sm">Filter By Price</button> </form>
+            <button class="btn btn-primary btn-block btn-sm" (click)='filterPrice()'>Filter By Price</button>
     </div>
 </div>
