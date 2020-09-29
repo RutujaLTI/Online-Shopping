@@ -28,6 +28,9 @@ import { AddproductComponent } from './addproduct/addproduct.component';
 import { CartComponent } from './cart/cart.component';
 import { RetailerdetailsComponent } from './retailerdetails/retailerdetails.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { NavComponent } from './shared/nav/nav.component';
 const routes:Routes=[
   {path:'',component:HomepageComponent},
   {path:'login',component:LoginComponent},
@@ -63,6 +66,9 @@ const routes:Routes=[
     CartComponent,
     RetailerdetailsComponent,
     WishlistComponent,
+    HeaderComponent,
+    FooterComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
