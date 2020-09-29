@@ -1,0 +1,26 @@
+<h2>Compare Products</h2>
+
+<table *ngIf="products.length!=0">
+    <tr>
+        <th>Product Name</th>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let p of products">
+        <td>{{p.productName}}</td>
+        <td>{{p.productImg1}}</td>
+        <td>{{p.productDescription}}</td>
+        <td>{{p.productBrand}}</td>
+        <td>{{p.productPrice}}</td>
+        <td>
+            <button class="btn btn-default">Add to Cart</button><br>
+            <button (click)="removeFromCompare(p.productId)">Remove from Compare</button>
+        </td>
+        <p *ngIf="message">
+            {{message}}
+        </p>
+    </tr>
+</table>

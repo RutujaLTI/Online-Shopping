@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ProductService {
 
-    constructor(private httpCilent:HttpClient,private httpCilent1:HttpClient,private httpCilent2:HttpClient)
+    constructor(private httpCilent:HttpClient,private httpCilent1:HttpClient,private httpCilent2:HttpClient,private httpCilent3:HttpClient)
     {
 
     }
@@ -40,4 +40,6 @@ export class ProductService {
     {
         
     }
+
+    
 }

@@ -36,6 +36,8 @@ import { FilterComponent } from './shopping-cart/filter/filter.component';
 import { ProductListComponent } from './shopping-cart/product-list/product-list.component';
 import { ProductItemComponent } from './shopping-cart/product-list/product-item/product-item.component';
 import { ProductDescriptionComponent } from './shopping-cart/product-list/product-item/product-description/product-description.component';
+import { CompareComponent } from './compare/compare.component';
+import { CompareProductsService } from './services/CompareProductsService';
 const routes:Routes=[
   {path:'',component:ShoppingCartComponent},
   {path:'ViewDetails/:id', component:ProductDescriptionComponent},
@@ -80,6 +82,7 @@ const routes:Routes=[
     ProductListComponent,
     ProductItemComponent,
     ProductDescriptionComponent,
+    CompareComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,7 +92,7 @@ const routes:Routes=[
     RouterModule.forRoot(routes),
     HttpClientModule
   ],
-  providers: [OtpService,UserService,ProductService,RetailerService,CategoryService],
+  providers: [OtpService,UserService,ProductService,RetailerService,CategoryService,CompareProductsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

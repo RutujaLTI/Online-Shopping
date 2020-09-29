@@ -112,6 +112,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CompareProductsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OTPController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
