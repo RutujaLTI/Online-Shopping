@@ -11,5 +11,9 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  filterPrice(price)
+  {
+    console.log(price);
+  }
 
 }

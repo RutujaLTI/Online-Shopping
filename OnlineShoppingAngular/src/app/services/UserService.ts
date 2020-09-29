@@ -30,9 +30,9 @@ export class UserService {
   {
     return this.httpCilent.get("http://localhost:64550/api/login?email="+user.userEmail+"&password="+user.userPassword);
   }
-  loginFromApi(user:User):Observable<boolean>
+  loginFromApi(user:User):Observable<User>
   {
-    return this.httpCilent.post<boolean>("http://localhost:64550/api/login?email="+user.userEmail+"&password="+user.userPassword,null);
+    return this.httpCilent.post<User>("http://localhost:64550/api/login?email="+user.userEmail+"&password="+user.userPassword,null);
   }
   signUpFromApi(user:User):Observable<boolean>
   {

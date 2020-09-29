@@ -6,7 +6,7 @@ export class User
     userPassword:string;
     userPhone:string;
     userRole:string;
-
+    isActive:string;
     constructor(id?,name?,email?,password?,mobile?,role?)
     {   
         this.userId=id;

@@ -20,16 +20,23 @@ namespace OnlineShoppingWebAPIProject.Controllers
             await Task.Run( ()=>db.proc_change_password(email, password));
         }
         [HttpPost]
-        public bool Login(string email, string password)
+        public User Login(string email, string password)
         {
-            return db.Users.FirstOrDefault(u => u.UserEmail == email && u.UserPassword == password) is { };
+            if( db.Users.FirstOrDefault(u => u.UserEmail == email && u.UserPassword == password && u.IsActive == "Yes") 
+                is User u)
+            {
+                SessionController.user = u;
+                return u;
+            }
+            return null;
         }
+
         [HttpPost]
-        public bool SignUp([FromBody]User user)
+        public async Task<bool> SignUp([FromBody]User user)
         {
             try
             {
-                db.proc_signup(user.UserName, user.UserEmail, user.UserPhone, user.UserPassword);
+                await Task.Run( ()=>db.proc_signup(user.UserName, user.UserEmail, user.UserPhone, user.UserPassword));
                 return true;
             }
             catch
