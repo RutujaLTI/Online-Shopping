@@ -31,8 +31,14 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavComponent } from './shared/nav/nav.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { FilterComponent } from './shopping-cart/filter/filter.component';
+import { ProductListComponent } from './shopping-cart/product-list/product-list.component';
+import { ProductItemComponent } from './shopping-cart/product-list/product-item/product-item.component';
+import { ProductDescriptionComponent } from './shopping-cart/product-list/product-item/product-description/product-description.component';
 const routes:Routes=[
-  {path:'',component:HomepageComponent},
+  {path:'',component:ShoppingCartComponent},
+  {path:'ViewDetails/:id', component:ProductDescriptionComponent},
   {path:'login',component:LoginComponent},
   {path:'signUp',component:SignUpComponent},
   {path:'forgotPassword',component:ForgotPasswordComponent},
@@ -69,6 +75,11 @@ const routes:Routes=[
     HeaderComponent,
     FooterComponent,
     NavComponent,
+    ShoppingCartComponent,
+    FilterComponent,
+    ProductListComponent,
+    ProductItemComponent,
+    ProductDescriptionComponent,
   ],
   imports: [
     BrowserModule,
