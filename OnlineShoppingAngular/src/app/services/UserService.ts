@@ -13,7 +13,7 @@ export class UserService {
     }
   register(user:User):boolean
   {
-      console.log(user.email);
+      console.log(user.userEmail);
       return true;
   }
   login(user:User):boolean
@@ -28,10 +28,14 @@ export class UserService {
   }
   changePasswordFromApi(user:User)
   {
-    return this.httpCilent.get("http://localhost:64550/api/login?email="+user.email+"&password="+user.password);
+    return this.httpCilent.get("http://localhost:64550/api/login?email="+user.userEmail+"&password="+user.userPassword);
   }
   loginFromApi(user:User):Observable<boolean>
   {
-    return this.httpCilent.put<boolean>("http://localhost:64550/api/login?email="+user.email+"&password="+user.password,null);
+    return this.httpCilent.post<boolean>("http://localhost:64550/api/login?email="+user.userEmail+"&password="+user.userPassword,null);
+  }
+  signUpFromApi(user:User):Observable<boolean>
+  {
+    return this.httpCilent.post<boolean>("http://localhost:64550/api/login",user);
   }
 }

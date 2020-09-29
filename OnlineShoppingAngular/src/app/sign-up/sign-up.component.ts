@@ -21,14 +21,11 @@ export class SignUpComponent implements OnInit {
 
   registerUser()
   {
-    if(!this.userService.register(this.user))
+    this.userService.signUpFromApi(this.user).subscribe((data)=>
     {
-      this.message="Email already exsists";
-    }
-    else
-    {
-      this.router.navigate(['/login']);
-    }
+      if(data)this.router.navigate(['/login']);
+      else this.message="Email already exsists";
+    });
 
   }
 

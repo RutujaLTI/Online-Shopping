@@ -26,7 +26,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   sendOtp()
   {
-    this.otpService.getOtpfromApi(this.user.email).subscribe((data)=>
+    this.otpService.getOtpfromApi(this.user.userEmail).subscribe((data)=>
     {
       this.otp=data;
       if(this.otp!=0)
@@ -42,7 +42,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
   resendOtp()
   {
-    this.otpService.resenttOtpfromApi(this.user.email,this.otp).subscribe((data)=>
+    this.otpService.resenttOtpfromApi(this.user.userEmail,this.otp).subscribe((data)=>
     {
       console.log(data);
     })

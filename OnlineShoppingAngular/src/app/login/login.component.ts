@@ -21,14 +21,11 @@ export class LoginComponent implements OnInit {
 
   login()
   {
-    if(!this.userService.login(this.user))
+    this.userService.loginFromApi(this.user).subscribe((data)=>
     {
-      this.message="Invalid username or password";
-    }
-    else
-    {
-      this.router.navigate(['']);
-    }
+      if(data) this.router.navigate(['']);
+      else this.message="Invalid username or password";
+    });
   }
 
 }
