@@ -1,0 +1,22 @@
+<h2>Product Status</h2>
+
+<table *ngIf="products.length!=0">
+    <tr>
+        <th>Product Id</th>
+        <th>Product Name</th>
+        <th>Product</th>
+        <th>Remark</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let p of products">
+        <td>{{p.productId}}</td>
+        <td>{{p.productName}}</td>
+        <td>{{p.productImg1}}</td>
+        <td>{{p.productRemark}}</td>
+        <p *ngIf="message">
+            {{message}}
+        </p>
+    </tr>
+</table>
+
+
