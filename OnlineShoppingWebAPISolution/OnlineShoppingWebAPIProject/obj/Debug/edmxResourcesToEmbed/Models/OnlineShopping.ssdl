@@ -250,6 +250,7 @@
     <Parameter Name="email" Type="varchar" Mode="In" />
     <Parameter Name="phone" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="proc_get_categories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="proc_insert_products" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="name" Type="varchar" Mode="In" />
     <Parameter Name="description" Type="varchar" Mode="In" />

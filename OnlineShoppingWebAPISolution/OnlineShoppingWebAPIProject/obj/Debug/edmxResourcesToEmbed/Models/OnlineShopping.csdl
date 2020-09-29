@@ -318,6 +318,7 @@
       <Parameter Name="userid" Mode="In" Type="Int32" />
       <Parameter Name="productid" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="proc_get_categories" ReturnType="Collection(OnlineShoppingModel.proc_get_categories_Result)" />
   </EntityContainer>
   <ComplexType Name="proc_login_check_Result">
     <Property Type="Int32" Name="UserId" Nullable="false" />
@@ -327,5 +328,9 @@
     <Property Type="String" Name="UserPassword" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="UserRole" Nullable="true" MaxLength="10" />
     <Property Type="String" Name="IsActive" Nullable="true" MaxLength="3" />
+  </ComplexType>
+  <ComplexType Name="proc_get_categories_Result">
+    <Property Type="Int32" Name="CategoryId" Nullable="false" />
+    <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="255" />
   </ComplexType>
 </Schema>

@@ -38,6 +38,13 @@ import { ProductItemComponent } from './shopping-cart/product-list/product-item/
 import { ProductDescriptionComponent } from './shopping-cart/product-list/product-item/product-description/product-description.component';
 import { CompareComponent } from './compare/compare.component';
 import { CompareProductsService } from './services/CompareProductsService';
+import { RetailerdashboardComponent } from './retailerdashboard/retailerdashboard.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { ModifyProductComponent } from './modify-product/modify-product.component';
+import { DeleteProductComponent } from './delete-product/delete-product.component';
+import { RevenueComponent } from './revenue/revenue.component';
+import { DeactivateaccountComponent } from './deactivateaccount/deactivateaccount.component';
+import { ProductstatusComponent } from './productstatus/productstatus.component';
 const routes:Routes=[
   {path:'',component:ShoppingCartComponent},
   {path:'ViewDetails/:id', component:ProductDescriptionComponent},
@@ -51,6 +58,14 @@ const routes:Routes=[
   {path:'profile',component:ProfileComponent,children:[{path:'personaldetails',component:PersonaldetailsComponent},{path:'',component:PersonaldetailsComponent},
   {path:'changePassword',component:ForgotPasswordComponent}]},
   {path:'products',component:ProductsComponent},
+  {path:'retailer',component:RetailerdashboardComponent,children:[{path:'addproduct',component:AddProductComponent},
+  {path:'modifyproduct',component:ModifyProductComponent},
+  {path:'deleteproduct',component:DeleteProductComponent},
+  {path:'personaldetails',component:PersonaldetailsComponent},
+  {path:'deactivateaccount',component:DeactivateaccountComponent},
+  {path:'revenue',component:RevenueComponent},
+  {path:'productstatus',component:ProductstatusComponent},
+  {path:'',component:PersonaldetailsComponent},]},
   {path:'**',component:PagenotfoundComponent},
 ];
 
@@ -83,6 +98,13 @@ const routes:Routes=[
     ProductItemComponent,
     ProductDescriptionComponent,
     CompareComponent,
+    RetailerdashboardComponent,
+    AddProductComponent,
+    ModifyProductComponent,
+    DeleteProductComponent,
+    RevenueComponent,
+    DeactivateaccountComponent,
+    ProductstatusComponent,
   ],
   imports: [
     BrowserModule,

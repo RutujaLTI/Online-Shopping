@@ -37,5 +37,11 @@ namespace OnlineShoppingWebAPIProject.Controllers
                 return false;
             }
         }
+
+        [HttpPost]
+        public bool DeactivateAccount(int id, string password)
+        {
+            return db.proc_deactivate_account(id,password) is { };
+        }
     }
 }

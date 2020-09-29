@@ -28,5 +28,11 @@ namespace OnlineShoppingWebAPIProject.Controllers
                 return false;
             }
         }
+
+        [HttpGet]
+        public List<proc_get_categories_Result> GetCategories()
+        {   
+                return db.proc_get_categories().ToList();
+        }
     }
 }

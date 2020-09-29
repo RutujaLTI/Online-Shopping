@@ -314,5 +314,10 @@ namespace OnlineShoppingWebAPIProject.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("remove_from_cart", useridParameter, productidParameter);
         }
+    
+        public virtual ObjectResult<proc_get_categories_Result> proc_get_categories()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_get_categories_Result>("proc_get_categories");
+        }
     }
 }

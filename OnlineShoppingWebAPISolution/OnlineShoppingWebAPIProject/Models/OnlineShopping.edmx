@@ -255,6 +255,7 @@
           <Parameter Name="email" Type="varchar" Mode="In" />
           <Parameter Name="phone" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="proc_get_categories" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="proc_insert_products" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="name" Type="varchar" Mode="In" />
           <Parameter Name="description" Type="varchar" Mode="In" />
@@ -661,6 +662,7 @@
             <Parameter Name="userid" Mode="In" Type="Int32" />
             <Parameter Name="productid" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="proc_get_categories" ReturnType="Collection(OnlineShoppingModel.proc_get_categories_Result)" />
         </EntityContainer>
         <ComplexType Name="proc_login_check_Result">
           <Property Type="Int32" Name="UserId" Nullable="false" />
@@ -670,6 +672,10 @@
           <Property Type="String" Name="UserPassword" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="UserRole" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="IsActive" Nullable="true" MaxLength="3" />
+        </ComplexType>
+        <ComplexType Name="proc_get_categories_Result">
+          <Property Type="Int32" Name="CategoryId" Nullable="false" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="255" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -792,6 +798,14 @@
           <FunctionImportMapping FunctionImportName="proc_remove_from_wishlist" FunctionName="OnlineShoppingModel.Store.proc_remove_from_wishlist" />
           <FunctionImportMapping FunctionImportName="proc_signup" FunctionName="OnlineShoppingModel.Store.proc_signup" />
           <FunctionImportMapping FunctionImportName="remove_from_cart" FunctionName="OnlineShoppingModel.Store.remove_from_cart" />
+          <FunctionImportMapping FunctionImportName="proc_get_categories" FunctionName="OnlineShoppingModel.Store.proc_get_categories">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OnlineShoppingModel.proc_get_categories_Result">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

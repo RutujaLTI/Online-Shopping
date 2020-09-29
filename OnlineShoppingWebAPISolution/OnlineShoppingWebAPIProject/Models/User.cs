@@ -11,9 +11,8 @@ namespace OnlineShoppingWebAPIProject.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
-
-    [DataContract]public partial class User
+    
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
@@ -24,22 +23,22 @@ namespace OnlineShoppingWebAPIProject.Models
             this.Products1 = new HashSet<Product>();
         }
     
-        [DataMember]public int UserId { get; set; }
-        [DataMember] public string UserName { get; set; }
-        [DataMember] public string UserEmail { get; set; }
-        [DataMember] public string UserPhone { get; set; }
-        [DataMember] public string UserPassword { get; set; }
-        [DataMember] public string UserRole { get; set; }
-        [DataMember] public string IsActive { get; set; }
+        public int UserId { get; set; }
+        public string UserName { get; set; }
+        public string UserEmail { get; set; }
+        public string UserPhone { get; set; }
+        public string UserPassword { get; set; }
+        public string UserRole { get; set; }
+        public string IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [IgnoreDataMember]public virtual ICollection<Cart> Carts { get; set; }
+        public virtual ICollection<Cart> Carts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [IgnoreDataMember] public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [IgnoreDataMember] public virtual ICollection<Product> Products { get; set; }
-        [IgnoreDataMember] public virtual Retailer Retailer { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
+        public virtual Retailer Retailer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [IgnoreDataMember] public virtual ICollection<Product> Products1 { get; set; }
+        public virtual ICollection<Product> Products1 { get; set; }
     }
 }

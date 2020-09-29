@@ -148,6 +148,9 @@
     <Compile Include="Models\OrderDetail.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\proc_get_categories_Result.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\proc_login_check_Result.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>

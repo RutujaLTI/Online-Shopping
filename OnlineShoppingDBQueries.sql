@@ -208,10 +208,14 @@ exec proc_signup @name='Prakhar-987',@email='rockingprakhar.987@gmail.com',@phon
 select * from users
 
 exec proc_add_category @category='Books'
+exec proc_add_category @category='Men'
+exec proc_add_category @category='Women'
+exec proc_add_category @category='Home Decor'
+exec proc_add_category @category='Food'
+exec proc_add_category @category='Electronics'
+exec proc_add_category @category='Grocery'
 
-ALTER TABLE Persons
-ADD CONSTRAINT df_City
-DEFAULT 'Sandnes' FOR City;
+
 
 exec proc_insert_products @name='The History of India',@description="How india changed over time",@price=2000,@stock=30,@img1='',
 @img2='',@img3='',@img4='',@brand='S.Chand',@categoryid=1,@retailerid=4
@@ -219,3 +223,4 @@ exec proc_insert_products @name='The History of India',@description="How india c
 exec proc_insert_products @name='Maths Fundamentals',@description="Maths foe kids",@price=185,@stock=60,@img1='',
 @img2='',@img3='',@img4='',@brand='S.Chand',@categoryid=1,@retailerid=4
 
+select * from Products

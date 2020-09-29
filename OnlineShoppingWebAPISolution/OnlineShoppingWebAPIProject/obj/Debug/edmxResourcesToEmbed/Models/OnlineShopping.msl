@@ -116,5 +116,13 @@
     <FunctionImportMapping FunctionImportName="proc_remove_from_wishlist" FunctionName="OnlineShoppingModel.Store.proc_remove_from_wishlist" />
     <FunctionImportMapping FunctionImportName="proc_signup" FunctionName="OnlineShoppingModel.Store.proc_signup" />
     <FunctionImportMapping FunctionImportName="remove_from_cart" FunctionName="OnlineShoppingModel.Store.remove_from_cart" />
+    <FunctionImportMapping FunctionImportName="proc_get_categories" FunctionName="OnlineShoppingModel.Store.proc_get_categories">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="OnlineShoppingModel.proc_get_categories_Result">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
