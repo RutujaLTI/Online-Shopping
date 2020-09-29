@@ -52,6 +52,7 @@ const routes:Routes=[
   {path:'profile',component:ProfileComponent,children:[{path:'personaldetails',component:PersonaldetailsComponent},{path:'',component:PersonaldetailsComponent},
   {path:'changePassword',component:ForgotPasswordComponent}]},
   {path:'products',component:ProductsComponent},
+  {path:'compare',component:CompareComponent},
   {path:'**',component:PagenotfoundComponent},
 ];
 
