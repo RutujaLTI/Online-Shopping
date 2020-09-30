@@ -38,4 +38,8 @@ export class UserService {
   {
     return this.httpCilent.post<boolean>("http://localhost:64550/api/login",user);
   }
+  updateFromApi(user:User):Observable<boolean>
+  {
+    return this.httpCilent2.put<boolean>("http://localhost:64550/api/users/"+user.userId,user);
+  }
 }

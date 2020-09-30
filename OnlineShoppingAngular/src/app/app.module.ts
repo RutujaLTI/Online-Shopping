@@ -42,6 +42,7 @@ import { CompareProductsService } from './services/CompareProductsService';
 import { SessionService } from './services/sessionService';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { WishListComponent } from './wish-list/wish-list.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 const routes:Routes=[
   {path:'',component:ShoppingCartComponent},
   {path:'ViewDetails/:id', component:ProductDescriptionComponent},
@@ -54,7 +55,7 @@ const routes:Routes=[
   {path:'verify/:id',component:VerifyProductComponent,canActivate:[AdminAuthGuardService]},
   {path:'wishList',component:WishListComponent},
   {path:'profile',component:ProfileComponent,children:[{path:'personaldetails',component:PersonaldetailsComponent},{path:'',component:PersonaldetailsComponent},
-  {path:'changePassword',component:ForgotPasswordComponent}]},
+  {path:'changePassword',component:ChangePasswordComponent}]},
   {path:'products',component:ProductsComponent},
   {path:'compare',component:CompareComponent},
   {path:'**',component:PagenotfoundComponent},
@@ -90,6 +91,7 @@ const routes:Routes=[
     ProductDescriptionComponent,
     CompareComponent,
     WishListComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/ProductService';
 
@@ -7,16 +7,25 @@ import { ProductService } from 'src/app/services/ProductService';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit ,DoCheck{
   productList: Product[] = []
+  currentproductList: Product[] = []
+  searchbar:string;
   constructor(private productService:ProductService) { 
     this.productService.getModifiedProducts().subscribe((data)=>
     {
       this.productList=data.filter(p=>p.productStatus=='available');
+      this.currentproductList=this.productList;
     });
+    this.searchbar='';
   }
 
   ngOnInit(): void {
+  }
+
+  ngDoCheck()
+  {
+    this.currentproductList=this.productList.filter(p=>p.productName.toLowerCase().includes(this.searchbar.toLowerCase())||p.productDescription.toLowerCase().includes(this.searchbar.toLowerCase()));
   }
 
 }
