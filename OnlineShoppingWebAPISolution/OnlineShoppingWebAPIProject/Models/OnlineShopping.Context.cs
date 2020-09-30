@@ -35,6 +35,7 @@ namespace OnlineShoppingWebAPIProject.Models
         public virtual DbSet<Retailer> Retailers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Wishlist> Wishlists { get; set; }
+        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     
         public virtual int add_to_cart(Nullable<int> userid, Nullable<int> productid, Nullable<int> quantity)
         {
@@ -321,9 +322,15 @@ namespace OnlineShoppingWebAPIProject.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("remove_from_cart", useridParameter, productidParameter);
         }
     
-        public virtual ObjectResult<proc_get_categories_Result> proc_get_categories()
+        public virtual int proc_delete_products(Nullable<int> productid)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_get_categories_Result>("proc_get_categories");
+            var productidParameter = productid.HasValue ?
+                new ObjectParameter("productid", productid) :
+                new ObjectParameter("productid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_delete_products", productidParameter);
         }
+    
+       
     }
 }

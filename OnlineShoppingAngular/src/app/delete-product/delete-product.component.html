@@ -2,14 +2,14 @@
 <br>
 
 <div class="col-sm-8">
-    Product Id <input type="text" width="50" class="form-control">
+    Product Id <input type="text" width="50" class="form-control" [(ngModel)]="product.productId">
     <br>
-    <button class="btn btn-success" style="text-align: center;">Search Product</button>
+    <button class="btn btn-success" style="text-align: center;"(click)="getProductById()">Search Product</button>
     <br>
     <br>
     <div>
-        Description of product found using id
+         <router-outlet></router-outlet> <!--Description of product found -->
     </div>
-    <button class="btn btn-danger" style="text-align: center;">Delete Product</button>
+    <button class="btn btn-danger" style="text-align: center;"(click)="deleteProduct()">Delete Product</button>
     <br>
 </div>

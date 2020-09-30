@@ -120,7 +120,6 @@ as
 insert into Users (UserName,UserEmail,UserPhone,UserPassword,UserRole) values(@name,@email,@phone,'newuser123','Retailer');
 insert into Retailers(RetailerId) select UserId from Users where UserEmail=@email
 
-
 ---------------------------------
 
 --Category module
@@ -181,6 +180,10 @@ begin
 	insert into Products (ProductName,ProductDescription,ProductPrice,ProductStock,ProductImg1,ProductImg2,ProductImg3,ProductImg4,ProductBrand,CategoryId,RetailerId) 
 	values(@name,@description,@price,@stock,@img1,@img2,@img3,@img4,@brand,@categoryid,@retailerid);
 end
+
+create proc proc_delete_products(@productid int)
+as
+update Products set ProductStatus='Unavailable' where ProductId=@productid;
 
 ---------------------------------------------
 

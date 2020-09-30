@@ -128,6 +128,9 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\database_firewall_rules.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\OnlineShopping.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -103,6 +103,22 @@
     <NavigationProperty Name="Product" Relationship="Self.FK__Wishlist__Produc__45BE5BA9" FromRole="Wishlist" ToRole="Products" />
     <NavigationProperty Name="User" Relationship="Self.FK__Wishlist__UserId__44CA3770" FromRole="Wishlist" ToRole="Users" />
   </EntityType>
+  <EntityType Name="database_firewall_rules">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="start_ip_address" />
+      <PropertyRef Name="end_ip_address" />
+      <PropertyRef Name="create_date" />
+      <PropertyRef Name="modify_date" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
   <Association Name="FK__Cart__ProductId__22751F6C">
     <End Role="Products" Type="Self.Product" Multiplicity="1" />
     <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
@@ -232,6 +248,7 @@
     <EntitySet Name="Retailers" EntityType="Self.Retailer" />
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="Wishlists" EntityType="Self.Wishlist" />
+    <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
     <AssociationSet Name="FK__Cart__ProductId__22751F6C" Association="Self.FK__Cart__ProductId__22751F6C">
       <End Role="Products" EntitySet="Products" />
       <End Role="Cart" EntitySet="Carts" />
@@ -355,7 +372,12 @@
       <Parameter Name="userid" Mode="In" Type="Int32" />
       <Parameter Name="productid" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="proc_get_categories" ReturnType="Collection(OnlineShoppingModel.proc_get_categories_Result)" />
+    <FunctionImport Name="proc_delete_products">
+      <Parameter Name="productid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_get_retailer_products" ReturnType="Collection(OnlineShoppingModel.proc_get_retailer_products_Result)">
+      <Parameter Name="retailerid" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_get_categories_Result">
     <Property Type="Int32" Name="CategoryId" Nullable="false" />
@@ -370,8 +392,20 @@
     <Property Type="String" Name="UserRole" Nullable="true" MaxLength="10" />
     <Property Type="String" Name="IsActive" Nullable="true" MaxLength="3" />
   </ComplexType>
-  <ComplexType Name="proc_get_categories_Result">
-    <Property Type="Int32" Name="CategoryId" Nullable="false" />
-    <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="255" />
+  <ComplexType Name="proc_get_retailer_products_Result">
+    <Property Type="Int32" Name="ProductId" Nullable="false" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductDescription" Nullable="true" MaxLength="8000" />
+    <Property Type="Decimal" Name="ProductPrice" Nullable="true" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="ProductStock" Nullable="true" />
+    <Property Type="String" Name="ProductImg1" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="ProductImg2" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="ProductImg3" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="ProductImg4" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="ProductBrand" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="CategoryId" Nullable="true" />
+    <Property Type="Int32" Name="RetailerId" Nullable="true" />
+    <Property Type="String" Name="ProductStatus" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductRemark" Nullable="true" MaxLength="8000" />
   </ComplexType>
 </Schema>

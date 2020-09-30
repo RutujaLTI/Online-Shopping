@@ -38,6 +38,7 @@ namespace OnlineShoppingWebAPIProject.Controllers
             return Ok(product);
         }
 
+
         // PUT: api/Products/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutProduct(int id, Product product)
@@ -83,6 +84,7 @@ namespace OnlineShoppingWebAPIProject.Controllers
             }
 
             db.Products.Add(product);
+            
             await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = product.ProductId }, product);
@@ -98,7 +100,8 @@ namespace OnlineShoppingWebAPIProject.Controllers
                 return NotFound();
             }
 
-            db.Products.Remove(product);
+            //db.Products.Remove(product);
+            db.proc_delete_products(id);
             await db.SaveChangesAsync();
 
             return Ok(product);

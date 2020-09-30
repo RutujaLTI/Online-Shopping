@@ -2,29 +2,29 @@
 <br>
 
 <div class="col-sm-8">
-    Product Id <input type="text" width="50" class="form-control">
+    Product Id <input type="text" width="50" class="form-control" [(ngModel)]="product.productId">
     <br>
-    Product Name <input type="text" width="50" class="form-control">
+    Product Name <input type="text" width="50" class="form-control" [(ngModel)]="product.productName">
     <br>
-    Product Description <input type="text" size="50" class="form-control">
+    Product Description <input type="text" size="50" class="form-control" [(ngModel)]="product.productDescription">
     <br>
-    Product Price <input type="text" size="50" class="form-control">
+    Product Price <input type="text" size="50" class="form-control" [(ngModel)]="product.productPrice">
     <br>
-    Product Stock <input type="text" size="50" class="form-control">
+    Product Stock <input type="text" size="50" class="form-control" [(ngModel)]="product.productStock">
     <br>
-    Product Brand <input type="text" size="50" class="form-control">
+    Product Brand <input type="text" size="50" class="form-control" [(ngModel)]="product.productBrand">
     <br>
-    Product Image URL1 <input type="text" size="50" class="form-control">
+    Product Image URL1 <input type="text" size="50" class="form-control" [(ngModel)]="product.productImg1">
     <br>
-    Product Image URL2 <input type="text" size="50" class="form-control">
+    Product Image URL2 <input type="text" size="50" class="form-control" [(ngModel)]="product.productImg2">
     <br>
-    Product Image URL3 <input type="text" size="50" class="form-control">
+    Product Image URL3 <input type="text" size="50" class="form-control" [(ngModel)]="product.productImg3">
     <br>
-    Product Image URL4 <input type="text" size="50" class="form-control">
+    Product Image URL4 <input type="text" size="50" class="form-control" [(ngModel)]="product.productImg4">
     <br>
     <!-- Add datalist for categories -->
-    Product Category <input type="text" size="50" class="form-control"> 
+    Product Category <input type="text" size="50" class="form-control" [(ngModel)]="product.categoryId"> 
     <br>
     
-    <button class="btn btn-success" style="text-align: center;">Modify</button>
+    <button class="btn btn-success" style="text-align: center;" (click)="modifyProduct()">Modify</button>
 </div>

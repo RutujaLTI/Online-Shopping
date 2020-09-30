@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OnlineShoppingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineShoppingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="UserId" />
@@ -87,6 +87,24 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineShopping.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK__Cart__ProductId__22751F6C">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
@@ -250,6 +268,9 @@
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="password" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="proc_delete_products" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productid" Type="int" Mode="In" />
+        </Function>
         <Function Name="proc_edit_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="name" Type="varchar" Mode="In" />
@@ -300,6 +321,16 @@
           <EntitySet Name="Retailers" EntityType="Self.Retailers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wishlist" EntityType="Self.Wishlist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__Cart__ProductId__22751F6C" Association="Self.FK__Cart__ProductId__22751F6C">
             <End Role="Products" EntitySet="Products" />
             <End Role="Cart" EntitySet="Cart" />
@@ -341,8 +372,7 @@
             <End Role="Wishlist" EntitySet="Wishlist" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineShoppingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -448,6 +478,22 @@
           <Property Name="Quantity" Type="Int32" />
           <NavigationProperty Name="Product" Relationship="Self.FK__Wishlist__Produc__45BE5BA9" FromRole="Wishlist" ToRole="Products" />
           <NavigationProperty Name="User" Relationship="Self.FK__Wishlist__UserId__44CA3770" FromRole="Wishlist" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK__Cart__ProductId__22751F6C">
           <End Role="Products" Type="Self.Product" Multiplicity="1" />
@@ -578,6 +624,7 @@
           <EntitySet Name="Retailers" EntityType="Self.Retailer" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="Wishlists" EntityType="Self.Wishlist" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
           <AssociationSet Name="FK__Cart__ProductId__22751F6C" Association="Self.FK__Cart__ProductId__22751F6C">
             <End Role="Products" EntitySet="Products" />
             <End Role="Cart" EntitySet="Carts" />
@@ -641,7 +688,7 @@
             <Parameter Name="price" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="proc_add_category">
-            <Parameter Name="category" Mode="In" Type="String" />
+          <Parameter Name="category" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_add_retailer">
             <Parameter Name="name" Mode="In" Type="String" />
@@ -685,7 +732,7 @@
             <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_remove_category">
-            <Parameter Name="category" Mode="In" Type="String" />
+          <Parameter Name="category" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="proc_remove_from_wishlist">
             <Parameter Name="userid" Mode="In" Type="Int32" />
@@ -701,7 +748,12 @@
             <Parameter Name="userid" Mode="In" Type="Int32" />
             <Parameter Name="productid" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="proc_get_categories" ReturnType="Collection(OnlineShoppingModel.proc_get_categories_Result)" />
+          <FunctionImport Name="proc_delete_products">
+          <Parameter Name="productid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_get_retailer_products" ReturnType="Collection(OnlineShoppingModel.proc_get_retailer_products_Result)">
+            <Parameter Name="retailerid" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_get_categories_Result">
           <Property Type="Int32" Name="CategoryId" Nullable="false" />
@@ -716,9 +768,21 @@
           <Property Type="String" Name="UserRole" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="IsActive" Nullable="true" MaxLength="3" />
         </ComplexType>
-        <ComplexType Name="proc_get_categories_Result">
-          <Property Type="Int32" Name="CategoryId" Nullable="false" />
-          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="255" />
+        <ComplexType Name="proc_get_retailer_products_Result">
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductDescription" Nullable="true" MaxLength="8000" />
+          <Property Type="Decimal" Name="ProductPrice" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="ProductStock" Nullable="true" />
+          <Property Type="String" Name="ProductImg1" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="ProductImg2" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="ProductImg3" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="ProductImg4" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="ProductBrand" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="CategoryId" Nullable="true" />
+          <Property Type="Int32" Name="RetailerId" Nullable="true" />
+          <Property Type="String" Name="ProductStatus" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductRemark" Nullable="true" MaxLength="8000" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -814,6 +878,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="database_firewall_rules">
+            <EntityTypeMapping TypeName="OnlineShoppingModel.database_firewall_rules">
+              <MappingFragment StoreEntitySet="database_firewall_rules">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="add_to_cart" FunctionName="OnlineShoppingModel.Store.add_to_cart" />
           <FunctionImportMapping FunctionImportName="modify_quantity_in_cart" FunctionName="OnlineShoppingModel.Store.modify_quantity_in_cart" />
           <FunctionImportMapping FunctionImportName="place_order" FunctionName="OnlineShoppingModel.Store.place_order" />
@@ -850,14 +926,7 @@
           <FunctionImportMapping FunctionImportName="proc_remove_from_wishlist" FunctionName="OnlineShoppingModel.Store.proc_remove_from_wishlist" />
           <FunctionImportMapping FunctionImportName="proc_signup" FunctionName="OnlineShoppingModel.Store.proc_signup" />
           <FunctionImportMapping FunctionImportName="remove_from_cart" FunctionName="OnlineShoppingModel.Store.remove_from_cart" />
-          <FunctionImportMapping FunctionImportName="proc_get_categories" FunctionName="OnlineShoppingModel.Store.proc_get_categories">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="OnlineShoppingModel.proc_get_categories_Result">
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_delete_products" FunctionName="OnlineShoppingModel.Store.proc_delete_products" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

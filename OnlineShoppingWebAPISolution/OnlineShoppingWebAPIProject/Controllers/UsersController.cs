@@ -90,15 +90,15 @@ namespace OnlineShoppingWebAPIProject.Controllers
 
         // DELETE: api/Users/5
         [ResponseType(typeof(User))]
-        public async Task<IHttpActionResult> DeleteUser(int id)
+        public async Task<IHttpActionResult> DeleteUser([FromBody]User user)
         {
-            User user = await db.Users.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            db.Users.Remove(user);
+            //db.Users.Remove(user);
+            db.proc_deactivate_account(user.UserId,user.UserPassword);
             await db.SaveChangesAsync();
 
             return Ok(user);

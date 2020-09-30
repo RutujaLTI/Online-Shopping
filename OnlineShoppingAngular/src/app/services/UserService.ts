@@ -38,4 +38,10 @@ export class UserService {
   {
     return this.httpCilent.post<boolean>("http://localhost:64550/api/login",user);
   }
+
+  deactivateAccount(user:User)
+  {
+    //return this.httpCilent.delete("http://localhost:64550/api/users/"+user.userId,user);
+    return this.httpCilent.request("delete","http://localhost:64550/api/users",{body:user});
+  }
 }

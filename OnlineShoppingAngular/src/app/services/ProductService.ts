@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ProductService {
 
-    constructor(private httpCilent:HttpClient,private httpCilent1:HttpClient,private httpCilent2:HttpClient,private httpCilent3:HttpClient)
+    constructor(private httpCilent:HttpClient,private httpCilent1:HttpClient,private httpCilent2:HttpClient,private httpCilent3:HttpClient,private httpCilent4:HttpClient)
     {
 
     }
@@ -41,5 +41,15 @@ export class ProductService {
         
     }
 
-    
+    addProduct(product:Product)
+    {
+        return this.httpCilent3.post("http://localhost:64550/api/products",product);
+    }
+
+    deleteProduct(id:number)
+    {
+        return this.httpCilent4.delete("http://localhost:64550/api/products/"+id);
+    }
+
+   
 }

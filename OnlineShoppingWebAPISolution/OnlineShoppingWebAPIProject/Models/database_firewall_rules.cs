@@ -12,13 +12,13 @@ namespace OnlineShoppingWebAPIProject.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Wishlist
+    public partial class database_firewall_rules
     {
-        public int UserId { get; set; }
-        public int ProductId { get; set; }
-        public Nullable<int> Quantity { get; set; }
-    
-        public virtual Product Product { get; set; }
-        public virtual User User { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public string start_ip_address { get; set; }
+        public string end_ip_address { get; set; }
+        public System.DateTime create_date { get; set; }
+        public System.DateTime modify_date { get; set; }
     }
 }

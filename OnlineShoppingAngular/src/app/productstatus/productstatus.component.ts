@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/product';
+import { ProductService } from '../services/ProductService';
 
 @Component({
   selector: 'app-productstatus',
@@ -7,10 +8,15 @@ import { Product } from '../models/product';
   styleUrls: ['./productstatus.component.css']
 })
 export class ProductstatusComponent implements OnInit {
-
-  constructor() { }
   products:Product[];
+  retId:number;//get retailer id from session
   message:string="";
+  constructor(private productService:ProductService) { 
+    productService.getModifiedProducts().subscribe(data=>{
+      this.products=data.filter(s=>s.retailerId==this.retId && s.productStatus!='Available');
+    });
+  }
+ 
   ngOnInit(): void {
   }
 
