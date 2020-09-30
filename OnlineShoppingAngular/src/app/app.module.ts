@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import{FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,16 +40,17 @@ import { ProductDescriptionComponent } from './shopping-cart/product-list/produc
 import { CompareComponent } from './compare/compare.component';
 import { CompareProductsService } from './services/CompareProductsService';
 import { SessionService } from './services/sessionService';
+import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 const routes:Routes=[
   {path:'',component:ShoppingCartComponent},
   {path:'ViewDetails/:id', component:ProductDescriptionComponent},
   {path:'login',component:LoginComponent},
   {path:'signUp',component:SignUpComponent},
   {path:'forgotPassword',component:ForgotPasswordComponent},
-  {path:'admin',component:AdminDashBoardComponent},
-  {path:'addRetailer',component:AddRetailerComponent},
-  {path:'addCategory',component:AddCategoryComponent},
-  {path:'verify/:id',component:VerifyProductComponent},
+  {path:'admin',component:AdminDashBoardComponent,canActivate:[AdminAuthGuardService]},
+  {path:'addRetailer',component:AddRetailerComponent,canActivate:[AdminAuthGuardService]},
+  {path:'addCategory',component:AddCategoryComponent,canActivate:[AdminAuthGuardService]},
+  {path:'verify/:id',component:VerifyProductComponent,canActivate:[AdminAuthGuardService]},
   {path:'profile',component:ProfileComponent,children:[{path:'personaldetails',component:PersonaldetailsComponent},{path:'',component:PersonaldetailsComponent},
   {path:'changePassword',component:ForgotPasswordComponent}]},
   {path:'products',component:ProductsComponent},
@@ -92,7 +94,7 @@ const routes:Routes=[
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,NgxWebstorageModule.forRoot()
   ],
   providers: [OtpService,UserService,ProductService,RetailerService,CategoryService,CompareProductsService,SessionService],
   bootstrap: [AppComponent]

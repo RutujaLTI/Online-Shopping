@@ -12,7 +12,7 @@ namespace OnlineShoppingWebAPIProject.Controllers
 {
     [EnableCors("*","*","*")]public class RetailerController : ApiController
     {
-        OnlineShoppingEntities db = new OnlineShoppingEntities();
+        OnlineShoppingEntities1 db = new OnlineShoppingEntities1();
         
         [HttpPost]
         public async Task<bool> AddRetailer([FromBody]User user)

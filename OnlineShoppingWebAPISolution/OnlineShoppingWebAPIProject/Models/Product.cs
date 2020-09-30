@@ -20,12 +20,12 @@ namespace OnlineShoppingWebAPIProject.Models
         {
             this.Carts = new HashSet<Cart>();
             this.OrderDetails = new HashSet<OrderDetail>();
-            this.Users = new HashSet<User>();
+            this.Wishlists = new HashSet<Wishlist>();
         }
-
-        [DataMember] public int ProductId { get; set; }
-        [DataMember] public string ProductName { get; set; }
-        [DataMember] public string ProductDescription { get; set; }
+    
+        [DataMember]public int ProductId { get; set; }
+        [DataMember]public string ProductName { get; set; }
+        [DataMember]public string ProductDescription { get; set; }
         [DataMember] public Nullable<decimal> ProductPrice { get; set; }
         [DataMember] public Nullable<int> ProductStock { get; set; }
         [DataMember] public string ProductImg1 { get; set; }
@@ -36,15 +36,15 @@ namespace OnlineShoppingWebAPIProject.Models
         [DataMember] public Nullable<int> CategoryId { get; set; }
         [DataMember] public Nullable<int> RetailerId { get; set; }
         [DataMember] public string ProductStatus { get; set; }
-        [DataMember]public string ProductRemark { get; set; }
+        [DataMember] public string ProductRemark { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [IgnoreDataMember] public virtual ICollection<Cart> Carts { get; set; }
-        [IgnoreDataMember]public virtual Category Category { get; set; }
+        [IgnoreDataMember]public virtual ICollection<Cart> Carts { get; set; }
+        [IgnoreDataMember] public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        [IgnoreDataMember] public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         [IgnoreDataMember] public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [IgnoreDataMember] public virtual ICollection<User> Users { get; set; }
+        [IgnoreDataMember] public virtual ICollection<Wishlist> Wishlists { get; set; }
     }
 }

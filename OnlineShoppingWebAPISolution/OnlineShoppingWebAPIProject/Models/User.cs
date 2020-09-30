@@ -21,7 +21,7 @@ namespace OnlineShoppingWebAPIProject.Models
             this.Carts = new HashSet<Cart>();
             this.Orders = new HashSet<Order>();
             this.Products = new HashSet<Product>();
-            this.Products1 = new HashSet<Product>();
+            this.Wishlists = new HashSet<Wishlist>();
         }
     
         [DataMember]public int UserId { get; set; }
@@ -35,11 +35,11 @@ namespace OnlineShoppingWebAPIProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [IgnoreDataMember]public virtual ICollection<Cart> Carts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [IgnoreDataMember] public virtual ICollection<Order> Orders { get; set; }
+        [IgnoreDataMember]public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [IgnoreDataMember] public virtual ICollection<Product> Products { get; set; }
         [IgnoreDataMember] public virtual Retailer Retailer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [IgnoreDataMember] public virtual ICollection<Product> Products1 { get; set; }
+        [IgnoreDataMember] public virtual ICollection<Wishlist> Wishlists { get; set; }
     }
 }

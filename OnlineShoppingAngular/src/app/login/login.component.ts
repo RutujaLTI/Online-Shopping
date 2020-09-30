@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
-import { SessionService } from '../services/sessionService';
 import { UserService } from '../services/UserService';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers:[UserService]
 })
 export class LoginComponent implements OnInit {
 
   user:User;
   message:string;
-  constructor(private userService:UserService,private router:Router,private session:SessionService) { 
+  constructor(private userService:UserService,private router:Router,private localStorage:LocalStorageService) { 
     this.user=new User();
   }
 
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
     this.userService.loginFromApi(this.user).subscribe((data)=>
     {
       if(data!=null) {
+        this.localStorage.store('user',data);
         this.router.navigate(['']);
       }
       else this.message="Invalid username or password";

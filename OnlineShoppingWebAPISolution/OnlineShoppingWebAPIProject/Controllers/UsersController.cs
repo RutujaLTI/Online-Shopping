@@ -15,7 +15,7 @@ namespace OnlineShoppingWebAPIProject.Controllers
 {
     public class UsersController : ApiController
     {
-        private OnlineShoppingEntities db = new OnlineShoppingEntities();
+        private OnlineShoppingEntities1 db = new OnlineShoppingEntities1();
 
         // GET: api/Users
         public IQueryable<User> GetUsers()
