@@ -25,11 +25,12 @@ export class VerifyProductComponent implements OnInit {
   verify()
   {
     this.product.productStatus="available";
+    this.product.productRemark='';
     this.productService.updateProduct(this.product).subscribe((data)=>
     {
-      console.log(data);
+      this.router.navigate(['admin']);
     });
-    this.router.navigate(['admin']);
+   
   }
   decline()
   {

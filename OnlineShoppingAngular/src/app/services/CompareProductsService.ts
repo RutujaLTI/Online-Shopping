@@ -18,12 +18,17 @@ export class CompareProductsService
 
     addProductForCompare(product:Product)
     {
-        return this.httpCilent1.post("http://localhost:64550/api/compareproducts",product);
+        return this.httpCilent1.post("http://localhost:64550/api/compareproducts/"+product.productId,null);
     }
 
     removeProductFromCompare(id:number)
     {
         return this.httpCilent2.delete("http://localhost:64550/api/compareproducts/"+id);
+    }
+
+    removeAll()
+    {
+        return this.httpCilent2.delete("http://localhost:64550/api/compareproducts/");
     }
     
 }

@@ -19,7 +19,7 @@ export class AdminDashBoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getModifiedProducts().subscribe((data)=>{
-      this.products=data.filter(p=>p.productStatus=="modified" &&(p.productRemark==null||p.productRemark==''))
+      this.products=data.filter(p=>p.productStatus=="modified" &&(p.productRemark==null||p.productRemark==''||p.productRemark==undefined))
     });
     this.sesion.getUSer().subscribe((data)=>
     {
@@ -35,8 +35,12 @@ export class AdminDashBoardComponent implements OnInit {
   {
     if(confirm("Are you sure you want to delete this Retailer"))
     {
-      this.retailer.delete(product.retailerId);
-      this.router.navigate(['admin']);
+      /*this.retailer.delete(product.retailerId);
+      this.router.navigate(['admin']);*/
+      this.retailer.deleteFromApi(product.retailerId).subscribe((data)=>
+      {
+        this.router.navigate(['admin']);
+      });
     }
   }
   addRetailer()

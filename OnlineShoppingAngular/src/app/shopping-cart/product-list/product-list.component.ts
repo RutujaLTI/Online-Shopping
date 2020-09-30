@@ -12,7 +12,7 @@ export class ProductListComponent implements OnInit {
   constructor(private productService:ProductService) { 
     this.productService.getModifiedProducts().subscribe((data)=>
     {
-      this.productList=data;
+      this.productList=data.filter(p=>p.productStatus=='available');
     });
   }
 

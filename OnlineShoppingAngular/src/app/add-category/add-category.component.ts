@@ -17,8 +17,12 @@ export class AddCategoryComponent implements OnInit {
 
   register()
   {
-    this.categoryService.addCategory(this.categoryName);
-    this.router.navigate(['admin']);
+    /*this.categoryService.addCategory(this.categoryName);
+    this.router.navigate(['admin']);*/
+    this.categoryService.addCategoryFromApi(this.categoryName).subscribe((data)=>
+    {
+      this.router.navigate(['admin']);
+    });
   }
 
   cancel()

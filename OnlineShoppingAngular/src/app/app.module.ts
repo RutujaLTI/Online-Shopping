@@ -67,6 +67,7 @@ const routes:Routes=[
   {path:'revenue',component:RevenueComponent},
   {path:'productstatus',component:ProductstatusComponent},
   {path:'',component:PersonaldetailsComponent},]},
+  {path:'compare',component:CompareComponent},
   {path:'**',component:PagenotfoundComponent},
 ];
 

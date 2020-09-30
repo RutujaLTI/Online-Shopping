@@ -17,4 +17,9 @@ export class CategoryService{
     {
         return this.httpCilent.get<Category[]>("http://localhost:64550/api/category");
     }
+    
+    addCategoryFromApi(categoryName:string):Observable<boolean>
+    {
+        return this.httpCilent.post<boolean>("http://localhost:64550/api/category?category="+categoryName,null);
+    }
 }

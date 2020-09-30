@@ -26,13 +26,13 @@
                 </div>
 
                 <div class="row">
-                    <div class="column" *ngIf="product.productImg1!=null && product.productImg1!='' && product.productImg1!=undefined">
+                    <div class="column" *ngIf=" product!=undefined && product.productImg1!=null && product.productImg1!='' && product.productImg1!=undefined">
                         <img class="demo cursor" [src]="product.productImg1" style="width: 100%" (click)="changeImg(1)" alt="The Woods" />
                     </div>
-                    <div class="column" *ngIf="product.productImg2!=null && product.productImg2!='' && product.productImg2!=undefined">
+                    <div class="column" *ngIf=" product!=undefined && product.productImg2!=null && product.productImg2!='' && product.productImg2!=undefined">
                         <img class="demo cursor" [src]="product.productImg2" style="width: 100%" (click)="changeImg(2)" alt="Cinque Terre" />
                     </div>
-                    <div class="column" *ngIf="product.productImg3!=null && product.productImg3!='' && product.productImg3!=undefined">
+                    <div class="column" *ngIf=" product!=undefined && product.productImg3!=null && product.productImg3!='' && product.productImg3!=undefined">
                         <img class="demo cursor" [src]="product.productImg3" style="width: 100%" (click)="changeImg(3)" alt="Mountains and fjords" />
                     </div>
                 </div>
@@ -46,7 +46,14 @@
                     <p class="card-text">
                         {{product.productDescription}}
                     </p>
-                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                    <a class="btn btn-primary">Add to Cart</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-primary"(click)='addToWishList()' >Add to WishList</a>
+                    <br/><br/>
+                    <div *ngIf="inSession!=undefined && inSession">
+                        <a class="btn btn-primary"(click)='removeFromCompare()' *ngIf='incomparision'>Remove from Compare</a>
+                        <a class="btn btn-primary"(click)='addToCompare()'*ngIf='!incomparision'>Add to Compare</a>
+                    </div>
+                    
                 </div>
             </div>
         </div>

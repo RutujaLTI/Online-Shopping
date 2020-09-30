@@ -1,6 +1,7 @@
 import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
+import { CompareProductsService } from 'src/app/services/CompareProductsService';
 import { SessionService } from 'src/app/services/sessionService';
 
 @Component({
@@ -11,7 +12,7 @@ import { SessionService } from 'src/app/services/sessionService';
 export class NavComponent implements OnInit,DoCheck {
 
   user:User;
-  constructor(private service:SessionService,private router:Router) {
+  constructor(private service:SessionService,private router:Router,private compare:CompareProductsService) {
     this.service.getUSer().subscribe((data)=>
     {
       this.user=data;
@@ -32,8 +33,12 @@ export class NavComponent implements OnInit,DoCheck {
     this.service.setUser(null).subscribe((data)=>
     {
       this.router.navigate(['/']);
-      console.log('user');
     });
+    this.compare.removeAll().subscribe((data)=>
+    {
+      
+    });
+
   }
 
 }
