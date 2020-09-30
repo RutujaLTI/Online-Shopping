@@ -18,7 +18,7 @@ namespace OnlineShoppingWebAPIProject.Controllers
     [EnableCors("*","*","*")]public class CompareProductsController : ApiController
     {
         static List<Product> compareProducts = new List<Product>();
-        private OnlineShoppingEntities db = new OnlineShoppingEntities();
+        private OnlineShoppingEntities1 db = new OnlineShoppingEntities1();
 
         //// GET: api/CompareProducts
         //public List<Product> GetProducts()

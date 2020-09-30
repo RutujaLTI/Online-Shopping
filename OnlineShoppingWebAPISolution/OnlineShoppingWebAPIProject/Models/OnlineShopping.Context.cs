@@ -15,10 +15,10 @@ namespace OnlineShoppingWebAPIProject.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class OnlineShoppingEntities : DbContext
+    public partial class OnlineShoppingEntities1 : DbContext
     {
-        public OnlineShoppingEntities()
-            : base("name=OnlineShoppingEntities")
+        public OnlineShoppingEntities1()
+            : base("name=OnlineShoppingEntities1")
         {
         }
     
@@ -34,6 +34,7 @@ namespace OnlineShoppingWebAPIProject.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Retailer> Retailers { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Wishlist> Wishlists { get; set; }
     
         public virtual int add_to_cart(Nullable<int> userid, Nullable<int> productid, Nullable<int> quantity)
         {
@@ -195,6 +196,11 @@ namespace OnlineShoppingWebAPIProject.Models
                 new ObjectParameter("phone", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_edit_user", idParameter, nameParameter, emailParameter, phoneParameter);
+        }
+    
+        public virtual ObjectResult<proc_get_categories_Result> proc_get_categories()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_get_categories_Result>("proc_get_categories");
         }
     
         public virtual int proc_insert_products(string name, string description, Nullable<decimal> price, Nullable<int> stock, string img1, string img2, string img3, string img4, string brand, Nullable<int> categoryid, Nullable<int> retailerid)

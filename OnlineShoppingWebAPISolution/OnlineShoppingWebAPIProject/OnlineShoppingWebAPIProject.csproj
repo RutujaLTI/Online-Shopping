@@ -99,8 +99,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\OnlineShopping.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>OnlineShopping.Context.cs</LastGenOutput>
       <DependentUpon>OnlineShopping.edmx</DependentUpon>
+      <LastGenOutput>OnlineShopping.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\OnlineShopping.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -162,6 +162,9 @@
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
+      <DependentUpon>OnlineShopping.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Wishlist.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

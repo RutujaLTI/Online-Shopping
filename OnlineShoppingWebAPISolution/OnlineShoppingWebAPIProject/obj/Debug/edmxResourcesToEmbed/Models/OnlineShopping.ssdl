@@ -81,6 +81,7 @@
     </Key>
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" />
   </EntityType>
   <Association Name="FK__Cart__ProductId__22751F6C">
     <End Role="Products" Type="Self.Products" Multiplicity="1" />
@@ -178,7 +179,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Wishlist__Produc__2645B050">
+  <Association Name="FK__Wishlist__Produc__45BE5BA9">
     <End Role="Products" Type="Self.Products" Multiplicity="1" />
     <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
     <ReferentialConstraint>
@@ -190,7 +191,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Wishlist__UserId__25518C17">
+  <Association Name="FK__Wishlist__UserId__44CA3770">
     <End Role="Users" Type="Self.Users" Multiplicity="1" />
     <End Role="Wishlist" Type="Self.Wishlist" Multiplicity="*" />
     <ReferentialConstraint>
@@ -326,11 +327,11 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="Retailers" EntitySet="Retailers" />
     </AssociationSet>
-    <AssociationSet Name="FK__Wishlist__Produc__2645B050" Association="Self.FK__Wishlist__Produc__2645B050">
+    <AssociationSet Name="FK__Wishlist__Produc__45BE5BA9" Association="Self.FK__Wishlist__Produc__45BE5BA9">
       <End Role="Products" EntitySet="Products" />
       <End Role="Wishlist" EntitySet="Wishlist" />
     </AssociationSet>
-    <AssociationSet Name="FK__Wishlist__UserId__25518C17" Association="Self.FK__Wishlist__UserId__25518C17">
+    <AssociationSet Name="FK__Wishlist__UserId__44CA3770" Association="Self.FK__Wishlist__UserId__44CA3770">
       <End Role="Users" EntitySet="Users" />
       <End Role="Wishlist" EntitySet="Wishlist" />
     </AssociationSet>

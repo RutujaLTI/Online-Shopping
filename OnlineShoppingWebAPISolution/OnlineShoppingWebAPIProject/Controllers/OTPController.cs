@@ -14,7 +14,7 @@ namespace OnlineShoppingWebAPIProject.Controllers
     [EnableCors("*","*","*")]
     public class OTPController : ApiController
     {
-        private OnlineShoppingEntities db = new OnlineShoppingEntities();
+        private OnlineShoppingEntities1 db = new OnlineShoppingEntities1();
         public async Task<int> GetOtp(string email)
         {
             if (db.Users.FirstOrDefault(u => u.UserEmail == email) is null) return 0;

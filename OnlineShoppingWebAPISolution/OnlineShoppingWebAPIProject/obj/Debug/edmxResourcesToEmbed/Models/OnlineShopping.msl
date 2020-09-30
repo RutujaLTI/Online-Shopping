@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="OnlineShoppingModelStoreContainer" CdmEntityContainer="OnlineShoppingEntities">
+  <EntityContainerMapping StorageEntityContainer="OnlineShoppingModelStoreContainer" CdmEntityContainer="OnlineShoppingEntities1">
     <EntitySetMapping Name="Carts">
       <EntityTypeMapping TypeName="OnlineShoppingModel.Cart">
         <MappingFragment StoreEntitySet="Cart">
@@ -80,14 +80,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="Wishlist" TypeName="OnlineShoppingModel.Wishlist" StoreEntitySet="Wishlist">
-      <EndProperty Name="Products">
-        <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-      </EndProperty>
-      <EndProperty Name="Users">
-        <ScalarProperty Name="UserId" ColumnName="UserId" />
-      </EndProperty>
-    </AssociationSetMapping>
+    <EntitySetMapping Name="Wishlists">
+      <EntityTypeMapping TypeName="OnlineShoppingModel.Wishlist">
+        <MappingFragment StoreEntitySet="Wishlist">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="add_to_cart" FunctionName="OnlineShoppingModel.Store.add_to_cart" />
     <FunctionImportMapping FunctionImportName="modify_quantity_in_cart" FunctionName="OnlineShoppingModel.Store.modify_quantity_in_cart" />
     <FunctionImportMapping FunctionImportName="place_order" FunctionName="OnlineShoppingModel.Store.place_order" />
@@ -98,6 +99,14 @@
     <FunctionImportMapping FunctionImportName="proc_change_password" FunctionName="OnlineShoppingModel.Store.proc_change_password" />
     <FunctionImportMapping FunctionImportName="proc_deactivate_account" FunctionName="OnlineShoppingModel.Store.proc_deactivate_account" />
     <FunctionImportMapping FunctionImportName="proc_edit_user" FunctionName="OnlineShoppingModel.Store.proc_edit_user" />
+    <FunctionImportMapping FunctionImportName="proc_get_categories" FunctionName="OnlineShoppingModel.Store.proc_get_categories">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="OnlineShoppingModel.proc_get_categories_Result">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="proc_insert_products" FunctionName="OnlineShoppingModel.Store.proc_insert_products" />
     <FunctionImportMapping FunctionImportName="proc_login_check" FunctionName="OnlineShoppingModel.Store.proc_login_check">
       <ResultMapping>

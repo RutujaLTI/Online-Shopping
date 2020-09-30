@@ -13,7 +13,7 @@ namespace OnlineShoppingWebAPIProject.Controllers
     [EnableCors("*", "*", "*")]
     public class LoginController : ApiController
     {
-        private OnlineShoppingEntities db = new OnlineShoppingEntities();
+        private OnlineShoppingEntities1 db = new OnlineShoppingEntities1();
         [HttpGet]
         public async Task ChangePassword(string email,string password)
         {
@@ -25,7 +25,7 @@ namespace OnlineShoppingWebAPIProject.Controllers
             if( db.Users.FirstOrDefault(u => u.UserEmail == email && u.UserPassword == password && u.IsActive == "Yes") 
                 is User u)
             {
-                SessionController.user = u;
+                //SessionController.user = u;
                 return u;
             }
             return null;

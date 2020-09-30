@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { LocalStorageService } from 'ngx-webstorage';
 import { CompareComponent } from 'src/app/compare/compare.component';
 import { Product } from 'src/app/models/product';
 import { CompareProductsService } from 'src/app/services/CompareProductsService';
 import { ProductService } from 'src/app/services/ProductService';
-import { SessionService } from 'src/app/services/sessionService';
 
 @Component({
   selector: 'app-product-description',
@@ -18,7 +18,7 @@ export class ProductDescriptionComponent implements OnInit {
   currentindex:number;
   incomparision:boolean;
   inSession:boolean;
-  constructor(private productService:ProductService,private activatedRoute:ActivatedRoute,private compare:CompareProductsService,private session:SessionService) { 
+  constructor(private productService:ProductService,private activatedRoute:ActivatedRoute,private compare:CompareProductsService,private local:LocalStorageService) { 
     this.productService.getProduct(this.activatedRoute.snapshot.params.id).subscribe((data)=>{
       this.product=data;
       this.currentimg=data.productImg1;
@@ -27,10 +27,12 @@ export class ProductDescriptionComponent implements OnInit {
     this.compare.getCompareProducts().subscribe((data)=>{
       if(data.some(p=>p.productId==this.activatedRoute.snapshot.params.id))this.incomparision=true;
     });
-    this.session.getUSer().subscribe((data)=>{
+    if(this.local.retrieve('user')!=null)this.inSession=true;
+    else this.inSession=false;
+    /*this.session.getUSer().subscribe((data)=>{
       if(data!=null && data!=undefined)this.inSession=true;
       else this.inSession=false;
-    })
+    })*/
 
   }
 

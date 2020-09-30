@@ -13,7 +13,7 @@ namespace OnlineShoppingWebAPIProject.Controllers
     [EnableCors("*", "*", "*")]
     public class CategoryController : ApiController
     {
-        OnlineShoppingEntities db = new OnlineShoppingEntities();
+        OnlineShoppingEntities1 db = new OnlineShoppingEntities1();
 
         [HttpPost]
         public async Task<bool> AddCategory([FromUri] string category)

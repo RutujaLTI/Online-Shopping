@@ -17,7 +17,7 @@ namespace OnlineShoppingWebAPIProject.Controllers
     [EnableCors("*", "*", "*")]
     public class ProductsController : ApiController
     {
-        private OnlineShoppingEntities db = new OnlineShoppingEntities();
+        private OnlineShoppingEntities1 db = new OnlineShoppingEntities1();
 
         // GET: api/Products
         public IQueryable<Product> GetProducts()

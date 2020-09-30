@@ -1,5 +1,6 @@
 import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'ngx-webstorage';
 import { User } from 'src/app/models/user';
 import { CompareProductsService } from 'src/app/services/CompareProductsService';
 import { SessionService } from 'src/app/services/sessionService';
@@ -12,28 +13,19 @@ import { SessionService } from 'src/app/services/sessionService';
 export class NavComponent implements OnInit,DoCheck {
 
   user:User;
-  constructor(private service:SessionService,private router:Router,private compare:CompareProductsService) {
-    this.service.getUSer().subscribe((data)=>
-    {
-      this.user=data;
-    });
+  constructor(private router:Router,private compare:CompareProductsService,private localStorage:LocalStorageService) {
+    this.user=null;
    }
 
   ngOnInit(): void {
   }
   ngDoCheck()
   {
-    this.service.getUSer().subscribe((data)=>
-    {
-      this.user=data;
-    });
+    this.user=this.localStorage.retrieve('user');
   }
   signOut()
   {
-    this.service.setUser(null).subscribe((data)=>
-    {
-      this.router.navigate(['/']);
-    });
+    this.localStorage.clear('user');
     this.compare.removeAll().subscribe((data)=>
     {
       
