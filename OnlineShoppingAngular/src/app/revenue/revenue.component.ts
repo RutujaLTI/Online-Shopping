@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-revenue',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./revenue.component.css']
 })
 export class RevenueComponent implements OnInit {
-
+  products:Product[];
   constructor() { }
 
   ngOnInit(): void {

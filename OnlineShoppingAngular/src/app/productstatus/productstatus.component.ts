@@ -10,6 +10,7 @@ export class ProductstatusComponent implements OnInit {
 
   constructor() { }
   products:Product[];
+  message:string="";
   ngOnInit(): void {
   }
 
