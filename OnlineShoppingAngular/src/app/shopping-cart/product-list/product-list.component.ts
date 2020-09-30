@@ -1,4 +1,5 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/ProductService';
 
@@ -11,7 +12,7 @@ export class ProductListComponent implements OnInit ,DoCheck{
   productList: Product[] = []
   currentproductList: Product[] = []
   searchbar:string;
-  constructor(private productService:ProductService) { 
+  constructor(private productService:ProductService,private aroute:ActivatedRoute) { 
     this.productService.getModifiedProducts().subscribe((data)=>
     {
       this.productList=data.filter(p=>p.productStatus=='available');
@@ -21,11 +22,17 @@ export class ProductListComponent implements OnInit ,DoCheck{
   }
 
   ngOnInit(): void {
+
   }
 
   ngDoCheck()
   {
+    
     this.currentproductList=this.productList.filter(p=>p.productName.toLowerCase().includes(this.searchbar.toLowerCase())||p.productDescription.toLowerCase().includes(this.searchbar.toLowerCase()));
+    this.aroute.params.subscribe(r=>
+      {
+        if(r.id!=undefined)this.currentproductList=this.currentproductList.filter(p=>p.categoryId==r.id);
+      });
   }
 
 }

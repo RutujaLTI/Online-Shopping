@@ -55,6 +55,7 @@ import { UserAuthGuardService } from './services/user-auth-guard.service';
 import { RetailerAuthGuardService } from './services/retailer-auth-guard.service';
 const routes:Routes=[
   {path:'',component:ShoppingCartComponent},
+  {path:'list',component:ShoppingCartComponent},
   {path:'ViewDetails/:id', component:ProductDescriptionComponent},
   {path:'login',component:LoginComponent},
   {path:'signUp',component:SignUpComponent},
