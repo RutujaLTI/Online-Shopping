@@ -15,6 +15,14 @@ namespace OnlineShoppingWebAPIProject.Models
 
     [DataContract]public partial class Wishlist
     {
+        public Wishlist(int userId, int productId, int? quantity)
+        {
+            UserId = userId;
+            ProductId = productId;
+            Quantity = quantity;
+        }
+        public Wishlist() { }
+
         [DataMember]public int UserId { get; set; }
         [DataMember] public int ProductId { get; set; }
         [DataMember] public Nullable<int> Quantity { get; set; }
