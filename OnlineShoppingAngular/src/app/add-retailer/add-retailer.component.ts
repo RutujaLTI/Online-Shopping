@@ -27,14 +27,19 @@ export class AddRetailerComponent implements OnInit {
 
   register()
   {
-    if(this.retailerService.register(this.user))
+    /*if(this.retailerService.register(this.user))
     {
       this.router.navigate(['admin']);
     }
     else
     {
       this.message='Email already exsists';
-    }
+    }*/
+    this.retailerService.registerFromApi(this.user).subscribe((data)=>
+    {
+      if(data)this.router.navigate(['admin']);
+      else this.message='Email or Phone already exsists';
+    });
   }
   cancel()
   {

@@ -11,7 +11,7 @@
     </tr>
     <tr *ngFor="let p of products">
         <td><img [src]="p.productImg1" width="100px" height="100px"></td>
-        <td><a (click)='showDetails(p.productId)' >{{p.productName}}</a></td>
+        <td><a (click)='showDetails(p.productId)' class="p-2 text-dark" >{{p.productName}}</a></td>
        
         <td>{{p.productDescription}}</td>
         <td>{{p.productBrand}}</td>
