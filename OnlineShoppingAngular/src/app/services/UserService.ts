@@ -41,7 +41,7 @@ export class UserService {
 
   deactivateAccount(user:User)
   {
-    //return this.httpCilent.delete("http://localhost:64550/api/users/"+user.userId,user);
+    //return this.httpCilent.delete("http://localhost:64550/api/users/",user);
     return this.httpCilent.request("delete","http://localhost:64550/api/users",{body:user});
   }
   updateFromApi(user:User):Observable<boolean>

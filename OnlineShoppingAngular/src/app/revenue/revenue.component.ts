@@ -4,6 +4,7 @@ import { Retailer } from '../models/retailer';
 import { RetailerService } from '../services/RetailerService';
 import { Observable } from 'rxjs';
 import { ProductService } from '../services/ProductService';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-revenue',
@@ -14,9 +15,9 @@ export class RevenueComponent implements OnInit {
   products:Product[];
   retailer:Retailer;
   retId:number;//Retailer id from session
-  constructor(private retailerService:RetailerService,private productService:ProductService) { 
-    productService.getModifiedProducts().subscribe(data=>{
-      this.products=data.filter(s=>s.retailerId==this.retId && s.productStatus=='Available');
+  constructor(private retailerService:RetailerService,private localService:LocalStorageService) { 
+    this.retailerService.getRevenue(this.localService.retrieve('user').userId).subscribe(data=>{
+      this.retailer=data;
     });
   }
 
@@ -25,9 +26,7 @@ export class RevenueComponent implements OnInit {
 
   getRevenue()  //get retailer id from session
   {
-    this.retailerService.getRevenue(this.retailer.retailerId).subscribe(data=>{
-      this.retailer=data;
-    });
+    
   }
 
 }

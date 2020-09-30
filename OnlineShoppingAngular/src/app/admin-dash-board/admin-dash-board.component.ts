@@ -18,7 +18,7 @@ export class AdminDashBoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getModifiedProducts().subscribe((data)=>{
-      this.products=data.filter(p=>p.productStatus=="modified" &&(p.productRemark==null||p.productRemark==''||p.productRemark==undefined))
+      this.products=data.filter(p=>p.productStatus=="modified")
     });
     /*this.sesion.getUSer().subscribe((data)=>
     {

@@ -1,15 +1,14 @@
-<div class="container-fluid">
+<div class="container-fluid row">
     <div class="col-sm-3">
-        <div class="list-group" id="divuserdashboard">
-            <h2 class="list-group-item">Hello<h3>Retailer</h3></h2>
+        <div class="list-group " id="divuserdashboard">
+            <h2 class="list-group-item">Hello<h3>{{user.userName}}</h3></h2>
         </div>
         <div class="list-group">
             <a routerLink="personaldetails" class="list-group-item">Personal Details</a>
-            <a routerLink="changePassword" class="list-group-item">Change Password</a>  
+            <a routerLink="changePassword" class="list-group-item">Change Password</a>
             <a routerLink="addproduct" class="list-group-item">Add Product</a>
-            <a routerLink="modifyproduct" class="list-group-item">Modify Product</a>
-            <a routerLink="deleteproduct" class="list-group-item">Delete Product</a>
-            <a routerLink="revenue" class="list-group-item">View Products and Revenue</a>
+            <a routerLink="modifyList" class="list-group-item">Modify/Delete Product</a>
+            <a routerLink="revenue" class="list-group-item">Revenue Generated</a>
             <a routerLink="productstatus" class="list-group-item">Product Status</a>
             <a routerLink="deactivateaccount" class="list-group-item">Deactivate Account</a>
         </div>

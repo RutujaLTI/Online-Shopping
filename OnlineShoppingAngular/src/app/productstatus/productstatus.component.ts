@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from 'ngx-webstorage';
 import { Product } from '../models/product';
 import { ProductService } from '../services/ProductService';
 
@@ -11,9 +12,10 @@ export class ProductstatusComponent implements OnInit {
   products:Product[];
   retId:number;//get retailer id from session
   message:string="";
-  constructor(private productService:ProductService) { 
+  constructor(private productService:ProductService,private local:LocalStorageService) { 
+    this.retId=this.local.retrieve('user').userId;
     productService.getModifiedProducts().subscribe(data=>{
-      this.products=data.filter(s=>s.retailerId==this.retId && s.productStatus!='Available');
+      this.products=data.filter(s=>s.retailerId==this.retId);
     });
   }
  

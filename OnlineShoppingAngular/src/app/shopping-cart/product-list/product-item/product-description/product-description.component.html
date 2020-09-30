@@ -35,6 +35,9 @@
                     <div class="column" *ngIf=" product!=undefined && product.productImg3!=null && product.productImg3!='' && product.productImg3!=undefined">
                         <img class="demo cursor" [src]="product.productImg3" style="width: 100%" (click)="changeImg(3)" alt="Mountains and fjords" />
                     </div>
+                    <div class="column" *ngIf=" product!=undefined && product.productImg4!=null && product.productImg4!='' && product.productImg4!=undefined">
+                        <img class="demo cursor" [src]="product.productImg3" style="width: 100%" (click)="changeImg(4)" alt="Mountains and fjords" />
+                    </div>
                 </div>
             </div>
         </div>

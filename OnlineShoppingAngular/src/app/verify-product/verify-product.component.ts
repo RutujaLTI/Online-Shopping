@@ -36,6 +36,7 @@ export class VerifyProductComponent implements OnInit {
   {
     if(this.remarks=='')this.remarks='Request Declined';
     this.product.productRemark=this.remarks;
+    this.product.productStatus='Request Declined';
     this.productService.updateProduct(this.product).subscribe((data)=>
     {
       console.log(data);

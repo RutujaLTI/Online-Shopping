@@ -22,7 +22,7 @@ namespace OnlineShoppingWebAPIProject.Controllers
         // GET: api/Products
         public IQueryable<Product> GetProducts()
         {
-            return db.Products.Where(p=>p.User.IsActive=="Yes");
+            return db.Products.Where(p=>p.User.IsActive=="Yes" && p.ProductStatus!= "Unavailable");
         }
 
         // GET: api/Products/5

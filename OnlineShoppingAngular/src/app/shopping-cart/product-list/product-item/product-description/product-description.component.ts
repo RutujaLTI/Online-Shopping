@@ -41,7 +41,7 @@ export class ProductDescriptionComponent implements OnInit {
       if(data!=null && data!=undefined)this.inSession=true;
       else this.inSession=false;
     })*/
-    this.wishList.getWishListProdutsFromApi(this.user.userId).subscribe((data)=>{
+    if(this.user!=null)this.wishList.getWishListProdutsFromApi(this.user.userId).subscribe((data)=>{
       if(data.some(p=>p.productId==this.activatedRoute.snapshot.params.id))this.inWishList=true;
     });
 
@@ -92,6 +92,7 @@ export class ProductDescriptionComponent implements OnInit {
     if(n==1)this.currentimg=this.product.productImg1;
     if(n==2)this.currentimg=this.product.productImg2;
     if(n==3)this.currentimg=this.product.productImg3;
+    if(n==4)this.currentimg=this.product.productImg4;
   }
   addToCompare()
   {

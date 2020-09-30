@@ -50,6 +50,9 @@ import { SessionService } from './services/sessionService';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ModifyListComponent } from './modify-list/modify-list.component';
+import { UserAuthGuardService } from './services/user-auth-guard.service';
+import { RetailerAuthGuardService } from './services/retailer-auth-guard.service';
 const routes:Routes=[
   {path:'',component:ShoppingCartComponent},
   {path:'ViewDetails/:id', component:ProductDescriptionComponent},
@@ -60,19 +63,27 @@ const routes:Routes=[
   {path:'addRetailer',component:AddRetailerComponent,canActivate:[AdminAuthGuardService]},
   {path:'addCategory',component:AddCategoryComponent,canActivate:[AdminAuthGuardService]},
   {path:'verify/:id',component:VerifyProductComponent,canActivate:[AdminAuthGuardService]},
-  {path:'wishList',component:WishListComponent},
-  {path:'profile',component:ProfileComponent,children:[{path:'personaldetails',component:PersonaldetailsComponent},{path:'',component:PersonaldetailsComponent},
-  {path:'changePassword',component:ChangePasswordComponent}]},
+  {path:'wishList',component:WishListComponent,canActivate:[UserAuthGuardService]},
+  {path:'profile',component:ProfileComponent,children:[
+  {path:'personaldetails',component:PersonaldetailsComponent},
+  {path:'',component:PersonaldetailsComponent}, 
+  {path:'deactivateaccount',component:DeactivateaccountComponent},
+  {path:'changePassword',component:ChangePasswordComponent}
+],canActivate:[UserAuthGuardService]},
   {path:'products',component:ProductsComponent},
-  {path:'retailer',component:RetailerdashboardComponent,children:[{path:'addproduct',component:AddProductComponent},
-  {path:'modifyproduct',component:ModifyProductComponent},
-  {path:'deleteproduct',component:DeleteProductComponent},
+  {path:'retailer',component:RetailerdashboardComponent,children:[
+  {path:'addproduct',component:AddProductComponent},
+  {path:'modifyList',component:ModifyListComponent},
+  {path:'modifyproduct/:id',component:ModifyProductComponent},
+  {path:'changePassword',component:ChangePasswordComponent},
+  {path:'deleteproduct/:id',component:DeleteProductComponent},
   {path:'personaldetails',component:PersonaldetailsComponent},
   {path:'deactivateaccount',component:DeactivateaccountComponent},
   {path:'revenue',component:RevenueComponent},
   {path:'productstatus',component:ProductstatusComponent},
-  {path:'',component:PersonaldetailsComponent},]},
-  {path:'compare',component:CompareComponent},
+  {path:'',component:PersonaldetailsComponent},
+],canActivate:[RetailerAuthGuardService]},
+  {path:'compare',component:CompareComponent,canActivate:[UserAuthGuardService]},
   {path:'**',component:PagenotfoundComponent},
 ];
 
@@ -114,6 +125,7 @@ const routes:Routes=[
     ProductstatusComponent,
     WishListComponent,
     ChangePasswordComponent,
+    ModifyListComponent,
   ],
   imports: [
     BrowserModule,

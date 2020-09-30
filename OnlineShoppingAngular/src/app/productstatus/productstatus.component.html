@@ -1,21 +1,20 @@
-<h2>Product Status</h2>
 
-<table *ngIf="products.length!=0">
+<h2> Product Status</h2>
+
+<table *ngIf="products.length!=0" class="table table-bordered">
     <tr>
-        <th>Product Id</th>
-        <th>Product Name</th>
         <th>Product</th>
-        <th>Remark</th>
+        <th>Product Name</th>
+        <th>Product Status</th>
         <th></th>
     </tr>
     <tr *ngFor="let p of products">
-        <td>{{p.productId}}</td>
+        <td><img [src]="p.productImg1" width="100px" height="100px"></td>
         <td>{{p.productName}}</td>
-        <td>{{p.productImg1}}</td>
-        <td>{{p.productRemark}}</td>
-        <p *ngIf="message">
-            {{message}}
-        </p>
+        <td>{{p.productPrice}}</td>
+        <td>
+            {{p.productStatus}}
+        </td>
     </tr>
 </table>
 

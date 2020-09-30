@@ -11,7 +11,8 @@ namespace OnlineShoppingWebAPIProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
     public partial class Wishlist
     {
         public Wishlist(int userId, int productId, int? quantity)

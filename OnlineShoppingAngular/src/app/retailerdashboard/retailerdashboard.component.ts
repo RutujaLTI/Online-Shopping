@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from 'ngx-webstorage';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-retailerdashboard',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RetailerdashboardComponent implements OnInit {
 
-  constructor() { }
+  user:User;
+  constructor(private local:LocalStorageService) {
+    this.user=this.local.retrieve('user');
+   }
 
   ngOnInit(): void {
   }
