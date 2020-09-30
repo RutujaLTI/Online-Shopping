@@ -3,8 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from 'ngx-webstorage';
 import { CompareComponent } from 'src/app/compare/compare.component';
 import { Product } from 'src/app/models/product';
+import { User } from 'src/app/models/user';
 import { CompareProductsService } from 'src/app/services/CompareProductsService';
 import { ProductService } from 'src/app/services/ProductService';
+import { WishListService } from 'src/app/services/wish-list.service';
 
 @Component({
   selector: 'app-product-description',
@@ -17,8 +19,10 @@ export class ProductDescriptionComponent implements OnInit {
   currentimg:string;
   currentindex:number;
   incomparision:boolean;
+  inWishList:boolean;
   inSession:boolean;
-  constructor(private productService:ProductService,private activatedRoute:ActivatedRoute,private compare:CompareProductsService,private local:LocalStorageService) { 
+  user:User;
+  constructor(private productService:ProductService,private activatedRoute:ActivatedRoute,private compare:CompareProductsService,private local:LocalStorageService,private wishList:WishListService) { 
     this.productService.getProduct(this.activatedRoute.snapshot.params.id).subscribe((data)=>{
       this.product=data;
       this.currentimg=data.productImg1;
@@ -27,12 +31,19 @@ export class ProductDescriptionComponent implements OnInit {
     this.compare.getCompareProducts().subscribe((data)=>{
       if(data.some(p=>p.productId==this.activatedRoute.snapshot.params.id))this.incomparision=true;
     });
-    if(this.local.retrieve('user')!=null)this.inSession=true;
+    if(this.local.retrieve('user')!=null)
+    {
+      this.inSession=true;
+      this.user=this.local.retrieve('user');
+    }
     else this.inSession=false;
     /*this.session.getUSer().subscribe((data)=>{
       if(data!=null && data!=undefined)this.inSession=true;
       else this.inSession=false;
     })*/
+    this.wishList.getWishListProdutsFromApi(this.user.userId).subscribe((data)=>{
+      if(data.some(p=>p.productId==this.activatedRoute.snapshot.params.id))this.inWishList=true;
+    });
 
   }
 
@@ -90,12 +101,22 @@ export class ProductDescriptionComponent implements OnInit {
   }
   addToWishList()
   {
-
+    this.wishList.addWishListProdutFromApi(this.product.productId,this.user.userId).subscribe((data)=>
+    {
+      this.inWishList=true;
+    });
   }
   removeFromCompare()
   {
     this.compare.removeProductFromCompare(this.product.productId).subscribe((data)=>{
       this.incomparision=false;
+    });
+  }
+  removeFromWishList()
+  {
+    this.wishList.deleteWishListProdutFromApi(this.product.productId,this.user.userId).subscribe((data)=>
+    {
+      this.inWishList=false;
     });
   }
 }

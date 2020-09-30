@@ -48,6 +48,7 @@ import { DeactivateaccountComponent } from './deactivateaccount/deactivateaccoun
 import { ProductstatusComponent } from './productstatus/productstatus.component';
 import { SessionService } from './services/sessionService';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
+import { WishListComponent } from './wish-list/wish-list.component';
 const routes:Routes=[
   {path:'',component:ShoppingCartComponent},
   {path:'ViewDetails/:id', component:ProductDescriptionComponent},
@@ -58,6 +59,7 @@ const routes:Routes=[
   {path:'addRetailer',component:AddRetailerComponent,canActivate:[AdminAuthGuardService]},
   {path:'addCategory',component:AddCategoryComponent,canActivate:[AdminAuthGuardService]},
   {path:'verify/:id',component:VerifyProductComponent,canActivate:[AdminAuthGuardService]},
+  {path:'wishList',component:WishListComponent},
   {path:'profile',component:ProfileComponent,children:[{path:'personaldetails',component:PersonaldetailsComponent},{path:'',component:PersonaldetailsComponent},
   {path:'changePassword',component:ForgotPasswordComponent}]},
   {path:'products',component:ProductsComponent},
@@ -109,6 +111,7 @@ const routes:Routes=[
     RevenueComponent,
     DeactivateaccountComponent,
     ProductstatusComponent,
+    WishListComponent,
   ],
   imports: [
     BrowserModule,

@@ -46,10 +46,12 @@
                     <p class="card-text">
                         {{product.productDescription}}
                     </p>
-                    <a class="btn btn-primary">Add to Cart</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-primary"(click)='addToWishList()' >Add to WishList</a>
-                    <br/><br/>
+                    
                     <div *ngIf="inSession!=undefined && inSession">
+                        <a class="btn btn-primary">Add to Cart</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a class="btn btn-primary"(click)='addToWishList()' *ngIf='!inWishList'>Add To WishList</a>
+                    <a class="btn btn-primary"(click)='removeFromWishList()'*ngIf='inWishList'>Remove from WishList</a>
+                    <br/><br/>
                         <a class="btn btn-primary"(click)='removeFromCompare()' *ngIf='incomparision'>Remove from Compare</a>
                         <a class="btn btn-primary"(click)='addToCompare()'*ngIf='!incomparision'>Add to Compare</a>
                     </div>
