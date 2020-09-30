@@ -44,4 +44,8 @@ export class UserService {
     //return this.httpCilent.delete("http://localhost:64550/api/users/"+user.userId,user);
     return this.httpCilent.request("delete","http://localhost:64550/api/users",{body:user});
   }
+  updateFromApi(user:User):Observable<boolean>
+  {
+    return this.httpCilent2.put<boolean>("http://localhost:64550/api/users/"+user.userId,user);
+  }
 }

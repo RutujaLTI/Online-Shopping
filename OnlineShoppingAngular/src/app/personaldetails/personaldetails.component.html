@@ -2,13 +2,13 @@
 <br>
 
 <div class="col-sm-8">
-    Name <input type="text" width="50" class="form-control"><button class="btn btn-default">Edit</button>
+    Name <input type="text" width="50" class="form-control"[(ngModel)]='user.userName'>
     <br>
-    Email <input type="text" size="50" class="form-control"> <button class="btn btn-default">Edit</button>
+    Email <input type="text" size="50" class="form-control"[(ngModel)]='user.userEmail'> 
     <br>
-    Mobile <input type="text" size="50" class="form-control"> <button class="btn btn-default">Edit</button>
+    Mobile <input type="text" size="50" class="form-control"[(ngModel)]='user.userPhone'> 
     <br>
-    Address <input type="text" size="50" class="form-control"> <button class="btn btn-default">Edit</button>
+    <button class="btn btn-success" style="text-align: center;" (click)='update()'>Update</button>
     <br>
-    <button class="btn btn-success" style="text-align: center;">Done</button>
+    {{message}}
 </div>

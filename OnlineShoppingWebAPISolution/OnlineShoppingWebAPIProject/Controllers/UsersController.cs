@@ -8,11 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using OnlineShoppingWebAPIProject.Models;
 
 namespace OnlineShoppingWebAPIProject.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class UsersController : ApiController
     {
         private OnlineShoppingEntities1 db = new OnlineShoppingEntities1();
@@ -38,16 +40,16 @@ namespace OnlineShoppingWebAPIProject.Controllers
 
         // PUT: api/Users/5
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutUser(int id, User user)
+        public async Task<bool> PutUser(int id, User user)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return false;
             }
 
             if (id != user.UserId)
             {
-                return BadRequest();
+                return false;
             }
 
             db.Entry(user).State = EntityState.Modified;
@@ -56,19 +58,12 @@ namespace OnlineShoppingWebAPIProject.Controllers
             {
                 await db.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch 
             {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return false;
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return true;
         }
 
         // POST: api/Users

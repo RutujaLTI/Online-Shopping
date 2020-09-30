@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from 'ngx-webstorage';
 import { User } from '../models/user';
+import { CompareProductsService } from '../services/CompareProductsService';
 
 @Component({
   selector: 'app-profile',
@@ -8,11 +10,20 @@ import { User } from '../models/user';
 })
 export class ProfileComponent implements OnInit {
   user:User;
-  constructor() { 
-    //this.user.name="John Doe";
+  constructor(private compare:CompareProductsService,private localStorage:LocalStorageService) { 
+    this.user=this.localStorage.retrieve('user');
   }
 
   ngOnInit(): void {
   }
 
+  signOut()
+  {
+    this.localStorage.clear('user');
+    this.compare.removeAll().subscribe((data)=>
+    {
+      
+    });
+
+  }
 }
