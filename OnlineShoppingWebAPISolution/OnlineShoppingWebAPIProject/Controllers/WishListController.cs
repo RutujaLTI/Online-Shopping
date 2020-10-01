@@ -21,15 +21,29 @@ namespace OnlineShoppingWebAPIProject.Controllers
         }
         [HttpPost]public async Task AddToWishList(int ProductId,int UserId)
         {
-            db.Wishlists.Add(new Wishlist(UserId, ProductId, 1));
-            await db.SaveChangesAsync();
+            try
+            {
+                db.Wishlists.Add(new Wishlist(UserId, ProductId, 1));
+                await db.SaveChangesAsync();
+            }
+            catch
+            {
+
+            }
         }
 
         public async Task DeleteFromWishList(int ProductId, int UserId)
         {
-            Wishlist wishlist = db.Wishlists.FirstOrDefault(w=>w.ProductId==ProductId && w.UserId==UserId);
-            db.Wishlists.Remove(wishlist);
-            await db.SaveChangesAsync();
+            try
+            {
+                Wishlist wishlist = db.Wishlists.FirstOrDefault(w => w.ProductId == ProductId && w.UserId == UserId);
+                db.Wishlists.Remove(wishlist);
+                await db.SaveChangesAsync();
+            }
+            catch
+            {
+
+            }
         }
 
     }

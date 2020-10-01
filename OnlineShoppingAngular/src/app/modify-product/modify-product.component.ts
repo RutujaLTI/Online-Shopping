@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Category } from '../models/category';
 import { Product } from '../models/product';
+import { CategoryService } from '../services/CategoryService';
 import { ProductService } from '../services/ProductService';
 
 @Component({
@@ -9,11 +11,15 @@ import { ProductService } from '../services/ProductService';
   styleUrls: ['./modify-product.component.css']
 })
 export class ModifyProductComponent implements OnInit {
-  product:Product;
-  constructor(private productService:ProductService,private aroute:ActivatedRoute,private route:Router) { 
+  product:Product;categories:Category[]=[];
+  constructor(private productService:ProductService,private aroute:ActivatedRoute,private route:Router,private cService:CategoryService) { 
     this.productService.getProduct(this.aroute.snapshot.params.id).subscribe((data)=>
     {
       this.product=data;
+    });
+    cService.getCategories().subscribe((data)=>
+    {
+      this.categories=data;
     });
   }
 

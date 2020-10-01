@@ -11,6 +11,7 @@ import { UserService } from '../services/UserService';
 export class SignUpComponent implements OnInit {
 
   user:User;
+  cpassword:string;
   message:string;
   constructor(private userService:UserService,private router:Router) { 
     this.user=new User();
@@ -21,10 +22,14 @@ export class SignUpComponent implements OnInit {
 
   registerUser()
   {
-    this.userService.signUpFromApi(this.user).subscribe((data)=>
+    if(this.cpassword!=this.user.userPassword)
+    {
+      this.message='Passwords do not a match';
+    }
+    else this.userService.signUpFromApi(this.user).subscribe((data)=>
     {
       if(data)this.router.navigate(['/login']);
-      else this.message="Email already exsists";
+      else this.message="Email or phone already exsists.Please LogIn";
     });
 
   }

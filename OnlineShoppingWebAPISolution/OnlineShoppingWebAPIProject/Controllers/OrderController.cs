@@ -20,8 +20,16 @@ namespace OnlineShoppingWebAPIProject.Controllers
         }
         [HttpPost] public void PlaceOrder(Order order)
         {
-            order.OrderDate = DateTime.Now;
-             db.place_order(order.UserId, order.OrderTotal, order.OrderAddress, order.OrderDate);
+            
+            try
+            {
+                order.OrderDate = DateTime.Now;
+                db.place_order(order.UserId, order.OrderTotal, order.OrderAddress, order.OrderDate);
+            }
+            catch
+            {
+
+            }
         }
     }
 }
