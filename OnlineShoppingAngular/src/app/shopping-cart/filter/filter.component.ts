@@ -7,8 +7,11 @@ import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 })
 export class FilterComponent implements OnInit {
   @Output() public price = new EventEmitter<{max:number, min:number}>(); 
+  @Output()
+  sortChanged: EventEmitter<number> =new EventEmitter<number>();
   minimumPrice:number;
   maximumPrice:number;
+  sortValue:number;
   constructor() { }
 
   ngOnInit(): void {
@@ -18,6 +21,10 @@ export class FilterComponent implements OnInit {
   filterPrice()
   {
     this.price.emit({max:this.maximumPrice,min:this.minimumPrice});
+  }
+  sort()
+  {
+    this.sortChanged.emit(this.sortValue);
   }
 
 }

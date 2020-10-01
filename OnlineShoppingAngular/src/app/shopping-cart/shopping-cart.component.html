@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col">
-        <app-filter (price)='filterPrice($event)'></app-filter>
+        <app-filter (price)='filterPrice($event)' (sortChanged)='sort($event)'></app-filter>
     </div>
     <div class="col-md-8">
-        <app-product-list [minPrice]='minPrice' [maxPrice]='maxPrice'></app-product-list>
+        <app-product-list [minPrice]='minPrice' [maxPrice]='maxPrice' [sortType]='sortType'></app-product-list>
     </div>
     <div class="col">
         <app-cart></app-cart>

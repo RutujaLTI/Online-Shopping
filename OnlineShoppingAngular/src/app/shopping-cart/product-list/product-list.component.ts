@@ -11,6 +11,7 @@ import { ProductService } from 'src/app/services/ProductService';
 export class ProductListComponent implements OnInit ,DoCheck{
   @Input()minPrice;
   @Input()maxPrice;
+  @Input()sortType:number;
   productList: Product[] = []
   currentproductList: Product[] = []
   searchbar:string;
@@ -36,6 +37,10 @@ export class ProductListComponent implements OnInit ,DoCheck{
       {
         if(r.id!=undefined)this.currentproductList=this.currentproductList.filter(p=>p.categoryId==r.id);
       });
+      if(this.sortType==1)this.currentproductList.sort((a,b)=>a.productPrice-b.productPrice);
+      else if(this.sortType==2)this.currentproductList.sort((a,b)=>b.productPrice-a.productPrice);
+      else if(this.sortType==3)this.currentproductList.sort((a,b)=>a.productName.localeCompare(b.productName));
+      else if(this.sortType==4)this.currentproductList.sort((a,b)=>b.productName.localeCompare(a.productName));
   }
 
 }
