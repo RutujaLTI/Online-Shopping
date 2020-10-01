@@ -11,8 +11,9 @@ namespace OnlineShoppingWebAPIProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Order
+    using System.Runtime.Serialization;
+
+    [DataContract]public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
@@ -20,14 +21,14 @@ namespace OnlineShoppingWebAPIProject.Models
             this.OrderDetails = new HashSet<OrderDetail>();
         }
     
-        public int OrderId { get; set; }
-        public Nullable<int> UserId { get; set; }
-        public Nullable<decimal> OrderTotal { get; set; }
-        public string OrderAddress { get; set; }
-        public Nullable<System.DateTime> OrderDate { get; set; }
+        [DataMember]public int OrderId { get; set; }
+        [DataMember] public Nullable<int> UserId { get; set; }
+        [DataMember] public Nullable<decimal> OrderTotal { get; set; }
+        [DataMember] public string OrderAddress { get; set; }
+        [DataMember] public Nullable<System.DateTime> OrderDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        public virtual User User { get; set; }
+        [IgnoreDataMember]public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        [IgnoreDataMember]public virtual User User { get; set; }
     }
 }

@@ -11,15 +11,16 @@ namespace OnlineShoppingWebAPIProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Wishlist
+    using System.Runtime.Serialization;
+
+    [DataContract]public partial class Wishlist
     {
-        public int UserId { get; set; }
-        public int ProductId { get; set; }
-        public Nullable<int> Quantity { get; set; }
-    
-        public virtual Product Product { get; set; }
-        public virtual User User { get; set; }
+        [DataMember]public int UserId { get; set; }
+        [DataMember] public int ProductId { get; set; }
+        [DataMember]public Nullable<int> Quantity { get; set; }
+
+        [IgnoreDataMember] public virtual Product Product { get; set; }
+        [IgnoreDataMember] public virtual User User { get; set; }
 
         public Wishlist(int UserId,int ProductId, int Quantity)
         {
@@ -27,5 +28,6 @@ namespace OnlineShoppingWebAPIProject.Models
             this.ProductId = ProductId;
             this.Quantity = Quantity;
         }
+        public Wishlist() { }
     }
 }

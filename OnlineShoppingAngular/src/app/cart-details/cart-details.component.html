@@ -1,0 +1,29 @@
+
+  <table *ngIf="cartModels.length!=0" class="table table-bordered">
+    <tr>
+      <th>Product</th>
+      <th>Product Name
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>SubTotal</th>
+      <th></th>
+    </tr>
+    <tr *ngFor="let p of cartModels">
+      <td><img [src]="p.product.productImg1" width="50" height="50"></td>
+      <td>{{p.product.productName}}</td>
+      <td>{{p.product.productPrice}}</td>
+      <td><input type="number" [(ngModel)]="p.cart.quantity"></td>
+      <td>{{p.product.productPrice*p.cart.quantity}}</td>
+      <td><button class="btn btn-default" (click)="removeFromCart(p)">Remove from cart</button></td>
+    </tr>
+  </table>
+  <div>
+    Total:{{cartTotal | currency:'INR'}}
+  </div>
+  <div>
+    <input type="textarea" placeholder="Enter delivery address" [(ngModel)]="order.orderAddress">
+  </div>
+  <br>
+  <button class="btn btn-success" (click)="placeOrder()">Checkout</button>
+  <br>
+  <br>

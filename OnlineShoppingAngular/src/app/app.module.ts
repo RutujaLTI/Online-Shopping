@@ -55,6 +55,8 @@ import { UserAuthGuardService } from './services/user-auth-guard.service';
 import { RetailerAuthGuardService } from './services/retailer-auth-guard.service';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CartService } from './services/CartService';
+import { CartDetailsComponent } from './cart-details/cart-details.component';
 const routes:Routes=[
   {path:'',component:ShoppingCartComponent},
   {path:'list',component:ShoppingCartComponent},
@@ -88,6 +90,7 @@ const routes:Routes=[
   {path:'',component:PersonaldetailsComponent},
 ],canActivate:[RetailerAuthGuardService]},
   {path:'compare',component:CompareComponent,canActivate:[UserAuthGuardService]},
+  {path:'cart',component:CartDetailsComponent},
   {path:'cart',component:CartComponent},
   {path:'checkout',component:CheckoutComponent},
   {path:'**',component:PagenotfoundComponent},
@@ -134,6 +137,7 @@ const routes:Routes=[
     ModifyListComponent,
     MyOrdersComponent,
     CheckoutComponent,
+    CartDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -143,7 +147,7 @@ const routes:Routes=[
     RouterModule.forRoot(routes),
     HttpClientModule,NgxWebstorageModule.forRoot()
   ],
-  providers: [OtpService,UserService,ProductService,RetailerService,CategoryService,CompareProductsService,SessionService],
+  providers: [OtpService,UserService,ProductService,RetailerService,CategoryService,CompareProductsService,SessionService,CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

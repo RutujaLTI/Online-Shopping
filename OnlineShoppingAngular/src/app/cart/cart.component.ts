@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import {CartService} from "../services/CartService";
 import {Observable} from "rxjs";
 import { Product } from '../models/product';
 import { Cart } from '../models/cart';
 import { Order } from '../models/order';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'ngx-webstorage';
+import { ProductService } from '../services/ProductService';
+import { CartModel } from '../models/cartModel';
+import { User } from '../models/user';
 
 
 @Component({
@@ -12,49 +16,44 @@ import { Router } from '@angular/router';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements OnInit {
-  // cartData: CartModel;
-  // cartTotal: Number;
-  // subTotal: Number;
+export class CartComponent implements DoCheck {
+  cartModels:CartModel[]=[];
+  user:User;
   order:Order;
-  cartproducts:Cart[];
-  cartTotal:number;
-  userId:number;//from session
-  cart:Cart;
-  constructor(public cartService: CartService,private router:Router) { 
-    cartService.getProductsFromCart(this.userId).subscribe(data=>{
-      this.cartproducts=data;
-    });
-  }
-
-  ngOnInit(): void {
-    // this.cartService.cartDataObs$.subscribe(data => this.cartData = data);
-    //  this.cartService.cartTotal$.subscribe(total => this.cartTotal = total);
-  }
-  // ChangeQuantity(Product_Id: Number, increaseQuantity: Boolean) {
-  //   this.cartService.UpdateCartData(Product_Id, increaseQuantity);
-  // }
-
-  doCheck()
-  { 
-    this.cartproducts.forEach(element => {
-      this.cartTotal+=element.quantity*element.productModel.productPrice;
-    });
-    
-  }
-
-  removeFromCart(cart:Cart)
+  cartTotal:number=0;
+  constructor(private cservice:CartService,private local:LocalStorageService,private pService:ProductService)
   {
-    this.cartService.removeFromCart(cart).subscribe();
+    this.order=new Order();
+    this.user=this.local.retrieve('user');
+    if(this.user!=null)this.cservice.getProductsFromCart(this.user.userId).subscribe((data)=>
+    {
+      data.forEach(v=>{
+        var cartModel=new CartModel(pService,v);
+        this.cartModels.push(cartModel);
+      });
+    });
   }
+ngDoCheck(): void {
+  this.cartTotal=0;
+  this.cartModels.forEach((v)=>
+  {
+    this.cartTotal+=v.cart.quantity*v.product.productId;
+  });
+}
 
-  placeOrder()
-  { 
-    this.order.orderTotal=this.cartTotal;
-    this.order.userId=this.userId;
-    this.cartService.checkoutFromCart(this.order).subscribe();
-    this.cartService.removeFromCart(this.cart).subscribe();
-    this.router.navigate(['checkout']);
-  }
+
+placeOrder()
+{
+
+}
+
+removeFromCart(cartModel:CartModel)
+{
+  this.cservice.removeFromCart(cartModel.cart).subscribe((d)=>
+    {
+      this.cartModels.splice(this.cartModels.findIndex((c)=>c.cart.productId= cartModel.cart.productId),1);
+    }
+  )
+}
 
 }

@@ -24,7 +24,9 @@ namespace OnlineShoppingWebAPIProject.Controllers
             try
             {
                 order.OrderDate = DateTime.Now;
-                db.place_order(order.UserId, order.OrderTotal, order.OrderAddress, order.OrderDate);
+                db.place_order(order.UserId, order.OrderTotal, order.OrderAddress, DateTime.Now.Date);
+                db.Carts.RemoveRange(db.Carts.Where(c => c.UserId == order.UserId));
+                db.SaveChanges();
             }
             catch
             {

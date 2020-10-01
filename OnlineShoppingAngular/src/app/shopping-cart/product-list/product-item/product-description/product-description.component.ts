@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from 'ngx-webstorage';
 import { CompareComponent } from 'src/app/compare/compare.component';
+import { Cart } from 'src/app/models/cart';
 import { Product } from 'src/app/models/product';
 import { User } from 'src/app/models/user';
+import { CartService } from 'src/app/services/CartService';
 import { CompareProductsService } from 'src/app/services/CompareProductsService';
 import { ProductService } from 'src/app/services/ProductService';
 import { WishListService } from 'src/app/services/wish-list.service';
@@ -21,8 +23,9 @@ export class ProductDescriptionComponent implements OnInit {
   incomparision:boolean;
   inWishList:boolean;
   inSession:boolean;
+  inCart:boolean;
   user:User;
-  constructor(private productService:ProductService,private activatedRoute:ActivatedRoute,private compare:CompareProductsService,private local:LocalStorageService,private wishList:WishListService) { 
+  constructor(private productService:ProductService,private activatedRoute:ActivatedRoute,private compare:CompareProductsService,private local:LocalStorageService,private wishList:WishListService,private cService:CartService) { 
     this.productService.getProduct(this.activatedRoute.snapshot.params.id).subscribe((data)=>{
       this.product=data;
       this.currentimg=data.productImg1;
@@ -41,9 +44,16 @@ export class ProductDescriptionComponent implements OnInit {
       if(data!=null && data!=undefined)this.inSession=true;
       else this.inSession=false;
     })*/
-    if(this.user!=null)this.wishList.getWishListProdutsFromApi(this.user.userId).subscribe((data)=>{
+    if(this.user!=null || this.user!=undefined)
+    {
+      this.wishList.getWishListProdutsFromApi(this.user.userId).subscribe((data)=>{
       if(data.some(p=>p.productId==this.activatedRoute.snapshot.params.id))this.inWishList=true;
     });
+    this.cService.getProductsFromCart(this.user.userId).subscribe(d=>
+      {
+        if(d.some(c=>c.productId==this.activatedRoute.snapshot.params.id))this.inCart=true;
+      });
+  }
 
   }
 
@@ -119,5 +129,18 @@ export class ProductDescriptionComponent implements OnInit {
     {
       this.inWishList=false;
     });
+  }
+  addToCart()
+  {
+    this.cService.addCart(new Cart(this.activatedRoute.snapshot.params.id,this.user.userId,1)).subscribe(a=>{
+      this.inCart=true;
+    });
+  }
+  removeFromCart()
+  {
+    this.cService.removeFromCart(new Cart(this.activatedRoute.snapshot.params.id,this.user.userId,1)).subscribe(a=>
+      {
+        this.inCart=true;
+      });
   }
 }

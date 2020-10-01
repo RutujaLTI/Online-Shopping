@@ -8,11 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using OnlineShoppingWebAPIProject.Models;
 
 namespace OnlineShoppingWebAPIProject.Controllers
 {
+    [EnableCors("*","*","*")]
     public class CartsController : ApiController
     {
         private OnlineShoppingEntities1 db = new OnlineShoppingEntities1();
@@ -25,15 +27,9 @@ namespace OnlineShoppingWebAPIProject.Controllers
 
         // GET: api/Carts/5
         [ResponseType(typeof(Cart))]
-        public async Task<IHttpActionResult> GetCart(int id)
+        public IQueryable<Cart> GetCart(int id)
         {
-            List<Cart> cart = db.Carts.Where(c=>c.UserId==id).ToList();//Cart of a particular user
-            if (cart == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(cart);
+            return db.Carts.Where(c=>c.UserId==id);//Cart of a particular user
         }
 
         // PUT: api/Carts/5
@@ -103,18 +99,17 @@ namespace OnlineShoppingWebAPIProject.Controllers
 
         // DELETE: api/Carts/5
         [ResponseType(typeof(Cart))]
-        public async Task<IHttpActionResult> DeleteCart(int id, int prodid)
+        public async Task DeleteCart(int UserId, int ProductId)
         {
-            Cart cart = db.Carts.Where(c=>c.UserId==id && c.ProductId==prodid).First();
+            Cart cart = db.Carts.Where(c=>c.UserId==UserId && c.ProductId==ProductId).First();
             if (cart == null)
             {
-                return NotFound();
+                return;
             }
 
             db.Carts.Remove(cart);
             await db.SaveChangesAsync();
 
-            return Ok(cart);
         }
 
         protected override void Dispose(bool disposing)

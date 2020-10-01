@@ -10,11 +10,12 @@
 namespace OnlineShoppingWebAPIProject.Models
 {
     using System;
-    
-    public partial class get_cart_Result
+    using System.Runtime.Serialization;
+
+    [DataContract]public partial class get_cart_Result
     {
-        public int UserId { get; set; }
-        public int ProductId { get; set; }
-        public Nullable<int> Quantity { get; set; }
+        [DataMember]public int UserId { get; set; }
+        [DataMember]public int ProductId { get; set; }
+        [DataMember]public Nullable<int> Quantity { get; set; }
     }
 }

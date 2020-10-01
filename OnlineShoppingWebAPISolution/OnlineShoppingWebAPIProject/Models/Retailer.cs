@@ -11,12 +11,13 @@ namespace OnlineShoppingWebAPIProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Retailer
+    using System.Runtime.Serialization;
+
+    [DataContract]public partial class Retailer
     {
-        public int RetailerId { get; set; }
-        public Nullable<decimal> RetailerRevenue { get; set; }
-    
-        public virtual User User { get; set; }
+        [DataMember]public int RetailerId { get; set; }
+        [DataMember]public Nullable<decimal> RetailerRevenue { get; set; }
+
+        [IgnoreDataMember] public virtual User User { get; set; }
     }
 }
