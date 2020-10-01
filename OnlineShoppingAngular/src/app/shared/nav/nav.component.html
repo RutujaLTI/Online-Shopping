@@ -14,6 +14,7 @@
         <a class="p-2 text-dark" href="/login"*ngIf='user==null'>Login</a>
         <a class="p-2 text-dark" href="/compare" *ngIf='user!=null'>Compare</a>
         <a class="p-2 text-dark" href="/wishList" *ngIf='user!=null'>WishList</a>
+        <a class="p-2 text-dark" href="/wishList" *ngIf='user!=null'>Cart</a>
         <a class="p-2 text-dark" href="/profile" *ngIf='user!=null && user.userRole=="User"'>{{user.userName}}</a>
         <a class="p-2 text-dark" href="/retailer" *ngIf='user!=null && user.userRole=="Retailer"'>{{user.userName}}</a>
         <a class="p-2 text-dark" href="/admin" *ngIf='user!=null && user.userRole=="Admin"'>{{user.userName}}</a>

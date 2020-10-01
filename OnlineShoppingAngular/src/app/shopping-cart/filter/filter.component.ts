@@ -13,7 +13,7 @@ export class FilterComponent implements OnInit {
 
   ngOnInit(): void {
     this.minimumPrice=0;
-    this.maximumPrice=10000;
+    this.maximumPrice=1000000;
   }
   filterPrice()
   {

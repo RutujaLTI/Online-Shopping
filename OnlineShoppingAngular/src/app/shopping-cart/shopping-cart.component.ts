@@ -7,13 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  constructor() { }
+  minPrice:number;
+  maxPrice:number;
+  constructor() { 
+    this.minPrice=0;
+    this.maxPrice=1000000;
+  }
 
   ngOnInit(): void {
   }
   filterPrice(price)
   {
-    console.log(price);
+    this.minPrice=price.min;
+    this.maxPrice=price.max;
   }
 
 }

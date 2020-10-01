@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/ProductService';
@@ -9,6 +9,8 @@ import { ProductService } from 'src/app/services/ProductService';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit ,DoCheck{
+  @Input()minPrice;
+  @Input()maxPrice;
   productList: Product[] = []
   currentproductList: Product[] = []
   searchbar:string;
@@ -29,6 +31,7 @@ export class ProductListComponent implements OnInit ,DoCheck{
   {
     
     this.currentproductList=this.productList.filter(p=>p.productName.toLowerCase().includes(this.searchbar.toLowerCase())||p.productDescription.toLowerCase().includes(this.searchbar.toLowerCase()));
+    this.currentproductList=this.currentproductList.filter(p=>p.productPrice>this.minPrice && p.productPrice<this.maxPrice);
     this.aroute.params.subscribe(r=>
       {
         if(r.id!=undefined)this.currentproductList=this.currentproductList.filter(p=>p.categoryId==r.id);
