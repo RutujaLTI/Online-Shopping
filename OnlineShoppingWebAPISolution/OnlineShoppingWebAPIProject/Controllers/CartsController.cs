@@ -27,7 +27,7 @@ namespace OnlineShoppingWebAPIProject.Controllers
         [ResponseType(typeof(Cart))]
         public async Task<IHttpActionResult> GetCart(int id)
         {
-            Cart cart = await db.Carts.FindAsync(id);
+            List<Cart> cart = db.Carts.Where(c=>c.UserId==id).ToList();//Cart of a particular user
             if (cart == null)
             {
                 return NotFound();
@@ -103,9 +103,9 @@ namespace OnlineShoppingWebAPIProject.Controllers
 
         // DELETE: api/Carts/5
         [ResponseType(typeof(Cart))]
-        public async Task<IHttpActionResult> DeleteCart(int id)
+        public async Task<IHttpActionResult> DeleteCart(int id, int prodid)
         {
-            Cart cart = await db.Carts.FindAsync(id);
+            Cart cart = db.Carts.Where(c=>c.UserId==id && c.ProductId==prodid).First();
             if (cart == null)
             {
                 return NotFound();

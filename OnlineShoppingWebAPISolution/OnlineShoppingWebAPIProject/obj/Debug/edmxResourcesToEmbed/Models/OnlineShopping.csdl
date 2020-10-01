@@ -378,6 +378,9 @@
     <FunctionImport Name="proc_get_retailer_products" ReturnType="Collection(OnlineShoppingModel.proc_get_retailer_products_Result)">
       <Parameter Name="retailerid" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="get_cart" ReturnType="Collection(OnlineShoppingModel.get_cart_Result)">
+      <Parameter Name="userid" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="proc_get_categories_Result">
     <Property Type="Int32" Name="CategoryId" Nullable="false" />
@@ -407,5 +410,10 @@
     <Property Type="Int32" Name="RetailerId" Nullable="true" />
     <Property Type="String" Name="ProductStatus" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="ProductRemark" Nullable="true" MaxLength="8000" />
+  </ComplexType>
+  <ComplexType Name="get_cart_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="Int32" Name="ProductId" Nullable="false" />
+    <Property Type="Int32" Name="Quantity" Nullable="true" />
   </ComplexType>
 </Schema>

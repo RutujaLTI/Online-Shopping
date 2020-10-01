@@ -226,6 +226,9 @@ warning 6002: The table/view 'OnlineShopping.sys.database_firewall_rules' does n
     <Parameter Name="productid" Type="int" Mode="In" />
     <Parameter Name="quantity" Type="int" Mode="In" />
   </Function>
+  <Function Name="get_cart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userid" Type="int" Mode="In" />
+  </Function>
   <Function Name="modify_quantity_in_cart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userid" Type="int" Mode="In" />
     <Parameter Name="productid" Type="int" Mode="In" />

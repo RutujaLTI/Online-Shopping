@@ -54,6 +54,7 @@ import { ModifyListComponent } from './modify-list/modify-list.component';
 import { UserAuthGuardService } from './services/user-auth-guard.service';
 import { RetailerAuthGuardService } from './services/retailer-auth-guard.service';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 const routes:Routes=[
   {path:'',component:ShoppingCartComponent},
   {path:'list',component:ShoppingCartComponent},
@@ -87,6 +88,8 @@ const routes:Routes=[
   {path:'',component:PersonaldetailsComponent},
 ],canActivate:[RetailerAuthGuardService]},
   {path:'compare',component:CompareComponent,canActivate:[UserAuthGuardService]},
+  {path:'cart',component:CartComponent},
+  {path:'checkout',component:CheckoutComponent},
   {path:'**',component:PagenotfoundComponent},
 ];
 
@@ -130,6 +133,7 @@ const routes:Routes=[
     ChangePasswordComponent,
     ModifyListComponent,
     MyOrdersComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

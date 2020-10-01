@@ -331,6 +331,22 @@ namespace OnlineShoppingWebAPIProject.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("proc_delete_products", productidParameter);
         }
     
-       
+        public virtual ObjectResult<proc_get_retailer_products_Result> proc_get_retailer_products(Nullable<int> retailerid)
+        {
+            var retaileridParameter = retailerid.HasValue ?
+                new ObjectParameter("retailerid", retailerid) :
+                new ObjectParameter("retailerid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_get_retailer_products_Result>("proc_get_retailer_products", retaileridParameter);
+        }
+    
+        public virtual ObjectResult<get_cart_Result> get_cart(Nullable<int> userid)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_cart_Result>("get_cart", useridParameter);
+        }
     }
 }

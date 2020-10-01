@@ -231,6 +231,9 @@ warning 6002: The table/view 'OnlineShopping.sys.database_firewall_rules' does n
           <Parameter Name="productid" Type="int" Mode="In" />
           <Parameter Name="quantity" Type="int" Mode="In" />
         </Function>
+        <Function Name="get_cart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
         <Function Name="modify_quantity_in_cart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userid" Type="int" Mode="In" />
           <Parameter Name="productid" Type="int" Mode="In" />
@@ -754,6 +757,9 @@ warning 6002: The table/view 'OnlineShopping.sys.database_firewall_rules' does n
           <FunctionImport Name="proc_get_retailer_products" ReturnType="Collection(OnlineShoppingModel.proc_get_retailer_products_Result)">
             <Parameter Name="retailerid" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="get_cart" ReturnType="Collection(OnlineShoppingModel.get_cart_Result)">
+          <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="proc_get_categories_Result">
           <Property Type="Int32" Name="CategoryId" Nullable="false" />
@@ -783,6 +789,11 @@ warning 6002: The table/view 'OnlineShopping.sys.database_firewall_rules' does n
           <Property Type="Int32" Name="RetailerId" Nullable="true" />
           <Property Type="String" Name="ProductStatus" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="ProductRemark" Nullable="true" MaxLength="8000" />
+        </ComplexType>
+        <ComplexType Name="get_cart_Result">
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -927,6 +938,15 @@ warning 6002: The table/view 'OnlineShopping.sys.database_firewall_rules' does n
           <FunctionImportMapping FunctionImportName="proc_signup" FunctionName="OnlineShoppingModel.Store.proc_signup" />
           <FunctionImportMapping FunctionImportName="remove_from_cart" FunctionName="OnlineShoppingModel.Store.remove_from_cart" />
           <FunctionImportMapping FunctionImportName="proc_delete_products" FunctionName="OnlineShoppingModel.Store.proc_delete_products" />
+          <FunctionImportMapping FunctionImportName="get_cart" FunctionName="OnlineShoppingModel.Store.get_cart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OnlineShoppingModel.get_cart_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

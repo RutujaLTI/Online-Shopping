@@ -68,3 +68,32 @@
     </ng-container>
   
   </div>-->
+
+<div>
+  Total:{{cartTotal | currency:'INR'}}
+</div>
+<div>
+  <input type="textarea" placeholder="Enter delivery address" [(ngModel)]="order.orderAddress">
+</div>
+<br>
+<button class="btn btn-success" (click)="placeOrder()">Checkout</button>
+<br>
+<br>
+<table *ngIf="cartproducts.length!=0">
+  <tr>
+    <th>Product</th>
+    <th>Product Name
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>SubTotal</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let p of cartproducts">
+    <td><img [src]="p.productModel.productImg1" width="50" height="50"></td>
+    <td>{{p.productModel.productName}}</td>
+    <td>{{p.productModel.productPrice}}</td>
+    <td><input type="number" [(ngModel)]="p.quantity"></td>
+    <td>{{p.productModel.productPrice*p.quantity}}</td>
+    <td><button class="btn btn-default" (click)="removeFromCart(p)">Remove from cart</button></td>
+  </tr>
+</table>

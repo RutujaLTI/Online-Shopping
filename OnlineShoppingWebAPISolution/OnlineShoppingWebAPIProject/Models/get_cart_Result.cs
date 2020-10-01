@@ -10,13 +10,11 @@
 namespace OnlineShoppingWebAPIProject.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Retailer
+    public partial class get_cart_Result
     {
-        public int RetailerId { get; set; }
-        public Nullable<decimal> RetailerRevenue { get; set; }
-    
-        public virtual User User { get; set; }
+        public int UserId { get; set; }
+        public int ProductId { get; set; }
+        public Nullable<int> Quantity { get; set; }
     }
 }

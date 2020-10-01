@@ -138,5 +138,14 @@
     <FunctionImportMapping FunctionImportName="proc_signup" FunctionName="OnlineShoppingModel.Store.proc_signup" />
     <FunctionImportMapping FunctionImportName="remove_from_cart" FunctionName="OnlineShoppingModel.Store.remove_from_cart" />
     <FunctionImportMapping FunctionImportName="proc_delete_products" FunctionName="OnlineShoppingModel.Store.proc_delete_products" />
+    <FunctionImportMapping FunctionImportName="get_cart" FunctionName="OnlineShoppingModel.Store.get_cart">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="OnlineShoppingModel.get_cart_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>
