@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/ProductService';
 import { Product } from '../models/product';
 import { ActivatedRoute, Router } from '@angular/router';
-import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-delete-product',

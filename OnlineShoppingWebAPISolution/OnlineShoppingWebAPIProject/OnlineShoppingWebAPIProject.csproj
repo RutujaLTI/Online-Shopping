@@ -114,6 +114,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CompareProductsController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OTPController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RetailerController.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Models\Cart.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>OnlineShopping.tt</DependentUpon>
     </Compile>
