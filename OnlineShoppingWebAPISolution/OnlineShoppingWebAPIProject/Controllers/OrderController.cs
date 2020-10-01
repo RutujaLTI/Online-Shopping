@@ -20,7 +20,14 @@ namespace OnlineShoppingWebAPIProject.Controllers
         }
         [HttpPost] public void PlaceOrder(Order order)
         {
-             db.place_order(order.UserId, order.OrderTotal, order.OrderAddress, order.OrderDate);
+            try
+            {
+                db.place_order(order.UserId, order.OrderTotal, order.OrderAddress, order.OrderDate);
+            }
+            catch
+            {
+
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { OtpService } from '../services/OtpService';
 import { UserService } from '../services/UserService';
@@ -15,7 +16,7 @@ export class ForgotPasswordComponent implements OnInit {
   userotp:number;
   user:User;
   message:string;
-  constructor(private otpService:OtpService,private userService:UserService) {
+  constructor(private otpService:OtpService,private userService:UserService,private router:Router) {
     this.otpSent=false;
     this.message="";
     this.user=new User();
@@ -53,7 +54,7 @@ export class ForgotPasswordComponent implements OnInit {
     if(this.otp==this.userotp)
     {
       this.userService.changePasswordFromApi(this.user).subscribe((data)=>{
-        console.log(data);
+        this.router.navigate(['login']);
       });
     }
     else

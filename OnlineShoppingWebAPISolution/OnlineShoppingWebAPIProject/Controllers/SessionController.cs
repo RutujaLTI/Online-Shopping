@@ -14,10 +14,10 @@ namespace OnlineShoppingWebAPIProject.Controllers
     {
         public static User user;
 
-        public User GetUser() => user;
-        [HttpPost]public void SetUser(User u)
-        {
-            user = u;
-        }
+        //public User GetUser() => user;
+        //[HttpPost]public void SetUser(User u)
+        //{
+        //    user = u;
+        //}
     }
 }

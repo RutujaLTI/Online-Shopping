@@ -76,18 +76,18 @@ namespace OnlineShoppingWebAPIProject.Controllers
 
         // POST: api/Products
         [ResponseType(typeof(Product))]
-        public async Task<IHttpActionResult> PostProduct(Product product)
+        public async Task<bool> PostProduct(Product product)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return false;
             }
 
             db.Products.Add(product);
             
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = product.ProductId }, product);
+            return true;
         }
 
         // DELETE: api/Products/5

@@ -21,7 +21,9 @@
     Product Image URL4 <input type="text" size="50" class="form-control" [(ngModel)]="product.productImg4">
     <br>
     <!-- Add datalist for categories -->
-    Product Category <input type="text" size="50" class="form-control" [(ngModel)]="product.categoryId"> 
+    Product Category <select class="form-control" [(ngModel)]='product.categoryId'>
+        <option *ngFor="let cat of categories" [value]='cat.categoryId'>{{cat.categoryName}}</option>
+      </select>
     <br>
     
     <button class="btn btn-success" style="text-align: center;" (click)="addProduct()">Add</button>

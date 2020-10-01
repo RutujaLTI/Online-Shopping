@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit ,DoCheck{
   constructor(private productService:ProductService,private aroute:ActivatedRoute) { 
     this.productService.getModifiedProducts().subscribe((data)=>
     {
-      this.productList=data.filter(p=>p.productStatus=='available');
+      this.productList=data.filter(p=>p.productStatus=='available' && p.productStock>0);
       this.currentproductList=this.productList;
     });
     this.searchbar='';
@@ -32,7 +32,7 @@ export class ProductListComponent implements OnInit ,DoCheck{
   {
     
     this.currentproductList=this.productList.filter(p=>p.productName.toLowerCase().includes(this.searchbar.toLowerCase())||p.productDescription.toLowerCase().includes(this.searchbar.toLowerCase()));
-    this.currentproductList=this.currentproductList.filter(p=>p.productPrice>this.minPrice && p.productPrice<this.maxPrice);
+    this.currentproductList=this.currentproductList.filter(p=>p.productPrice>=this.minPrice && p.productPrice<=this.maxPrice);
     this.aroute.params.subscribe(r=>
       {
         if(r.id!=undefined)this.currentproductList=this.currentproductList.filter(p=>p.categoryId==r.id);
