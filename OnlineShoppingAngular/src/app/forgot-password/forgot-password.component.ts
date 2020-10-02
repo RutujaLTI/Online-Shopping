@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { OtpService } from '../services/OtpService';
@@ -49,9 +50,15 @@ export class ForgotPasswordComponent implements OnInit {
     })
     console.log("Otp sended again")
   }
-  changePassword()
+  changePassword(fp:NgForm)
   {
-    if(this.otp==this.userotp)
+    if(fp.invalid)
+    {
+      this.message='Please enter all the details correctly';
+    }
+    else
+    {
+      if(this.otp==this.userotp)
     {
       this.userService.changePasswordFromApi(this.user).subscribe((data)=>{
         this.router.navigate(['login']);
@@ -62,5 +69,6 @@ export class ForgotPasswordComponent implements OnInit {
       this.message="Invalid Otp";
     }
   }
+}
 
 }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf='products!=undefined'>
     <h2>Admin Page</h2>
     <table class="table table-bordered">
       <thead>
@@ -16,11 +16,11 @@
         <tr *ngFor="let item of products">
           <td>{{item.retailerId}}</td>
           <td>{{item.productName}}</td>
-          <td><a class="forgot" (click)="verify(item)">Verify</a></td>
+          <td><a class="forgot" [routerLink]="['/verify', item.productId]">Verify</a></td>
           <td><a class="forgot" (click)='deleteRetailer(item)'>Delete</a></td>
         </tr>
       </tbody>
     </table>
-    <div class="center"><button class="btn btn-primary btn-block" (click)='addRetailer()'>Add Retailer</button></div><br/>
-    <div class="center"><button class="btn btn-primary btn-block" (click)='addCategory()'>Add Category</button></div>
+    <div class="center"><a class="btn btn-primary btn-block" href="addRetailer">Add Retailer</a></div><br/>
+    <div class="center"><a class="btn btn-primary btn-block" href="addCategory">Add Category</a></div>
   </div>

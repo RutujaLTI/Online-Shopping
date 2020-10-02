@@ -14,7 +14,7 @@ export class ProductstatusComponent implements OnInit {
   message:string="";
   constructor(private productService:ProductService,private local:LocalStorageService) { 
     this.retId=this.local.retrieve('user').userId;
-    productService.getModifiedProducts().subscribe(data=>{
+    productService.getAllProducts().subscribe(data=>{
       this.products=data.filter(s=>s.retailerId==this.retId);
     });
   }

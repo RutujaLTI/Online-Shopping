@@ -16,7 +16,7 @@ export class ProductListComponent implements OnInit ,DoCheck{
   currentproductList: Product[] = []
   searchbar:string;
   constructor(private productService:ProductService,private aroute:ActivatedRoute) { 
-    this.productService.getModifiedProducts().subscribe((data)=>
+    this.productService.getAllProducts().subscribe((data)=>
     {
       this.productList=data.filter(p=>p.productStatus=='available' && p.productStock>0);
       this.currentproductList=this.productList;

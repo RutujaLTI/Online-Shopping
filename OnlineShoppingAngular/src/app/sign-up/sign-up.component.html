@@ -1,5 +1,5 @@
 <div class="login-clean">
-    <div class="center" >
+    <form class="center" #signUp='ngForm' >
         <h2 class="centre">Register</h2>
         <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Name" required minlength=4 [(ngModel)]="user.userName" #un="ngModel" />
             <span class='text-danger' *ngIf="un.errors && un.touched" >
@@ -31,8 +31,8 @@
                 <span *ngIf="cps.errors.minlength"> Confirm Password should be min 8 characters</span>
             </span>
         </div>
-        <div class="form-group"><button class="btn btn-success btn-block" type="submit" (click)="registerUser()">Sign Up</button></div>
+        <div class="form-group"><button class="btn btn-success btn-block" type="submit" (click)="registerUser(signUp)">Sign Up</button></div>
         <div><a class="forgot" href="/login">Already have a accont Login.</a>
         <p  class='text-danger'>{{message}}</p>
-        </div></div>
+        </div></form>
 </div>

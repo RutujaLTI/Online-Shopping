@@ -13,42 +13,22 @@ export class AdminDashBoardComponent implements OnInit {
 
   products:Product[];
   constructor(private productService:ProductService,private router:Router,private retailer:RetailerService) { 
-    //this.products=this.productService.getallProducts().filter(p=>p.productStatus=="modified");
   }
 
   ngOnInit(): void {
-    this.productService.getModifiedProducts().subscribe((data)=>{
+    this.productService.getAllProducts().subscribe((data)=>{
       this.products=data.filter(p=>p.productStatus=="modified")
     });
-    /*this.sesion.getUSer().subscribe((data)=>
-    {
-      if(data==null||data.userRole!='Admin')this.router.navigate(['**']);
-    });*/
   }
 
-  verify(product:Product)
-  {
-    this.router.navigate(['verify',product.productId]);
-  }
   deleteRetailer(product:Product)
   {
     if(confirm("Are you sure you want to delete this Retailer"))
     {
-      /*this.retailer.delete(product.retailerId);
-      this.router.navigate(['admin']);*/
       this.retailer.deleteFromApi(product.retailerId).subscribe((data)=>
       {
-        this.router.navigate(['admin']);
+        this.products=this.products.filter(p=>p.retailerId!=product.retailerId);
       });
     }
-  }
-  addRetailer()
-  {
-    this.router.navigate(['addRetailer']);
-  }
-  
-  addCategory()
-  {
-    this.router.navigate(['addCategory']);
   }
 }

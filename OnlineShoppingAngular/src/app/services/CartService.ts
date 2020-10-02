@@ -23,9 +23,9 @@ export class CartService
         return this.httpClient.delete('http://localhost:64550/api/carts?UserId='+cart.userId+'&ProductID='+cart.productId);
     }
 
-    checkoutFromCart(order:Order) //remove from cart table and add in orders table
+    checkoutFromCart(cartModel:CartModel[],address:string) //remove from cart table and add in orders table
     {
-        return this.httpClient.post("http://localhost:64550/api/order",order);
+        return this.httpClient.post("http://localhost:64550/api/order",{address:address,cartModels:cartModel});
         
     }
     addCart(cart:Cart)

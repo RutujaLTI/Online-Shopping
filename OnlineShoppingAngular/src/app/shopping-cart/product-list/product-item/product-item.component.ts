@@ -1,6 +1,10 @@
 import { Component, OnInit,Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LocalStorageService } from 'ngx-webstorage';
+import { Cart } from 'src/app/models/cart';
 import { Product } from 'src/app/models/product';
+import { User } from 'src/app/models/user';
+import { CartService } from 'src/app/services/CartService';
 
 @Component({
   selector: 'app-product-item',
@@ -9,7 +13,10 @@ import { Product } from 'src/app/models/product';
 })
 export class ProductItemComponent implements OnInit {
   @Input() productItem:Product;
-  constructor(private router:Router) { }
+  user:User;
+  constructor(private router:Router,private cService:CartService,private local:LocalStorageService ) {
+    this.user=this.local.retrieve('user');
+   }
 
   ngOnInit(): void {
   }
@@ -18,6 +25,12 @@ export class ProductItemComponent implements OnInit {
   {
     //console.log(this.productItem.productId);
     this.router.navigate(['ViewDetails',this.productItem.productId])
+  }
+  addToCart()
+  {
+    if(this.user!=null)this.cService.addCart(new Cart(this.productItem.productId,this.user.userId,1)).subscribe(a=>{
+      this.router.navigate(['cart']);
+    });
   }
 
 }

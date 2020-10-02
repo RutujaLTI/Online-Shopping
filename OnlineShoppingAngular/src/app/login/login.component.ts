@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { UserService } from '../services/UserService';
 import { LocalStorageService } from 'ngx-webstorage';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -21,9 +22,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login()
+  login(loginForm:NgForm)
   {
-    this.userService.loginFromApi(this.user).subscribe((data)=>
+    if(loginForm.valid)this.userService.loginFromApi(this.user).subscribe((data)=>
     {
       if(data!=null) {
         this.localStorage.store('user',data);
@@ -31,6 +32,7 @@ export class LoginComponent implements OnInit {
       }
       else this.message="Invalid username or password";
     });
+    else this.message='Please Enter all the details correctly'
   }
 
 }

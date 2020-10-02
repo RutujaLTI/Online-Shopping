@@ -16,7 +16,7 @@ export class ModifyListComponent implements OnInit {
   products:Product[]=[];
   constructor(private local:LocalStorageService,private product:ProductService,private router:Router) { 
     this.user=this.local.retrieve('user');
-    this.product.getModifiedProducts().subscribe((data)=>
+    this.product.getAllProducts().subscribe((data)=>
     {
       this.products=data.filter(p=>p.retailerId==this.user.userId && p.productStatus!='modified');
     });

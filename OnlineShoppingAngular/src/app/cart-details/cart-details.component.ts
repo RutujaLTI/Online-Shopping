@@ -28,22 +28,19 @@ export class CartDetailsComponent implements OnInit,DoCheck {
     });
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 ngDoCheck(): void {
   this.cartTotal=0;
   this.cartModels.forEach((v)=>
   {
-    this.cartTotal+=v.cart.quantity*v.product.productId;
+    this.cartTotal+=v.cart.quantity*v.product.productPrice;
   });
 }
 
 
 placeOrder()
 {
-  this.order.userId=this.user.userId;
-  this.order.orderTotal=this.cartTotal;
-  this.cservice.checkoutFromCart(this.order).subscribe((d)=>
+  this.cservice.checkoutFromCart(this.cartModels,this.order.orderAddress).subscribe((d)=>
   {
     this.router.navigate(['checkout']);
   });

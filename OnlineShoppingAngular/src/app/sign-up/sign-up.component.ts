@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
 import { UserService } from '../services/UserService';
@@ -20,9 +21,10 @@ export class SignUpComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  registerUser()
+  registerUser(signUp:NgForm)
   {
-    if(this.cpassword!=this.user.userPassword)
+    if(signUp.valid)
+    {if(this.cpassword!=this.user.userPassword)
     {
       this.message='Passwords do not a match';
     }
@@ -31,6 +33,11 @@ export class SignUpComponent implements OnInit {
       if(data)this.router.navigate(['/login']);
       else this.message="Email or phone already exsists.Please LogIn";
     });
+  }
+  else
+  {
+    this.message='Please enter all details correctly'
+  }
 
   }
 

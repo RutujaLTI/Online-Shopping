@@ -5,7 +5,6 @@ import { Category } from 'src/app/models/category';
 import { User } from 'src/app/models/user';
 import { CategoryService } from 'src/app/services/CategoryService';
 import { CompareProductsService } from 'src/app/services/CompareProductsService';
-import { SessionService } from 'src/app/services/sessionService';
 
 @Component({
   selector: 'app-nav',

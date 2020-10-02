@@ -6,11 +6,8 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomepageComponent } from './homepage/homepage.component';
-import { ProductComponent } from './product/product.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PersonaldetailsComponent } from './personaldetails/personaldetails.component';
-import { ProductsComponent } from './products/products.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -25,10 +22,6 @@ import { AddRetailerComponent } from './add-retailer/add-retailer.component';
 import { RetailerService } from './services/RetailerService';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { CategoryService } from './services/CategoryService';
-import { AddproductComponent } from './addproduct/addproduct.component';
-import { CartComponent } from './cart/cart.component';
-import { RetailerdetailsComponent } from './retailerdetails/retailerdetails.component';
-import { WishlistComponent } from './wishlist/wishlist.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavComponent } from './shared/nav/nav.component';
@@ -46,7 +39,6 @@ import { DeleteProductComponent } from './delete-product/delete-product.componen
 import { RevenueComponent } from './revenue/revenue.component';
 import { DeactivateaccountComponent } from './deactivateaccount/deactivateaccount.component';
 import { ProductstatusComponent } from './productstatus/productstatus.component';
-import { SessionService } from './services/sessionService';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
@@ -76,7 +68,6 @@ const routes:Routes=[
   {path:'changePassword',component:ChangePasswordComponent},
   {path:'orders',component:MyOrdersComponent}
 ],canActivate:[UserAuthGuardService]},
-  {path:'products',component:ProductsComponent},
   {path:'retailer',component:RetailerdashboardComponent,children:[
   {path:'addproduct',component:AddProductComponent},
   {path:'modifyList',component:ModifyListComponent},
@@ -91,7 +82,6 @@ const routes:Routes=[
 ],canActivate:[RetailerAuthGuardService]},
   {path:'compare',component:CompareComponent,canActivate:[UserAuthGuardService]},
   {path:'cart',component:CartDetailsComponent},
-  {path:'cart',component:CartComponent},
   {path:'checkout',component:CheckoutComponent},
   {path:'**',component:PagenotfoundComponent},
 ];
@@ -99,11 +89,8 @@ const routes:Routes=[
 @NgModule({
   declarations: [
     AppComponent,
-    HomepageComponent,
-    ProductComponent,
     ProfileComponent,
     PersonaldetailsComponent,
-    ProductsComponent,
     PagenotfoundComponent,
     LoginComponent,
     SignUpComponent,
@@ -112,10 +99,6 @@ const routes:Routes=[
     VerifyProductComponent,
     AddRetailerComponent,
     AddCategoryComponent,
-    AddproductComponent,
-    CartComponent,
-    RetailerdetailsComponent,
-    WishlistComponent,
     HeaderComponent,
     FooterComponent,
     NavComponent,
@@ -147,7 +130,7 @@ const routes:Routes=[
     RouterModule.forRoot(routes),
     HttpClientModule,NgxWebstorageModule.forRoot()
   ],
-  providers: [OtpService,UserService,ProductService,RetailerService,CategoryService,CompareProductsService,SessionService,CartService],
+  providers: [OtpService,UserService,ProductService,RetailerService,CategoryService,CompareProductsService,CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
