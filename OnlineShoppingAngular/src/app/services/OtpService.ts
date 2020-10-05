@@ -6,9 +6,10 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class OtpService {
 
+  url:string;
   constructor(private httpClient:HttpClient)
   {
-
+    this.url='https://onwebapi.azurewebsites.net';
   }
   resendOtp(otp:number)
   {
@@ -20,10 +21,10 @@ export class OtpService {
   }
   getOtpfromApi(email:string):Observable<number>
   {
-    return this.httpClient.get<number>("http://localhost:64550/api/otp?email="+email);
+    return this.httpClient.get<number>(this.url+"/api/otp?email="+email);
   }
   resenttOtpfromApi(email:string,otp:number)
   {
-    return this.httpClient.get("http://localhost:64550/api/otp?email="+email+"&otp="+otp);
+    return this.httpClient.get(this.url+"/api/otp?email="+email+"&otp="+otp);
   }
 }

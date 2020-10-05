@@ -13,6 +13,7 @@ import { CartService } from 'src/app/services/CartService';
 })
 export class ProductItemComponent implements OnInit {
   @Input() productItem:Product;
+  @Input() inCart:boolean;
   user:User;
   constructor(private router:Router,private cService:CartService,private local:LocalStorageService ) {
     this.user=this.local.retrieve('user');
@@ -28,8 +29,15 @@ export class ProductItemComponent implements OnInit {
   }
   addToCart()
   {
-    if(this.user!=null)this.cService.addCart(new Cart(this.productItem.productId,this.user.userId,1)).subscribe(a=>{
-      this.router.navigate(['cart']);
+    if(this.user!=null)this.cService.addCart(new Cart(this.productItem.productId,this.user.userId,1)).subscribe(c=>{
+      this.inCart=true;
+    });
+   
+  }
+  removeFromCart()
+  {
+    if(this.user!=null)this.cService.removeFromCart(new Cart(this.productItem.productId,this.user.userId,1)).subscribe(c=>{
+      this.inCart=false;
     });
   }
 

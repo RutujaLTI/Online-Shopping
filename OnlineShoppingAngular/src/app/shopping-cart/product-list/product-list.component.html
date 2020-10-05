@@ -3,6 +3,6 @@
   </div>
 <div class="row">
     <div class="col-md-4" *ngFor="let product of currentproductList">
-        <app-product-item [productItem]="product"></app-product-item>
+        <app-product-item [productItem]="product" [inCart]='checkInCart(product)'></app-product-item>
     </div>
 </div>

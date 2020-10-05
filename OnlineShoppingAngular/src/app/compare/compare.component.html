@@ -1,6 +1,6 @@
 <h2>Compare Products</h2>
 
-<table *ngIf="products.length!=0" class="table table-bordered">
+<table *ngIf="products.length!=0" class="table table-bordered" style="text-align: center;">
     <tr>
         <th>Product</th>
         <th>Product Name</th>
@@ -15,9 +15,9 @@
        
         <td>{{p.productDescription}}</td>
         <td>{{p.productBrand}}</td>
-        <td>{{p.productPrice}}</td>
+        <td>{{p.productPrice|currency:'INR'}}</td>
         <td>
-            <button class="btn btn-success">Add to Cart</button><br><br>
+            <button class="btn btn-success"(click)='addToCart(p)'*ngIf='!checkInCart(p)'>Add to Cart</button><br><br>
             <button class="btn btn-danger" (click)="removeFromCompare(p)">Remove from Compare</button>
         </td>
         <p *ngIf="message">

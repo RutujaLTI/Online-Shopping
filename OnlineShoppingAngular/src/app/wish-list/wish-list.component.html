@@ -15,9 +15,9 @@
        
         <td>{{p.productDescription}}</td>
         <td>{{p.productBrand}}</td>
-        <td>{{p.productPrice}}</td>
+        <td>{{p.productPrice|currency:'INR'}}</td>
         <td>
-            <button class="btn btn-success">Add to Cart</button><br><br>
+            <button class="btn btn-success" *ngIf='!checkInCart(p)'>Add to Cart</button><br><br>
             <button class="btn btn-danger" (click)="removeFromWishList(p)">Remove from Wish List</button>
         </td>
         <p *ngIf="message">

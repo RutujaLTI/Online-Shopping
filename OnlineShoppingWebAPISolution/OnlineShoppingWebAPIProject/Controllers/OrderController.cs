@@ -29,7 +29,7 @@ namespace OnlineShoppingWebAPIProject.Controllers
             {
                 var cartModels = orderModel.cartModels;
                 decimal? total = cartModels.Sum(c => c.product.ProductPrice * c.cart.Quantity);
-                Order order = new Order() { OrderAddress = orderModel.Address, UserId = cartModels[0].cart.UserId, OrderTotal = total };
+                Order order = new Order() { OrderAddress = orderModel.Address, UserId = cartModels[0].cart.UserId, OrderTotal = total, OrderDate = DateTime.Today };
                 db.Orders.Add(order);
                 db.SaveChanges();
                 int orderId = order.OrderId;
@@ -41,13 +41,14 @@ namespace OnlineShoppingWebAPIProject.Controllers
                     r.RetailerRevenue += cartModel.product.ProductPrice * cartModel.cart.Quantity;
                     db.Entry(r).State = System.Data.Entity.EntityState.Modified;
                     db.OrderDetails.Add(new OrderDetail { OrderId = orderId, ProductId = cartModel.product.ProductId, Quantity = cartModel.cart.Quantity, Price = cartModel.product.ProductPrice });
+                    Product product = cartModel.product;
+                    product.ProductStock -= cartModel.cart.Quantity;
+                    db.Entry(product).State = System.Data.Entity.EntityState.Modified;
                 }
                 db.SaveChanges();
             }
-            catch
-            {
+            catch { }
 
-            }
         }
     }
 }

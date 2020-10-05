@@ -1,6 +1,8 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'ngx-webstorage';
+import { Cart } from '../models/cart';
 import { CartModel } from '../models/cartModel';
 import { Order } from '../models/order';
 import { User } from '../models/user';
@@ -14,13 +16,18 @@ import { ProductService } from '../services/ProductService';
 })
 export class CartDetailsComponent implements OnInit,DoCheck {
 
-  cartModels:CartModel[]=[];
+  cartModels:CartModel[];
+  address1:string;
+  address2:string;
+  city:string;
+  state:string;
+  zip:number;
   user:User;
-  order:Order;
   cartTotal:number=0;
+  message:string;
   constructor(private cservice:CartService,private local:LocalStorageService,private pService:ProductService,private router:Router)
   {
-    this.order=new Order();
+    this.message='';
     this.user=this.local.retrieve('user');
     if(this.user!=null)this.cservice.getCartModelFromCart(this.user.userId).subscribe((data)=>
     {
@@ -31,19 +38,33 @@ export class CartDetailsComponent implements OnInit,DoCheck {
   }
 ngDoCheck(): void {
   this.cartTotal=0;
-  this.cartModels.forEach((v)=>
+  if(this.cartModels!=undefined)this.cartModels.forEach((v)=>
   {
     this.cartTotal+=v.cart.quantity*v.product.productPrice;
   });
 }
 
-
-placeOrder()
+increaseQuntity(cartModel:CartModel)
 {
-  this.cservice.checkoutFromCart(this.cartModels,this.order.orderAddress).subscribe((d)=>
+  cartModel.cart.quantity++;
+}
+decreseQuantity(cartModel:CartModel)
+{
+  cartModel.cart.quantity--;
+  if(cartModel.cart.quantity==0)this.removeFromCart(cartModel);
+}
+placeOrder(addressForm:NgForm)
+{
+  if(addressForm.valid)
+  {var address=this.address1+','+this.address2+','+this.city+','+this.state+','+this.zip;
+  this.cservice.checkoutFromCart(this.cartModels,address).subscribe((d)=>
   {
     this.router.navigate(['checkout']);
-  });
+  });}
+  else
+  {
+    this.message='Please complete the address';
+  }
 }
 
 removeFromCart(cartModel:CartModel)

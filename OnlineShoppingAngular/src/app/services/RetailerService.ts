@@ -6,30 +6,23 @@ import { User } from '../models/user';
 import { Retailer } from '../models/retailer';
 @Injectable()
 export class RetailerService{
+    url:string;
     constructor(private httpCilent:HttpClient,private httpCilent1:HttpClient)
     {
-        
-    }
-    delete(id:number)
-    {
-
-    }
-    register(user:User):boolean
-    {
-        return true;
+        this.url='https://onwebapi.azurewebsites.net';
     }
     registerFromApi(user:User):Observable<boolean>
     {
-        return this.httpCilent.post<boolean>("http://localhost:64550/api/retailer",user);
+        return this.httpCilent.post<boolean>(this.url+"/api/retailer",user);
     }
     deleteFromApi(id:number)
     {
-        return this.httpCilent.delete("http://localhost:64550/api/retailer/"+id);
+        return this.httpCilent.delete(this.url+"/api/retailer/"+id);
     }
 
     getRevenue(id:number):Observable<Retailer>
     {
-        return this.httpCilent1.get<Retailer>("http://localhost:64550/api/retailer/"+id);
+        return this.httpCilent1.get<Retailer>(this.url+"/api/retailer/"+id);
     }
 
     

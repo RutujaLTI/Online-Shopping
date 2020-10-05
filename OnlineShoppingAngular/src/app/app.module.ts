@@ -49,6 +49,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartService } from './services/CartService';
 import { CartDetailsComponent } from './cart-details/cart-details.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 const routes:Routes=[
   {path:'',component:ShoppingCartComponent},
   {path:'list',component:ShoppingCartComponent},
@@ -66,7 +67,8 @@ const routes:Routes=[
   {path:'',component:PersonaldetailsComponent}, 
   {path:'deactivateaccount',component:DeactivateaccountComponent},
   {path:'changePassword',component:ChangePasswordComponent},
-  {path:'orders',component:MyOrdersComponent}
+  {path:'orders',component:MyOrdersComponent},
+  {path:'orderDetails/:id',component:OrderDetailsComponent}
 ],canActivate:[UserAuthGuardService]},
   {path:'retailer',component:RetailerdashboardComponent,children:[
   {path:'addproduct',component:AddProductComponent},
@@ -81,8 +83,8 @@ const routes:Routes=[
   {path:'',component:PersonaldetailsComponent},
 ],canActivate:[RetailerAuthGuardService]},
   {path:'compare',component:CompareComponent,canActivate:[UserAuthGuardService]},
-  {path:'cart',component:CartDetailsComponent},
-  {path:'checkout',component:CheckoutComponent},
+  {path:'cart',component:CartDetailsComponent,canActivate:[UserAuthGuardService]},
+  {path:'checkout',component:CheckoutComponent,canActivate:[UserAuthGuardService]},
   {path:'**',component:PagenotfoundComponent},
 ];
 
@@ -121,6 +123,7 @@ const routes:Routes=[
     MyOrdersComponent,
     CheckoutComponent,
     CartDetailsComponent,
+    OrderDetailsComponent,
   ],
   imports: [
     BrowserModule,

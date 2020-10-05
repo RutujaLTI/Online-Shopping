@@ -12,6 +12,6 @@ export class OrderServiceService {
 
   getAllOrdesFromAPI(id:number):Observable<Order[]>
   {
-    return this.http.get<Order[]>("http://localhost:64550/api/order/"+id);
+    return this.http.get<Order[]>("https://onwebapi.azurewebsites.net/api/order/"+id);
   }
 }

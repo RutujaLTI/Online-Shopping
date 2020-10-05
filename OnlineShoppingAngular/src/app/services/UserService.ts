@@ -7,45 +7,30 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class UserService {
 
+  url:string;
   constructor(private httpCilent:HttpClient,private httpCilent1:HttpClient,private httpCilent2:HttpClient)
     {
-
+      this.url='https://onwebapi.azurewebsites.net';
     }
-  register(user:User):boolean
-  {
-      console.log(user.userEmail);
-      return true;
-  }
-  login(user:User):boolean
-  {
-    console.log (user);
-    return true;
-  }
-  changePassword(user:User):boolean
-  {
-    console.log(user);
-    return true;
-  }
   changePasswordFromApi(user:User)
   {
-    return this.httpCilent.get("http://localhost:64550/api/login?email="+user.userEmail+"&password="+user.userPassword);
+    return this.httpCilent.get(this.url+"/api/login?email="+user.userEmail+"&password="+user.userPassword);
   }
   loginFromApi(user:User):Observable<User>
   {
-    return this.httpCilent.post<User>("http://localhost:64550/api/login?email="+user.userEmail+"&password="+user.userPassword,null);
+    return this.httpCilent.put<User>(this.url+"/api/login",user);
   }
   signUpFromApi(user:User):Observable<boolean>
   {
-    return this.httpCilent.post<boolean>("http://localhost:64550/api/login",user);
+    return this.httpCilent.post<boolean>(this.url+"/api/login",user);
   }
 
   deactivateAccount(user:User)
   {
-    //return this.httpCilent.delete("http://localhost:64550/api/users/",user);
-    return this.httpCilent.request("delete","http://localhost:64550/api/users",{body:user});
+    return this.httpCilent.request("delete",this.url+"/api/users",{body:user});
   }
   updateFromApi(user:User):Observable<boolean>
   {
-    return this.httpCilent2.put<boolean>("http://localhost:64550/api/users/"+user.userId,user);
+    return this.httpCilent2.put<boolean>(this.url+"/api/users/"+user.userId,user);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'ngx-webstorage';
 import { User } from '../models/user';
@@ -15,6 +16,7 @@ export class ChangePasswordComponent implements OnInit {
   newPassword:string;
   user:User;
   message:string;
+  confirmPassword:string;
   constructor(private local:LocalStorageService,private userService:UserService,private router:Router) { 
     this.user=this.local.retrieve('user');
     this.message='';
@@ -22,16 +24,24 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  changePassword()
+  changePassword(form:NgForm)
   {
-    if(this.currentPassword!=this.user.userPassword)this.message='Current Password is wrong';
-    else
+    if(form.valid && this.newPassword==this.confirmPassword)
     {
-      this.user.userPassword=this.newPassword;
-      this.userService.changePasswordFromApi(this.user).subscribe((data)=>{
+      if(this.currentPassword!=this.user.userPassword)this.message='Current Password is wrong';
+      else
+      {
+        this.user.userPassword=this.newPassword;
+        this.userService.changePasswordFromApi(this.user).subscribe((data)=>{
           this.local.store('user',this.user);
           this.router.navigate(['/']);
       });
+      }
     }
+    else
+    {
+      this.message='Please enter all values correctly'
+    }
+
   }
 }

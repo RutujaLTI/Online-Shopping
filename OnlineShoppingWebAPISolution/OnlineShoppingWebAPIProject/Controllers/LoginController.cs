@@ -19,16 +19,13 @@ namespace OnlineShoppingWebAPIProject.Controllers
         {
             await Task.Run( ()=>db.proc_change_password(email, password));
         }
-        [HttpPost]
-        public User Login(string email, string password)
+        [HttpPut]
+        public User Login(User user)
         {
-            if( db.Users.FirstOrDefault(u => u.UserEmail == email && u.UserPassword == password && u.IsActive == "Yes") 
-                is User u)
-            {
-                //SessionController.user = u;
-                return u;
-            }
-            return null;
+            return db.Users.FirstOrDefault(u => u.UserEmail == user.UserEmail && u.UserPassword == user.UserPassword && u.IsActive == "Yes")
+                is User u
+                ? u
+                : null;
         }
 
         [HttpPost]

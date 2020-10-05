@@ -9,18 +9,21 @@ import { User } from '../models/user';
 })
 export class WishListService {
 
-  constructor(private http:HttpClient,private http1:HttpClient) { }
+  url:string;
+  constructor(private http:HttpClient,private http1:HttpClient) {
+    this.url='https://onwebapi.azurewebsites.net';
+   }
 
   getWishListProdutsFromApi(id:number):Observable<Product[]>
   {
-    return this.http.get<Product[]>("http://localhost:64550/api/wishlist/"+id);
+    return this.http.get<Product[]>(this.url+"/api/wishlist/"+id);
   }
   addWishListProdutFromApi(Productid:number,UserId:number)
   {
-    return this.http.post("http://localhost:64550/api/wishlist?ProductID="+Productid+"&UserId="+UserId,null);
+    return this.http.post(this.url+"/api/wishlist?ProductID="+Productid+"&UserId="+UserId,null);
   }
   deleteWishListProdutFromApi(Productid:number,UserId:number)
   {
-    return this.http1.delete("http://localhost:64550/api/wishlist?ProductID="+Productid+"&UserId="+UserId);
+    return this.http1.delete(this.url+"/api/wishlist?ProductID="+Productid+"&UserId="+UserId);
   }
 }

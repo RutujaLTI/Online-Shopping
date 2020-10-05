@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'ngx-webstorage';
+import { Cart } from '../models/cart';
 import { Product } from '../models/product';
+import { User } from '../models/user';
+import { CartService } from '../services/CartService';
 import { WishListService } from '../services/wish-list.service';
 
 @Component({
@@ -11,17 +14,24 @@ import { WishListService } from '../services/wish-list.service';
 })
 export class WishListComponent implements OnInit {
 
-  products:Product[];
+  products:Product[]=[];
+  cartList:Cart[];
   message:string="";
-  constructor(private wishListService:WishListService,private router:Router,private local:LocalStorageService) {
-    this.wishListService.getWishListProdutsFromApi(this.local.retrieve('user').userId).subscribe(data=>{
+  user:User;
+  constructor(private wishListService:WishListService,private router:Router,private local:LocalStorageService,private cartService:CartService) {
+    this.user=this.local.retrieve('user');
+    this.wishListService.getWishListProdutsFromApi(this.user.userId).subscribe(data=>{
       this.products=data;
     });
+    this.cartService.getProductsFromCart(this.user.userId).subscribe(d=>
+      {
+        this.cartList=d;
+      });
    }
 
   removeFromWishList(product:Product)
   {
-    this.wishListService.deleteWishListProdutFromApi(product.productId,this.local.retrieve('user').userId).subscribe(d=>{
+    this.wishListService.deleteWishListProdutFromApi(product.productId,this.user.userId).subscribe(d=>{
       this.products.splice(this.products.indexOf(product),1);
     });
   }
@@ -31,6 +41,17 @@ export class WishListComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  addToCart(product:Product)
+  {
+    this.cartService.addCart(new Cart(product.productId,this.user.userId,1)).subscribe(c=>{
+    });
+    this.removeFromWishList(product);
+  }
+  checkInCart(product:Product):boolean
+  {
+    return this.cartList.some(c=>c.productId==product.productId);
   }
 
 }

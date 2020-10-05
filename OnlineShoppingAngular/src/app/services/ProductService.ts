@@ -13,27 +13,27 @@ export class ProductService {
 
     getAllProducts():Observable<Product[]>
     {
-        return this.httpCilent.get<Product[]>("http://localhost:64550/api/products");
+        return this.httpCilent.get<Product[]>("https://onwebapi.azurewebsites.net/api/products");
     }
     getProduct(id:number):Observable<Product>
     {
-        return this.httpCilent2.get<Product>("http://localhost:64550/api/products/"+id);
+        return this.httpCilent2.get<Product>("https://onwebapi.azurewebsites.net/api/products/"+id);
     }
     updateProduct(product:Product)
     {
         console.log(product.productStatus);
-        return this.httpCilent1.put("http://localhost:64550/api/products/"+product.productId,product);
+        return this.httpCilent1.put("https://onwebapi.azurewebsites.net/api/products/"+product.productId,product);
     }
 
 
     addProduct(product:Product)
     {
-        return this.httpCilent3.post("http://localhost:64550/api/products",product);
+        return this.httpCilent3.post("https://onwebapi.azurewebsites.net/api/products",product);
     }
 
     deleteProduct(id:number)
     {
-        return this.httpCilent4.delete("http://localhost:64550/api/products/"+id);
+        return this.httpCilent4.delete("https://onwebapi.azurewebsites.net/api/products/"+id);
     }
 
    

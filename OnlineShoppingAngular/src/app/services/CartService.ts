@@ -8,33 +8,34 @@ import { CartModel } from '../models/cartModel';
 @Injectable()
 export class CartService
 {
+    url:string;
     constructor(private httpClient:HttpClient,private httpClient1:HttpClient,private htttp3:HttpClient)
     {
-
+        this.url='https://onwebapi.azurewebsites.net';
     }
 
     getProductsFromCart(id:number):Observable<Cart[]>
     {
-        return this.htttp3.get<Cart[]>("http://localhost:64550/api/carts/"+id);
+        return this.htttp3.get<Cart[]>(this.url+"/api/carts/"+id);
     }
     
     removeFromCart(cart:Cart)
     {
-        return this.httpClient.delete('http://localhost:64550/api/carts?UserId='+cart.userId+'&ProductID='+cart.productId);
+        return this.httpClient.delete(this.url+'/api/carts?UserId='+cart.userId+'&ProductID='+cart.productId);
     }
 
     checkoutFromCart(cartModel:CartModel[],address:string) //remove from cart table and add in orders table
     {
-        return this.httpClient.post("http://localhost:64550/api/order",{address:address,cartModels:cartModel});
+        return this.httpClient.post(this.url+"/api/order",{address:address,cartModels:cartModel});
         
     }
     addCart(cart:Cart)
     {
-        return this.httpClient.post("http://localhost:64550/api/carts",cart);
+        return this.httpClient.post(this.url+"/api/carts",cart);
     }
     getCartModelFromCart(id:number):Observable<CartModel[]>
     {
-        return this.httpClient.get<CartModel[]>('http://localhost:64550/api/cartmodel/'+id);
+        return this.httpClient.get<CartModel[]>(this.url+'/api/cartmodel/'+id);
     }
 
 

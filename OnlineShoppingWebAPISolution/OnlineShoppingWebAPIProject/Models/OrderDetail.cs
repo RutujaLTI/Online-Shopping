@@ -11,15 +11,16 @@ namespace OnlineShoppingWebAPIProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class OrderDetail
+    using System.Runtime.Serialization;
+
+    [DataContract]public partial class OrderDetail
     {
-        public int OrderId { get; set; }
-        public int ProductId { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<decimal> Price { get; set; }
+        [DataMember]public int OrderId { get; set; }
+        [DataMember]public int ProductId { get; set; }
+        [DataMember]public Nullable<int> Quantity { get; set; }
+        [DataMember]public Nullable<decimal> Price { get; set; }
     
-        public virtual Order Order { get; set; }
-        public virtual Product Product { get; set; }
+        [DataMember]public virtual Order Order { get; set; }
+        [DataMember]public virtual Product Product { get; set; }
     }
 }

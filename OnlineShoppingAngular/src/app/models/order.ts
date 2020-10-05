@@ -4,5 +4,5 @@ export class Order
     userId:number;
     orderTotal:number;
     orderAddress:string;
-    orderDate:Date;
+    orderDate:string;
 }

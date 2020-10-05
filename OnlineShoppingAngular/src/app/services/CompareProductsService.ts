@@ -6,29 +6,30 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class CompareProductsService
 {
+    url:string;
     constructor(private httpCilent:HttpClient,private httpCilent1:HttpClient,private httpCilent2:HttpClient)
     {
-
+        this.url='https://onwebapi.azurewebsites.net';
     }
 
     getCompareProducts():Observable<Product[]>
     {
-        return this.httpCilent.get<Product[]>("http://localhost:64550/api/compareproducts");
+        return this.httpCilent.get<Product[]>(this.url+"/api/compareproducts");
     }
 
     addProductForCompare(product:Product)
     {
-        return this.httpCilent1.post("http://localhost:64550/api/compareproducts/"+product.productId,null);
+        return this.httpCilent1.post(this.url+"/api/compareproducts/"+product.productId,null);
     }
 
     removeProductFromCompare(id:number)
     {
-        return this.httpCilent2.delete("http://localhost:64550/api/compareproducts/"+id);
+        return this.httpCilent2.delete(this.url+"/api/compareproducts/"+id);
     }
 
     removeAll()
     {
-        return this.httpCilent2.delete("http://localhost:64550/api/compareproducts/");
+        return this.httpCilent2.delete(this.url+"/api/compareproducts/");
     }
     
 }

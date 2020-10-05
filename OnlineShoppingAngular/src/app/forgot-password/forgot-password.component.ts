@@ -17,6 +17,7 @@ export class ForgotPasswordComponent implements OnInit {
   userotp:number;
   user:User;
   message:string;
+  cPassword:string;
   constructor(private otpService:OtpService,private userService:UserService,private router:Router) {
     this.otpSent=false;
     this.message="";
@@ -58,16 +59,20 @@ export class ForgotPasswordComponent implements OnInit {
     }
     else
     {
-      if(this.otp==this.userotp)
-    {
+      if(this.user.userPassword!=this.cPassword)
+      {
+        this.message='Password Mismatch';
+      }
+      else if(this.otp==this.userotp)
+      {
       this.userService.changePasswordFromApi(this.user).subscribe((data)=>{
         this.router.navigate(['login']);
       });
     }
-    else
-    {
-      this.message="Invalid Otp";
-    }
+      else
+      {
+        this.message="Invalid Otp";
+      }
   }
 }
 
