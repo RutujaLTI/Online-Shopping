@@ -169,6 +169,11 @@ create proc modify_quantity_in_cart(@userid int,@productid int,@quantity int)
 as
 update cart set Quantity=@quantity where UserId=@userid and ProductId=@productid
 
+create proc get_cart(@userid int)
+as
+select * from Cart where UserId=@userid
+
+
 ---------------------------------------------
 
 --Product module--
@@ -227,3 +232,7 @@ exec proc_insert_products @name='Maths Fundamentals',@description="Maths foe kid
 @img2='',@img3='',@img4='',@brand='S.Chand',@categoryid=1,@retailerid=4
 
 select * from Products
+select * from wishlist
+
+select * from users
+

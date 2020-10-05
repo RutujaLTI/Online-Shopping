@@ -16,6 +16,7 @@ export class AddProductComponent implements OnInit {
   categories:Category[]=[];
   constructor(private productService:ProductService,private local:LocalStorageService,private category:CategoryService,private router:Router) {
     this.product=new Product();
+    //Get categories to display in dropdown
     category.getCategories().subscribe((data)=>
     {
       this.categories=data;
@@ -25,6 +26,7 @@ export class AddProductComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Add product in db
   addProduct()
   {
     this.product.productStatus='modified'

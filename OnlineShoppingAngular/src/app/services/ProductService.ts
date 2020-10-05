@@ -10,42 +10,32 @@ export class ProductService {
     {
 
     }
-    getallProducts():Product[]
-    {
-        var products:Product[]=[];
-        var product=new Product();
-        product.productId=1;
-        product.retailerId=1;
-        product.productStatus="modified";
-        product.productPrice=10;
-        product.productName="Book";
-        products.push(product);
-        console.log(products.length);
-        return products;
-    }
+    
+    //Get all available products of active users
     getModifiedProducts():Observable<Product[]>
     {
         return this.httpCilent.get<Product[]>("http://localhost:64550/api/products");
     }
+
+    //Get product by Product ID
     getProduct(id:number):Observable<Product>
     {
         return this.httpCilent2.get<Product>("http://localhost:64550/api/products/"+id);
     }
+
+    //Update existing product
     updateProduct(product:Product)
     {
-        console.log(product.productStatus);
         return this.httpCilent1.put("http://localhost:64550/api/products/"+product.productId,product);
     }
-    addRemarks(id:number,remaks:string)
-    {
-        
-    }
 
+    //Adds product to products table
     addProduct(product:Product)
     {
         return this.httpCilent3.post("http://localhost:64550/api/products",product);
     }
 
+    //Sets product status to unavailable
     deleteProduct(id:number)
     {
         return this.httpCilent4.delete("http://localhost:64550/api/products/"+id);

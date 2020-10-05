@@ -12,7 +12,8 @@ export class MyOrdersComponent implements OnInit {
 
   orders:Order[]=[];
   constructor(private local:LocalStorageService,private orderService:OrderServiceService) {
-    this.orderService.getAllOrdesFromAPI(this.local.retrieve('user').userId).subscribe((data)=>
+    //Get orders of the user
+    this.orderService.getAllOrdersFromAPI(this.local.retrieve('user').userId).subscribe((data)=>
     {
       this.orders=data;
     });

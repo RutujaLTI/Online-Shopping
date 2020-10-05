@@ -7,45 +7,38 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class UserService {
 
-  constructor(private httpCilent:HttpClient,private httpCilent1:HttpClient,private httpCilent2:HttpClient)
+  constructor(private httpClient:HttpClient,private httpClient1:HttpClient,private httpClient2:HttpClient)
     {
 
     }
-  register(user:User):boolean
-  {
-      console.log(user.userEmail);
-      return true;
-  }
-  login(user:User):boolean
-  {
-    console.log (user);
-    return true;
-  }
-  changePassword(user:User):boolean
-  {
-    console.log(user);
-    return true;
-  }
+
+  //Change user Password
   changePasswordFromApi(user:User)
   {
-    return this.httpCilent.get("http://localhost:64550/api/login?email="+user.userEmail+"&password="+user.userPassword);
-  }
-  loginFromApi(user:User):Observable<User>
-  {
-    return this.httpCilent.post<User>("http://localhost:64550/api/login?email="+user.userEmail+"&password="+user.userPassword,null);
-  }
-  signUpFromApi(user:User):Observable<boolean>
-  {
-    return this.httpCilent.post<boolean>("http://localhost:64550/api/login",user);
+    return this.httpClient.get("http://localhost:64550/api/login?email="+user.userEmail+"&password="+user.userPassword);
   }
 
+  //User login
+  loginFromApi(user:User):Observable<User>
+  {
+    return this.httpClient.post<User>("http://localhost:64550/api/login?email="+user.userEmail+"&password="+user.userPassword,null);
+  }
+
+  //User registration
+  signUpFromApi(user:User):Observable<boolean>
+  {
+    return this.httpClient.post<boolean>("http://localhost:64550/api/login",user);
+  }
+
+  //Account deactivation
   deactivateAccount(user:User)
   {
-    //return this.httpCilent.delete("http://localhost:64550/api/users/",user);
-    return this.httpCilent.request("delete","http://localhost:64550/api/users",{body:user});
+    return this.httpClient.request("delete","http://localhost:64550/api/users",{body:user});
   }
+
+  // Update user details
   updateFromApi(user:User):Observable<boolean>
   {
-    return this.httpCilent2.put<boolean>("http://localhost:64550/api/users/"+user.userId,user);
+    return this.httpClient2.put<boolean>("http://localhost:64550/api/users/"+user.userId,user);
   }
 }

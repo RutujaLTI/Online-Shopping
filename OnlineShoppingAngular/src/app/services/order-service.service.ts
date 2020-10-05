@@ -10,7 +10,7 @@ export class OrderServiceService {
 
   constructor(private http:HttpClient) { }
 
-  getAllOrdesFromAPI(id:number):Observable<Order[]>
+  getAllOrdersFromAPI(id:number):Observable<Order[]>
   {
     return this.http.get<Order[]>("http://localhost:64550/api/order/"+id);
   }

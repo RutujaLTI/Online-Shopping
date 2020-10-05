@@ -13,10 +13,12 @@ import { ProductService } from '../services/ProductService';
 export class ModifyProductComponent implements OnInit {
   product:Product;categories:Category[]=[];
   constructor(private productService:ProductService,private aroute:ActivatedRoute,private route:Router,private cService:CategoryService) { 
+    
     this.productService.getProduct(this.aroute.snapshot.params.id).subscribe((data)=>
     {
       this.product=data;
     });
+    //Category list to display in dropdown
     cService.getCategories().subscribe((data)=>
     {
       this.categories=data;
@@ -26,6 +28,7 @@ export class ModifyProductComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Update product
   modifyProduct()
   {
     this.product.productStatus='modified';

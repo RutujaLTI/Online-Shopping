@@ -2,18 +2,17 @@
 
 <table *ngIf="orders.length!=0" class="table table-bordered">
     <tr>
+        <th>Order ID</th>
         <th>Order Date</th>
         <th>Order Address</th>
         <th>Order Total</th>
-        <th></th>
+        
     </tr>
     <tr *ngFor="let order of orders">
+        <td>{{order.orderId}}}</td> 
         <td>{{order.orderDate}}</td>
-
         <td>{{order.orderAddress}}</td>
-        <td>
-            {{order.orderTotal}}
-        </td>
+        <td>{{order.orderTotal}}</td>
     </tr>
 </table>
 

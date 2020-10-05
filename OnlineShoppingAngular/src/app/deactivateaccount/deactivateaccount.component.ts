@@ -14,7 +14,7 @@ export class DeactivateaccountComponent implements OnInit {
   user:User;
   password:string;
   message:string;
-  //set userid using session
+  
   constructor(private userService:UserService,private local:LocalStorageService,private router:Router,private cmp:CompareProductsService) {
     this.user=this.local.retrieve('user');
     this.message='';
@@ -23,6 +23,7 @@ export class DeactivateaccountComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //If password entered is correct, returns true after deactivation of account
   deactivateAccount()
   {
     if(this.password==this.user.userPassword)
@@ -34,7 +35,7 @@ export class DeactivateaccountComponent implements OnInit {
     }
     else
     {
-      this.message='Wrong Password'
+      this.message='Incorrect password'
     }
   }
 }

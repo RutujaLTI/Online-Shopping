@@ -1,42 +1,26 @@
-    <!--<nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">Shopaholics</a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li><a href="#">Home</a></li>
-            <li><a routerLink="products">Products</a></li>
-            <li><input type="text" placeholder="  Search Products" size="75" style="margin-top: 10px;"></li>
-            <li><a href="#">Compare</a></li>
-            <li><a href="#">Categories</a></li>
-            <li><a href="#">Cart</a></li>
-
-            <li class="dropdown">
-              <a href="#" class="dropbtn">Guest</a>
-              <div class="dropdown-content">
-                <a routerLink="login">Login</a>
-                <a href="#">Orders</a>
-                <a href="#">Wishlist</a>
-                 <a routerLink="profile">Profile</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-    </nav>      
-    <br>-->
-    <app-nav></app-nav>
-    <div class="container">
-      <router-outlet></router-outlet>
-  </div>
-    <div class="container">
-      <div class="row">
-          <div class="col">
-  
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal">
+    <span><a class="p-2 text-dark" href="/">SHOPAHOLICS</a></span>
+  </h5>
+  <nav class="my-2 my-md-0 mr-md-3"> 
+      <a class="p-2 text-dark" href="#">Products</a>
+      <div class="dropdown">
+          <a class="p-2 text-dark" href="#">Categories</a>
+          <div class="dropdown-content" >
+            <a  class="p-2 text-dark" *ngFor="let category of categories" (click)='categoryView(category.categoryId)'>{{category.categoryName}}</a>
           </div>
       </div>
-      <div class=" row ">
-          <div class="col ">
-
-          </div>
-      </div>
-  </div>
+      <a class="p-2 text-dark" href="/login" *ngIf='user==null'>Login</a>
+      <a class="p-2 text-dark" href="/compare" *ngIf='user!=null'>Compare</a>
+      <a class="p-2 text-dark" href="/wishList" *ngIf='user!=null'>WishList</a>
+      <a class="p-2 text-dark" href="/cart" *ngIf='user!=null'>Cart</a>
+      <a class="p-2 text-dark" href="/profile" *ngIf='user!=null && user.userRole=="User"'>{{user.userName}}</a>
+      <a class="p-2 text-dark" href="/retailer" *ngIf='user!=null && user.userRole=="Retailer"'>{{user.userName}}</a>
+      <a class="p-2 text-dark" href="/admin" *ngIf='user!=null && user.userRole=="Admin"'>{{user.userName}}</a>
+      <a class="p-2 text-dark" href="#" *ngIf='user!=null' (click)='signOut()'>Sign Out</a>
+  </nav>
+</div>
+        
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

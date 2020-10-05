@@ -20,16 +20,19 @@ export class PersonaldetailsComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  //Returns true if user details updated successfully else false
   update()
   {
     this.userService.updateFromApi(this.user).subscribe((data)=>
     {
       if(data)
       {
+        this.local.store('user',this.user);//Update local storage with new values
         this.router.navigate(['/']);
-        this.local.store('user',this.user);
       }
-      else this.message="Email or phone is already tied to a account";
+
+      else this.message="Email or phone is already tied to an account";
     });
   }
 }

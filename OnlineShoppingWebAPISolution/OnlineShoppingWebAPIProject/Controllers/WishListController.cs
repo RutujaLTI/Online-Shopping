@@ -15,10 +15,13 @@ namespace OnlineShoppingWebAPIProject.Controllers
     {
         OnlineShoppingEntities1 db = new OnlineShoppingEntities1();
 
+        //Get wishlist of a particular user
         public IQueryable<Product> GetProducts(int id)
         {
             return db.Wishlists.Where(w => w.UserId == id).Select(w => w.Product);
         }
+
+        //Add the product to wishlist against the user
         [HttpPost]public async Task AddToWishList(int ProductId,int UserId)
         {
             try
@@ -32,6 +35,7 @@ namespace OnlineShoppingWebAPIProject.Controllers
             }
         }
 
+        //Remove the product from wishlist againt the user
         public async Task DeleteFromWishList(int ProductId, int UserId)
         {
             try

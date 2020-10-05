@@ -24,12 +24,16 @@ export class SignUpComponent implements OnInit {
   {
     if(this.cpassword!=this.user.userPassword)
     {
-      this.message='Passwords do not a match';
+      this.message='Passwords do not match';
     }
+
+    //Returns true if signup successful
     else this.userService.signUpFromApi(this.user).subscribe((data)=>
     {
-      if(data)this.router.navigate(['/login']);
-      else this.message="Email or phone already exsists.Please LogIn";
+      if(data)  
+        this.router.navigate(['/login']); //Route to login page
+      else 
+        this.message="Email or phone already exists. Please login or enter a different value";
     });
 
   }

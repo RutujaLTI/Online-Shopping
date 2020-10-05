@@ -1,6 +1,6 @@
 <div class="login-clean">
     <div class="center" >
-        <h2 class="centre">Register</h2>
+        <h2>Register</h2>
         <div class="form-group"><input class="form-control" type="text" name="name" placeholder="Name" required minlength=4 [(ngModel)]="user.userName" #un="ngModel" />
             <span class='text-danger' *ngIf="un.errors && un.touched" >
                 <span *ngIf="un.errors.required"> Username is required </span>
@@ -16,7 +16,7 @@
         </div>
         <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email" [(ngModel)]="user.userEmail" required #e='ngModel'/>
             <span class='text-danger' *ngIf="e.errors && e.touched">
-                <span *ngIf="e.errors.required"> Email is required </span>
+                <span *ngIf="e.errors.required"> Email ID is required </span>
             </span>
         </div>
         <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password" required minlength=8 [(ngModel)]="user.userPassword" #ps="ngModel"/>
@@ -32,7 +32,7 @@
             </span>
         </div>
         <div class="form-group"><button class="btn btn-success btn-block" type="submit" (click)="registerUser()">Sign Up</button></div>
-        <div><a class="forgot" href="/login">Already have a accont Login.</a>
-        <p  class='text-danger'>{{message}}</p>
+        <div><a class="forgot" href="/login">Already have an account? Login</a>
+        <p class='text-danger'>{{message}}</p>
         </div></div>
 </div>

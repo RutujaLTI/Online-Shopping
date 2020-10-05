@@ -8,16 +8,14 @@ export class CategoryService{
     {
         
     }
-    addCategory(categoryName:string)
-    {
-        console.log(categoryName);
-    }
 
+    //Get all categories
     getCategories():Observable<Category[]>
     {
         return this.httpCilent.get<Category[]>("http://localhost:64550/api/category");
     }
-    
+
+    //Add category in db
     addCategoryFromApi(categoryName:string):Observable<boolean>
     {
         return this.httpCilent.post<boolean>("http://localhost:64550/api/category?category="+categoryName,null);

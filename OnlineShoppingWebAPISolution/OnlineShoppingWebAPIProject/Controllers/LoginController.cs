@@ -25,7 +25,6 @@ namespace OnlineShoppingWebAPIProject.Controllers
             if( db.Users.FirstOrDefault(u => u.UserEmail == email && u.UserPassword == password && u.IsActive == "Yes") 
                 is User u)
             {
-                //SessionController.user = u;
                 return u;
             }
             return null;

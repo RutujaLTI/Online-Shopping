@@ -46,7 +46,7 @@ export class ProductDescriptionComponent implements OnInit {
     })*/
     if(this.user!=null || this.user!=undefined)
     {
-      this.wishList.getWishListProdutsFromApi(this.user.userId).subscribe((data)=>{
+      this.wishList.getWishListProductsFromApi(this.user.userId).subscribe((data)=>{
       if(data.some(p=>p.productId==this.activatedRoute.snapshot.params.id))this.inWishList=true;
     });
     this.cService.getProductsFromCart(this.user.userId).subscribe(d=>
@@ -112,7 +112,7 @@ export class ProductDescriptionComponent implements OnInit {
   }
   addToWishList()
   {
-    this.wishList.addWishListProdutFromApi(this.product.productId,this.user.userId).subscribe((data)=>
+    this.wishList.addWishListProductFromApi(this.product.productId,this.user.userId).subscribe((data)=>
     {
       this.inWishList=true;
     });
@@ -125,7 +125,7 @@ export class ProductDescriptionComponent implements OnInit {
   }
   removeFromWishList()
   {
-    this.wishList.deleteWishListProdutFromApi(this.product.productId,this.user.userId).subscribe((data)=>
+    this.wishList.deleteWishListProductFromApi(this.product.productId,this.user.userId).subscribe((data)=>
     {
       this.inWishList=false;
     });

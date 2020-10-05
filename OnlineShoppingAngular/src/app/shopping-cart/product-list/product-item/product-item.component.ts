@@ -16,7 +16,7 @@ export class ProductItemComponent implements OnInit {
 
   viewDetails()
   {
-    //console.log(this.productItem.productId);
+   
     this.router.navigate(['ViewDetails',this.productItem.productId])
   }
 

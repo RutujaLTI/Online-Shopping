@@ -19,11 +19,13 @@ export class DeleteProductComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Back to list of products
   cancel()
   {
     this.router.navigate(['retailer/modifyList']);
   }
 
+  //Sets product status to unavailable
   deleteProduct()
   {
     this.productService.deleteProduct(this.product.productId).subscribe((data)=>

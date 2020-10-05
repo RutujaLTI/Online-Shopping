@@ -10,14 +10,7 @@ export class RetailerService{
     {
         
     }
-    delete(id:number)
-    {
-
-    }
-    register(user:User):boolean
-    {
-        return true;
-    }
+    
     registerFromApi(user:User):Observable<boolean>
     {
         return this.httpCilent.post<boolean>("http://localhost:64550/api/retailer",user);

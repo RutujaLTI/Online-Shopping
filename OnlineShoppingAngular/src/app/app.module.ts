@@ -25,10 +25,6 @@ import { AddRetailerComponent } from './add-retailer/add-retailer.component';
 import { RetailerService } from './services/RetailerService';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { CategoryService } from './services/CategoryService';
-import { AddproductComponent } from './addproduct/addproduct.component';
-import { CartComponent } from './cart/cart.component';
-import { RetailerdetailsComponent } from './retailerdetails/retailerdetails.component';
-import { WishlistComponent } from './wishlist/wishlist.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavComponent } from './shared/nav/nav.component';
@@ -46,7 +42,6 @@ import { DeleteProductComponent } from './delete-product/delete-product.componen
 import { RevenueComponent } from './revenue/revenue.component';
 import { DeactivateaccountComponent } from './deactivateaccount/deactivateaccount.component';
 import { ProductstatusComponent } from './productstatus/productstatus.component';
-import { SessionService } from './services/sessionService';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { WishListComponent } from './wish-list/wish-list.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
@@ -57,6 +52,7 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CartService } from './services/CartService';
 import { CartDetailsComponent } from './cart-details/cart-details.component';
+
 const routes:Routes=[
   {path:'',component:ShoppingCartComponent},
   {path:'list',component:ShoppingCartComponent},
@@ -91,7 +87,6 @@ const routes:Routes=[
 ],canActivate:[RetailerAuthGuardService]},
   {path:'compare',component:CompareComponent,canActivate:[UserAuthGuardService]},
   {path:'cart',component:CartDetailsComponent},
-  {path:'cart',component:CartComponent},
   {path:'checkout',component:CheckoutComponent},
   {path:'**',component:PagenotfoundComponent},
 ];
@@ -112,10 +107,6 @@ const routes:Routes=[
     VerifyProductComponent,
     AddRetailerComponent,
     AddCategoryComponent,
-    AddproductComponent,
-    CartComponent,
-    RetailerdetailsComponent,
-    WishlistComponent,
     HeaderComponent,
     FooterComponent,
     NavComponent,
@@ -147,7 +138,7 @@ const routes:Routes=[
     RouterModule.forRoot(routes),
     HttpClientModule,NgxWebstorageModule.forRoot()
   ],
-  providers: [OtpService,UserService,ProductService,RetailerService,CategoryService,CompareProductsService,SessionService,CartService],
+  providers: [OtpService,UserService,ProductService,RetailerService,CategoryService,CompareProductsService,CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

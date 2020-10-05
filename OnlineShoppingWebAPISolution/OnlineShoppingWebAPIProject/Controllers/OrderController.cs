@@ -14,11 +14,13 @@ namespace OnlineShoppingWebAPIProject.Controllers
     public class OrderController : ApiController
     {
         OnlineShoppingEntities1 db = new OnlineShoppingEntities1();
+        //Get orders of a particular user
         public IQueryable<Order> GetOrders(int id)
         {
             return db.Orders.Where(o => o.UserId == id);
         }
-        [HttpPost] public void PlaceOrder(Order order)
+        [HttpPost] 
+        public void PlaceOrder(Order order)
         {
             
             try

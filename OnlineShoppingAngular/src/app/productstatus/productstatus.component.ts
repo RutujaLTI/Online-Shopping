@@ -10,10 +10,11 @@ import { ProductService } from '../services/ProductService';
 })
 export class ProductstatusComponent implements OnInit {
   products:Product[];
-  retId:number;//get retailer id from session
+  retId:number;
   message:string="";
   constructor(private productService:ProductService,private local:LocalStorageService) { 
     this.retId=this.local.retrieve('user').userId;
+    //Get products of the particular retailer
     productService.getModifiedProducts().subscribe(data=>{
       this.products=data.filter(s=>s.retailerId==this.retId);
     });

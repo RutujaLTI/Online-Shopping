@@ -21,15 +21,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login()
+  login() //Returns user object if login successful else null
   {
     this.userService.loginFromApi(this.user).subscribe((data)=>
     {
       if(data!=null) {
-        this.localStorage.store('user',data);
-        this.router.navigate(['']);
+        this.localStorage.store('user',data); //Store user object in localstorage for the session
+        this.router.navigate(['']); //Route to homepage
       }
-      else this.message="Invalid username or password";
+      else 
+        this.message="Incorrect username or password";
     });
   }
 
